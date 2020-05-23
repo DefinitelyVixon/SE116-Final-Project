@@ -1,11 +1,11 @@
 
 
-public abstract class AcademicStaff {
+public abstract class Academic {
 
     private String name;
     private int ID;
 
-    public AcademicStaff(String name, int ID){
+    public Academic(String name, int ID){
 
         setName(name);
         setID(ID);

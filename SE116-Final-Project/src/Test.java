@@ -3,6 +3,13 @@ public class Test {
     public static void main(String[] args) {
 
 
+
+        //studentAccess()
+
+
+
+        //lecturerAccess()
+
     }
 
     public static void loginCheck(){
@@ -11,4 +18,6 @@ public class Test {
         System.out.println();
         System.out.println();
     }
+
+
 }
