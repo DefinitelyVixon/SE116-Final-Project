@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class Lecturer extends Academic implements Functional {
 
@@ -20,14 +21,30 @@ public class Lecturer extends Academic implements Functional {
 
     @Override
     public int menu() {
-
-
-    }
-
-    @Override
-    public boolean loginCheck() {
-
-
+        while (true) {
+            System.out.println("<<------------------------------------------------------------->>");
+            System.out.println("| Lecturer Login: lecturer name  ");
+            System.out.println("| Advisor access : ");
+            System.out.println("|****************************************************************");
+            System.out.println("|_______________________________________________________________|");
+            System.out.println("|----------    1.Grades        ---------------------------------|");
+            System.out.println("|----------    2.Absenteeism   ---------------------------------|");
+            System.out.println("|----------    3.Calender      ---------------------------------|");
+            System.out.println("|---------------------------------------------------------------|");
+            System.out.println("|-----Select one : ");
+            try {
+                int selection = scan.nextInt();
+                cls();
+                if (selection == 1 || selection == 2 || selection == 3)
+                    return selection;
+                else
+                    System.out.println("Yazık kafana !");
+            } catch (InputMismatchException e) {
+                scan.nextLine();
+                System.out.println("Invalid input please try integer ");
+                System.out.println();
+            }
+        }
     }
 
     @Override
@@ -57,6 +74,11 @@ public class Lecturer extends Academic implements Functional {
 
     @Override
     public void calendar() {
+
+    }
+
+    @Override
+    public void messages() {
 
     }
 
