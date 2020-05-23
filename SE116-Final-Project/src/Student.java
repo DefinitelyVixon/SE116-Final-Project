@@ -1,6 +1,6 @@
 
 
-public class Student implements Functional{
+public class Student implements Functional {
 
 
     @Override

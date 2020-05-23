@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class MATH154 extends Lecture{
+public class MATH154 extends Lecture {
 
     private ArrayList<Section> sections;
 
