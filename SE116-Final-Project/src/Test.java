@@ -69,6 +69,13 @@ public class Test {
             }
         }
     }
+    private static void absenteeismMenu(){
+        System.out.println("|----------------------------------------------------|");
+        System.out.println("|--------------     ABSENTEEISM     -----------------|");
+
+        space();
+
+    }
 
 
 }
