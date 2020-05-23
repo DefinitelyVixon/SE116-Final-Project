@@ -39,34 +39,35 @@ public class MethodTesting {
             if(lines.charAt(i) == 'N') {
 
                 studentName = findSubstring(lines);
-                System.out.println(studentName);
             }
             else if(lines.charAt(i) == 'I'){
 
                 studentID = findSubstring(lines);
-                System.out.println(studentID);
             }
-            else if(lines.charAt(i) == 'L'){
+            else if(lines.charAt(i) == 'L' && lines.charAt(i+1) == '!'){
+
+                System.out.println("New L " + i);
 
                 ArrayList<String> courseGrades = new ArrayList<>();
 
                 String courseCode = findSubstring(lines);
 
-                System.out.println(courseCode);
-
                 while(true){
 
                     if(lines.charAt(i) == 'G'){
 
+                        System.out.println("New G " + i);
                         courseGrades.add(findSubstring(lines));
                     }
-                    else if(lines.charAt(i) == 'L' && lines.charAt(i-1) == '!'){
+                    else if(lines.charAt(i) == 'L' && lines.charAt(i+1) == '!'){
 
+                        studentGrades.add(new CoursePack(courseCode, courseGrades));
+
+                        System.out.println(i);
                         break;
                     }
                     i++;
                 }
-                studentGrades.add(new CoursePack(courseCode, courseGrades));
             }
             i++;
         }
