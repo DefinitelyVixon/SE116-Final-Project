@@ -44,5 +44,31 @@ public class Test {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
+    private static int studentMenu(){
+        while(true) {
+            System.out.println("<<------------------------------------------------------------->>");
+            System.out.println("| Student Login: Student name  ");
+            System.out.println("|****************************************************************");
+            System.out.println("|_______________________________________________________________|");
+            System.out.println("|----------    1.Grades        ---------------------------------|");
+            System.out.println("|----------    2.Absenteeism   ---------------------------------|");
+            System.out.println("|----------    3.Calender      ---------------------------------|");
+            System.out.println("|---------------------------------------------------------------|");
+            System.out.println("|-----Select one : ");
+            try {
+                int selection = scan.nextInt();
+                space();
+                if (selection == 1 || selection == 2 || selection == 3)
+                    return selection;
+                else
+                    System.out.println("Yazık kafana !");
+            } catch (InputMismatchException e) {
+                scan.nextLine();
+                System.out.println("Invalid input please try integer ");
+                System.out.println();
+            }
+        }
+    }
+
 
 }
