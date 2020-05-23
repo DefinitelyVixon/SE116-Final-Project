@@ -2,18 +2,18 @@ import java.util.ArrayList;
 
 public class MATH154 extends Lecture {
 
-    private ArrayList<Section> sections;
+    private ArrayList<Student> sectionStudents;
 
-    public MATH154(String lectureCode, String lectureName, ArrayList<Section> sections) {
+    public MATH154(String lectureCode, String lectureName, ArrayList<Student> sectionStudents) {
 
         super(lectureCode, lectureName);
-        this.sections = new ArrayList<>();
+        setSectionStudents(sectionStudents);
     }
 
-    public void setSections(ArrayList<Section> sections) {
-        this.sections = sections;
+    public void setSectionStudents(ArrayList<Student> sectionStudents) {
+        this.sectionStudents = sectionStudents;
     }
-    public ArrayList<Section> getSections() {
-        return sections;
+    public ArrayList<Student> getSectionStudents() {
+        return sectionStudents;
     }
 }

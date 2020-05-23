@@ -4,14 +4,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static java.lang.String.valueOf;
-
 public class Lecturer extends Academic implements Functional {
 
     private boolean isAdvisor;
     private ArrayList<Lecture> lectures;
 
-    public Lecturer(String name, int ID, boolean isAdvisor) {
+    public Lecturer(String name, String ID, boolean isAdvisor) {
 
         super(name, ID);
         setIsAdvisor(isAdvisor);
@@ -22,22 +20,6 @@ public class Lecturer extends Academic implements Functional {
 
     @Override
     public void menu() {
-
-        System.out.println(" __________________________________________________________________________");
-        System.out.println("| Lecturer Login: " + this.getName());
-        System.out.println("| Advisor Access: " + isAdvisor);
-        System.out.println("|__________________________________________________________________________");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|___________________________________________________________________________");
 
     }
 
@@ -63,10 +45,6 @@ public class Lecturer extends Academic implements Functional {
 
             data.add(dataParts);
         }
-
-        String[] columnNames = {"ID", "Name", "Absenteeism"};
-
-
 
     }
 

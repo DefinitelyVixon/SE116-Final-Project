@@ -1,3 +1,5 @@
+
+
 public abstract class Lecture {
 
     private String lectureCode;
