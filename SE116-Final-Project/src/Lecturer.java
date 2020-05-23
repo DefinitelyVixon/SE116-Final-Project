@@ -46,6 +46,9 @@ public class Lecturer extends Academic implements Functional {
             }
         }
     }
+    public static void cls(){
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    }
 
     @Override
     public void grades() {
