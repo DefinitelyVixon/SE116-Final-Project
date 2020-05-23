@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class Lecturer extends AcademicStaff implements Functional {
 
     private boolean isAdvisor;
+    private ArrayList<Lecture> lectures;
+
 
     public Lecturer(String name, int ID, boolean isAdvisor) {
         super(name, ID);
@@ -21,11 +23,11 @@ public class Lecturer extends AcademicStaff implements Functional {
     }
 
     @Override
-    public void absenteeism(Section section) throws IOException {
+    public void absenteeism() throws IOException {
 
         ArrayList<String[]> data = new ArrayList<>();
 
-        StringBuilder stringBuilder = new StringBuilder("C:\\Users\\ilgi\\Desktop\\New folder (3)\\Lecturer\\" + section.getLecturer().getID() + "\\" + section + "\\" + section + "\\absenteeism.txt");
+        StringBuilder stringBuilder = new StringBuilder("C:\\Users\\ilgi\\Desktop\\New folder (3)\\Lecturer\\" + this.getID() + "\\" + section + "\\" + section + "\\absenteeism.txt");
 
         File file = new File();
 
@@ -42,14 +44,7 @@ public class Lecturer extends AcademicStaff implements Functional {
 
         String[] columnNames = {"ID", "Name", "Absenteeism"};
 
-        String[][] dataArr = new String[data.size()][columnNames.length];
 
-        int i = 0;
-        while (i < data.size()) {
-
-            dataArr[i] = data.get(i);
-            i++;
-        }
 
     }
 
