@@ -1,11 +1,16 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 public interface Functional {
 
-    public void menu();
+    Scanner sc = new Scanner(System.in);
 
-    public void grades();
-    public void absenteeism() throws IOException;
-    public void calendar();
-    public void messages();
+    int menu();
+
+    boolean loginCheck();
+
+    void grades();
+    void absenteeism() throws IOException;
+    void calendar();
+
 }

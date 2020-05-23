@@ -19,7 +19,14 @@ public class Lecturer extends Academic implements Functional {
     }
 
     @Override
-    public void menu() {
+    public int menu() {
+
+
+    }
+
+    @Override
+    public boolean loginCheck() {
+
 
     }
 
@@ -50,11 +57,6 @@ public class Lecturer extends Academic implements Functional {
 
     @Override
     public void calendar() {
-
-    }
-
-    @Override
-    public void messages() {
 
     }
 
