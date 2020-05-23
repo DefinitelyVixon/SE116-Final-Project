@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 
 public class MethodTesting {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         Student loggedStudent = createStudent();
         System.out.println("Name: " + loggedStudent.getName());
@@ -14,7 +14,7 @@ public class MethodTesting {
 
     public static int i = 0;
 
-    public static Student createStudent(){
+    public static Student createStudent() {
 
         String path = "C:\\Users\\ilgi\\Desktop\\SampleFolder\\Student\\egeAltiok.txt";
 
@@ -34,42 +34,40 @@ public class MethodTesting {
 
         ArrayList<CoursePack> studentGrades = new ArrayList<>();
 
-        while(i < lines.length()){
+        while (i < lines.length() - 2) {
 
-            if(lines.charAt(i) == 'N') {
+            if (lines.charAt(i) == 'N') {
 
                 studentName = findSubstring(lines);
             }
-            else if(lines.charAt(i) == 'I'){
+            else if (lines.charAt(i) == 'I') {
 
                 studentID = findSubstring(lines);
             }
-            else if(lines.charAt(i) == 'L' && lines.charAt(i+1) == '!'){
-
-                System.out.println("New L " + i);
+            else if (lines.charAt(i) == 'L' && lines.charAt(i + 1) == '!') {
 
                 ArrayList<String> courseGrades = new ArrayList<>();
 
                 String courseCode = findSubstring(lines);
 
-                while(true){
+                while (true) {
 
-                    if(lines.charAt(i) == 'G'){
+                    if (lines.charAt(i) == 'G') {
 
-                        System.out.println("New G " + i);
                         courseGrades.add(findSubstring(lines));
                     }
-                    else if(lines.charAt(i) == 'L' && lines.charAt(i+1) == '!'){
+                    else if (lines.charAt(i) == 'L' && lines.charAt(i + 1) == '!') {
 
                         studentGrades.add(new CoursePack(courseCode, courseGrades));
 
-                        System.out.println(i);
                         break;
                     }
                     i++;
                 }
             }
-            i++;
+            else {
+                i++;
+            }
         }
         return new Student(studentName, studentID, studentGrades);
     }
@@ -81,14 +79,14 @@ public class MethodTesting {
         return br.lines().collect(Collectors.joining());
     }
 
-    public static String findSubstring(String searchIn){
+    public static String findSubstring(String searchIn) {
 
         i += 2;
         int subStringStart = i, subStringEnd = i;
 
-        while(true){
+        while (true) {
 
-            if(searchIn.charAt(subStringEnd) == '!'){
+            if (searchIn.charAt(subStringEnd) == '!') {
 
                 i = subStringEnd;
                 break;
@@ -98,9 +96,5 @@ public class MethodTesting {
         return searchIn.substring(subStringStart, subStringEnd);
     }
 
-    public static void login(){
-
-
-    }
 }
 
