@@ -9,11 +9,19 @@ public class Student extends Academic implements Functional {
 
     private ArrayList<CoursePack> myAbsenteeism;
 
-    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism) {
+    private ArrayList<CoursePack> myCalendar;
+
+    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism,ArrayList<CoursePack> myCalendar) {
 
         super(name, ID);
         setMyGrades(myGrades);
         setMyAbsenteeism(myAbsenteeism);
+        setMyCalendar(myCalendar);
+    }
+
+    public Student(String studentName, String studentID, ArrayList<CoursePack> studentGrades, ArrayList<CoursePack> studentAbsenteeism) {
+        super();
+
     }
 
     @Override
@@ -37,7 +45,7 @@ public class Student extends Academic implements Functional {
                     return selection;
                 }
                 else {
-                    System.out.println("Yazık kafana !");
+                    System.out.println(" ➾ Yazık kafana !");
                 }
             }
             catch (InputMismatchException e) {
@@ -73,18 +81,39 @@ public class Student extends Academic implements Functional {
     @Override
     public void absenteeism() {
 
-        for (CoursePack cp : getMyAbsenteeism()){
+        Functional.cls();
 
-            System.out.println(cp.getCourseCode());
-            System.out.println(cp.getCourseData());
+        this.staticMenu("ABSENTEEISM");
+
+        for (int i = 0 ; i < getMyAbsenteeism().size() ; i++){
+
+            System.out.printf("  ╟───┤  %-8.7s├───────┤   %-4.3s├────────────────────────────╢\n",getMyAbsenteeism().get(i).getCourseCode(),
+                    getMyAbsenteeism().get(i).getCourseData().get(0));
+
         }
+        System.out.println("  ║▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
     }
 
     @Override
     public void calendar() {
 
+        this.staticMenu("CALENDER");
+
+        for (int i=0;i<myCalendar.size();i++){
+
+            System.out.printf("  ╟───┤                         ├─────────────────────────╢");
+            System.out.printf("  ╟─┤                                                   ├─╢");
+            System.out.println("  ╠══════════════════════════════════════════════════════════╣");
+        }
+        System.out.println("  ║▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
     }
 
+    public ArrayList<CoursePack> getMyCalendar() {
+        return myCalendar;
+    }
+    public void setMyCalendar(ArrayList<CoursePack> myCalendar) {
+        this.myCalendar = myCalendar;
+    }
     public void setMyAbsenteeism(ArrayList<CoursePack> myAbsenteeism) {
         this.myAbsenteeism = myAbsenteeism;
     }

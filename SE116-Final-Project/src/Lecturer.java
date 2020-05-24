@@ -26,11 +26,11 @@ public class Lecturer extends Academic implements Functional {
         while (true) {
 
             this.staticMenu("MAIN MENU");
-            System.out.println("|" + StringUtils.center("|   1. GRADES   |", 59, '-') + "|");
-            System.out.println("|" + StringUtils.center("|   2. ABSENTEEISM   |", 59, '-') + "|");
-            System.out.println("|" + StringUtils.center("|   3. CALENDAR   |", 59, '-') + "|");
-            System.out.println("|-----------------------------------------------------------|");
-            System.out.println("|-----Select one: ");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢    ➀ GRADES      ✎  ╟", 58, '─') + "╢");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢    ➁ ABSENTEEISM \uD83D\uDD5A  ╟", 59, '─') + "╢");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
+            System.out.println("  ╚═══════════════════════════════════════════════════════════╝");
+            System.out.print("  ╙────➲ Select one: ");
 
             try {
 
@@ -44,13 +44,13 @@ public class Lecturer extends Academic implements Functional {
                 }
                 else {
 
-                    System.out.println(" > Invalid input. Please enter a valid integer.");
+                    System.out.println(" ➾ Invalid input. Please enter a valid integer.");
                 }
             }
             catch (InputMismatchException e) {
 
                 sc.nextLine();
-                System.out.println(" > Invalid input. Please enter a valid integer.");
+                System.out.println(" ➾ Invalid input. Please enter a valid integer.");
                 System.out.println();
             }
         }
@@ -66,7 +66,7 @@ public class Lecturer extends Academic implements Functional {
 
         ArrayList<String[]> data = new ArrayList<>();
 
-        // 20190601001 - Yiğit İNAN - 1
+
 
         String section = sc.nextLine();
 
@@ -96,12 +96,12 @@ public class Lecturer extends Academic implements Functional {
 
     public void staticMenu(String menuName){
 
-        System.out.println("<<|-----------------------------------------------------------|>>");
-        System.out.println("  |" + StringUtils.left("Lecturer Login: " + this.getName(), 59) + "|");
-        System.out.println("  | Advisor Access: " + this.getIsAdvisor());
-        System.out.println("  |***********************************************************|");
-        System.out.println("  |" + StringUtils.center(menuName, 59) + "|" );
-        System.out.println("<<|-----------------------------------------------------------|>>");
+        System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
+        System.out.println("  ║" + StringUtils.rightPad("Lecturer Login: " + this.getName(), 59) + "║");
+        System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + this.getIsAdvisor(),59)+"║");
+        System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+        System.out.println("  ║" + StringUtils.center(menuName, 59) + "|" );
+        System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
     }
 
     public boolean getIsAdvisor(){

@@ -4,6 +4,8 @@ public class CoursePack {
 
     private String courseCode;
     private ArrayList<String> courseData;
+    private ArrayList<String> events;
+    private String date;
 
 
     public CoursePack(String courseCode, String data){
@@ -19,6 +21,18 @@ public class CoursePack {
         setCourseData(courseData);
     }
 
+    public ArrayList<String> getEvents() {
+        return events;
+    }
+    public void setEvents(ArrayList<String> events) {
+        this.events = events;
+    }
+    public String getDate() {
+        return date;
+    }
+    public void setDate(String date) {
+        this.date = date;
+    }
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
