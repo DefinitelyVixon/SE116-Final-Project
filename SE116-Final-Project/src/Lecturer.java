@@ -16,38 +16,47 @@ public class Lecturer extends Academic implements Functional {
         setIsAdvisor(isAdvisor);
 
         lectures = new ArrayList<>();
-
     }
+
 
     @Override
     public int menu() {
+
         while (true) {
+
             System.out.println("<<------------------------------------------------------------->>");
-            System.out.println("| Lecturer Login: lecturer name  ");
-            System.out.println("| Advisor access : ");
-            System.out.println("|****************************************************************");
+            System.out.println("| Lecturer Login: " + this.getName());
+            System.out.println("| Advisor access : " + this.getIsAdvisor());
+            System.out.println("|***************************************************************|");
             System.out.println("|_______________________________________________________________|");
-            System.out.println("|----------    1.Grades        ---------------------------------|");
-            System.out.println("|----------    2.Absenteeism   ---------------------------------|");
-            System.out.println("|----------    3.Calender      ---------------------------------|");
+            System.out.println("|----------    1. Grades        --------------------------------|");
+            System.out.println("|----------    2. Absenteeism   --------------------------------|");
+            System.out.println("|----------    3. Calendar      --------------------------------|");
             System.out.println("|---------------------------------------------------------------|");
-            System.out.println("|-----Select one : ");
+            System.out.println("|-----Select one: ");
+
             try {
-                int selection = scan.nextInt();
-                cls();
-                if (selection == 1 || selection == 2 || selection == 3)
+
+                int selection = sc.nextInt();
+
+                Functional.cls();
+
+                if (selection == 1 || selection == 2 || selection == 3){
+
                     return selection;
-                else
-                    System.out.println("Yazık kafana !");
-            } catch (InputMismatchException e) {
-                scan.nextLine();
-                System.out.println("Invalid input please try integer ");
+                }
+                else {
+
+                    System.out.println(" > Invalid input. Please enter a valid integer.");
+                }
+            }
+            catch (InputMismatchException e) {
+
+                sc.nextLine();
+                System.out.println(" > Invalid input. Please enter a valid integer.");
                 System.out.println();
             }
         }
-    }
-    public static void cls(){
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
     @Override
@@ -77,11 +86,6 @@ public class Lecturer extends Academic implements Functional {
 
     @Override
     public void calendar() {
-
-    }
-
-    @Override
-    public void messages() {
 
     }
 
