@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -17,7 +14,6 @@ public class Lecturer extends Academic implements Functional {
 
         lectures = new ArrayList<>();
     }
-
 
     @Override
     public int menu() {
@@ -65,22 +61,29 @@ public class Lecturer extends Academic implements Functional {
     }
 
     @Override
-    public void absenteeism() throws IOException {
+    public void absenteeism(){
 
         ArrayList<String[]> data = new ArrayList<>();
 
         File file = new File(System.getProperty("user.dir") + "\\SampleFolder\\Lecturer\\" + this.getID() + "\\absenteeism.txt");
 
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(file));
 
-        String line;
+            String line;
 
-        while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
 
-            String[] dataParts = line.split(" - ");
+                String[] dataParts = line.split(" - ");
 
-            data.add(dataParts);
+                data.add(dataParts);
+            }
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

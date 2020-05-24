@@ -1,6 +1,9 @@
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+
 
 public class Student extends Academic implements Functional {
 
@@ -17,22 +20,24 @@ public class Student extends Academic implements Functional {
 
         while (true) {
 
-            System.out.println("<<------------------------------------------------------------->>");
-            System.out.println("| Student Login: " + this.getName());
-            System.out.println("|***************************************************************|");
-            System.out.println("|_______________________________________________________________|");
-            System.out.println("|----------    1. Grades        --------------------------------|");
-            System.out.println("|----------    2. Absenteeism   --------------------------------|");
-            System.out.println("|----------    3. Calendar      --------------------------------|");
-            System.out.println("|---------------------------------------------------------------|");
-            System.out.println("|-----Select one: ");
+            this.staticMenu("MAIN MENU");
+            System.out.println("  |" + StringUtils.center("|   1. GRADES   |", 51, '-') + "|");
+            System.out.println("  |" + StringUtils.center("|   2. ABSENTEEISM   |", 51, '-') + "|");
+            System.out.println("  |" + StringUtils.center("|   3. CALENDAR   |", 51, '-') + "|");
+            System.out.println("  |-----------------------------------------------------------|");
+            System.out.println("  |-----Select one: ");
+
             try {
+
                 int selection = sc.nextInt();
                 Functional.cls();
-                if (selection == 1 || selection == 2 || selection == 3)
+
+                if (selection == 1 || selection == 2 || selection == 3) {
                     return selection;
-                else
+                }
+                else {
                     System.out.println("Yazık kafana !");
+                }
             }
             catch (InputMismatchException e) {
                 sc.nextLine();
@@ -47,9 +52,9 @@ public class Student extends Academic implements Functional {
 
         Functional.cls();
 
-        System.out.println("|-------------------------------------------------------|");
-        System.out.println("|----- " + getName() + "    ");
-        System.out.println("|----- Lectures  -------------     Grades     ----------|");
+        this.staticMenu("GRADES");
+        System.out.println("  |----- " + getName() + "    ");
+        System.out.println("  |----- Lectures  -------------     Grades     ----------|");
 
         for (int i = 0 ; i < getMyGrades().size() ; i++){
 
@@ -108,5 +113,14 @@ public class Student extends Academic implements Functional {
     }
     public ArrayList<CoursePack> getMyGrades() {
         return myGrades;
+    }
+
+    public void staticMenu(String menuName){
+
+        System.out.println("<<|-----------------------------------------------------------|>>");
+        System.out.println("  | Student Login: " + StringUtils.left(this.getName(), 43) + "|");
+        System.out.println("  |***********************************************************|");
+        System.out.println("  |" + StringUtils.center(menuName, 59) + "|" );
+        System.out.println("<<|-----------------------------------------------------------|>>");
     }
 }
