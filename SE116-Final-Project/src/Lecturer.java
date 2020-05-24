@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -24,14 +23,10 @@ public class Lecturer extends Academic implements Functional {
 
         while (true) {
 
-            System.out.println("<<|-----------------------------------------------------------|>>");
-            System.out.println("  | Lecturer Login: " + this.getName());
-            System.out.println("  | Advisor access : " + this.getIsAdvisor());
-            System.out.println("  |***********************************************************|");
-            System.out.println("  |___________________________________________________________|");
-            System.out.println("  |----------    1. Grades        ----------------------------|");
-            System.out.println("  |----------    2. Absenteeism   ----------------------------|");
-            System.out.println("  |----------    3. Calendar      ----------------------------|");
+            this.staticMenu("MAIN MENU");
+            System.out.println("  |" + StringUtils.center("|   1. GRADES   |", 59, '-') + "|");
+            System.out.println("  |" + StringUtils.center("|   2. ABSENTEEISM   |", 59, '-') + "|");
+            System.out.println("  |" + StringUtils.center("|   3. CALENDAR   |", 59, '-') + "|");
             System.out.println("  |-----------------------------------------------------------|");
             System.out.println("  |-----Select one: ");
 
@@ -65,28 +60,42 @@ public class Lecturer extends Academic implements Functional {
     }
 
     @Override
-    public void absenteeism() throws IOException {
+    public void absenteeism(){
 
         ArrayList<String[]> data = new ArrayList<>();
 
         File file = new File(System.getProperty("user.dir") + "\\SampleFolder\\Lecturer\\" + this.getID() + "\\absenteeism.txt");
 
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        try {
 
-        String line;
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
 
-        while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
 
-            String[] dataParts = line.split(" - ");
+                String[] dataParts = line.split(" - ");
 
-            data.add(dataParts);
+                data.add(dataParts);
+            }
         }
-
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void calendar() {
 
+    }
+
+    public void staticMenu(String menuName){
+
+        System.out.println("<<|-----------------------------------------------------------|>>");
+        System.out.println("  |" + StringUtils.left("Lecturer Login: " + this.getName(), 59) + "|");
+        System.out.println("  | Advisor Access: " + this.getIsAdvisor());
+        System.out.println("  |***********************************************************|");
+        System.out.println("  |" + StringUtils.center(menuName, 59) + "|" );
+        System.out.println("<<|-----------------------------------------------------------|>>");
     }
 
     public boolean getIsAdvisor(){

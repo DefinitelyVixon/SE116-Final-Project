@@ -1,6 +1,5 @@
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -78,18 +77,6 @@ public class Student extends Academic implements Functional {
 
     }
 
-    public void printInfo() {
-
-        System.out.println("Name: " + getName());
-        System.out.println("ID: " + getID());
-
-        for(CoursePack cp : myGrades){
-
-            System.out.println("Course Code: " + cp.getCourseCode());
-            cp.printGrades();
-        }
-    }
-
     public void setMyGrades(ArrayList<CoursePack> myGrades) {
         this.myGrades = myGrades;
     }
@@ -100,7 +87,7 @@ public class Student extends Academic implements Functional {
     public void staticMenu(String menuName){
 
         System.out.println("<<|-----------------------------------------------------------|>>");
-        System.out.println("  |" + StringUtils.left(" Student Login: " + this.getName(), 59) + "|");
+        System.out.println("  |" + StringUtils.left("Student Login: " + this.getName(), 59) + "|");
         System.out.println("  |***********************************************************|");
         System.out.println("  |" + StringUtils.center(menuName, 59) + "|" );
         System.out.println("<<|-----------------------------------------------------------|>>");

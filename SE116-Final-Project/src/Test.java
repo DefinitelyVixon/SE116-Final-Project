@@ -1,3 +1,5 @@
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.InputMismatchException;
 
 public class Test {
@@ -14,7 +16,20 @@ public class Test {
 
                 Student loggedStudent = Functional.createStudent(ID);
 
-                loggedStudent.grades();
+                int selection = loggedStudent.menu();
+
+                if(selection == 1){
+
+                    loggedStudent.grades();
+                }
+                else if (selection == 2){
+
+                    loggedStudent.absenteeism();
+                }
+                else{
+
+                    loggedStudent.calendar();
+                }
             }
             else {
 
@@ -26,6 +41,21 @@ public class Test {
             if((ID = Functional.loginCheck("Lecturer")) != null){
 
                 Lecturer loggedLecturer = Functional.createLecturer(ID);
+
+                int selection = loggedLecturer.menu();
+
+                if(selection == 1){
+
+                    loggedLecturer.grades();
+                }
+                else if(selection == 2){
+
+                    loggedLecturer.absenteeism();
+                }
+                else{
+
+                    loggedLecturer.calendar();
+                }
             }
             else {
 
@@ -40,12 +70,12 @@ public class Test {
         while (true) {
 
             System.out.println("<<|-----------------------------------------------------------|>>");
-            System.out.println("  |                       OASIS VOL 2                         |");
-            System.out.println("  |               Izmir University of Economics               |");
+            System.out.println("  |" + StringUtils.center("OASIS 2", 59) + "|");
+            System.out.println("  |" + StringUtils.center("IZMIR UNIVERSITY OF ECONOMICS", 59) +"|");
             System.out.println("  |-----------------------------------------------------------|");
             System.out.println("  |---------|  1) Student  |--------|  2) Lecturer  |---------|");
             System.out.println("<<|___________________________________________________________|>>");
-            System.out.print("    |------Select one :");
+            System.out.print("  |------Select one :");
 
             try {
 
