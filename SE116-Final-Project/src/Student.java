@@ -20,9 +20,9 @@ public class Student extends Academic implements Functional {
         while (true) {
 
             this.staticMenu("MAIN MENU");
-            System.out.println("  |" + StringUtils.center("|   1. GRADES   |", 51, '-') + "|");
-            System.out.println("  |" + StringUtils.center("|   2. ABSENTEEISM   |", 51, '-') + "|");
-            System.out.println("  |" + StringUtils.center("|   3. CALENDAR   |", 51, '-') + "|");
+            System.out.println("  |" + StringUtils.center("|   1. GRADES   |", 59, '-') + "|");
+            System.out.println("  |" + StringUtils.center("|   2. ABSENTEEISM   |", 59, '-') + "|");
+            System.out.println("  |" + StringUtils.center("|   3. CALENDAR   |", 59, '-') + "|");
             System.out.println("  |-----------------------------------------------------------|");
             System.out.println("  |-----Select one: ");
 
@@ -37,7 +37,8 @@ public class Student extends Academic implements Functional {
                 else {
                     System.out.println("Yazık kafana !");
                 }
-            } catch (InputMismatchException e) {
+            }
+            catch (InputMismatchException e) {
                 sc.nextLine();
                 System.out.println(" > Invalid input. Please enter a valid integer. ");
                 System.out.println();
