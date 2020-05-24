@@ -1,11 +1,6 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.stream.Collectors;
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
 
 public interface Functional {
 
@@ -17,7 +12,7 @@ public interface Functional {
     void absenteeism() throws IOException;
     void calendar();
 
-    static String loginCheck(String loginType) {
+    static String loginCheck(String loginType){
 
         int remainingAttempts = 3;
 
@@ -30,7 +25,7 @@ public interface Functional {
 
                 System.out.println();
 
-                File pathFile = new File( System.getProperty("user.dir") + "\\SampleFolder\\Login\\" + loginType + "\\" + ID + ".txt");
+                File pathFile = new File(System.getProperty("user.dir") + "\\SampleFolder\\Login\\" + loginType + "\\" + ID + ".txt");
 
                 if(remainingAttempts == 0){
 
@@ -94,15 +89,17 @@ public interface Functional {
 
         ArrayList<CoursePack> studentGrades = new ArrayList<>();
 
+        ArrayList<CoursePack> studentAbsenteeism = new ArrayList<>();
+
         while (i < lines.length() - 2) {
 
-            if (lines.charAt(i) == 'N') {
+            if (lines.charAt(i) == 'N' && lines.charAt(i + 1) == '!') {
 
                 iUpdate = findSubstring(lines, i);
                 studentName = lines.substring(i + 2, iUpdate);
                 i = iUpdate;
             }
-            else if (lines.charAt(i) == 'I') {
+            else if (lines.charAt(i) == 'I' && lines.charAt(i + 1) == '!') {
 
                 iUpdate = findSubstring(lines, i);
                 studentID = lines.substring(i + 2, iUpdate);
@@ -118,13 +115,13 @@ public interface Functional {
 
                 while (true) {
 
-                    if (lines.charAt(i) == 'G') {
+                    if(lines.charAt(i) == 'G'){
 
                         iUpdate = findSubstring(lines, i);
                         courseGrades.add(lines.substring(i + 2, findSubstring(lines, i)));
                         i = iUpdate;
                     }
-                    else if (lines.charAt(i) == 'L' && lines.charAt(i + 1) == '!') {
+                    else if((lines.charAt(i) == 'L' || lines.charAt(i) == 'A') && lines.charAt(i + 1) == '!'){
 
                         studentGrades.add(new CoursePack(courseCode, courseGrades));
                         break;
@@ -132,12 +129,23 @@ public interface Functional {
                     i++;
                 }
             }
+            else if (lines.charAt(i) == 'A' && lines.charAt(i + 1) == '!'){
+
+                iUpdate = findSubstring(lines, i);
+                String courseCode = lines.substring(i + 2, iUpdate);
+                i = iUpdate;
+
+                iUpdate = findSubstring(lines, i - 1);
+                studentAbsenteeism.add(new CoursePack(courseCode, lines.substring(i + 1, iUpdate)));
+                i = iUpdate;
+            }
             else {
+
                 i++;
             }
         }
-        System.out.println("Student döndü");
-        return new Student(studentName, studentID, studentGrades);
+
+        return new Student(studentName, studentID, studentGrades, studentAbsenteeism);
     }
 
     static Lecturer createLecturer(String ID){
@@ -154,6 +162,8 @@ public interface Functional {
 
     static int findSubstring(String searchIn, int i) {
 
+        //N!Ege ALTIOK!I!20190602002!L!MATH154!G!Midterm: 79!G!Final: 99!L!SE116!G!Midterm: 75!G!Final: 100!G!Labs: 100!G!Project: 100!    A    !MATH154    !     2!A!SE116!3!E!
+        //                                                                                                                              i = 125          i = 134
         i += 2;
         int subStringEnd = i;
 

@@ -7,10 +7,13 @@ public class Student extends Academic implements Functional {
 
     private ArrayList<CoursePack> myGrades;
 
-    public Student(String name, String ID, ArrayList<CoursePack> myGrades) {
+    private ArrayList<CoursePack> myAbsenteeism;
+
+    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism) {
 
         super(name, ID);
         setMyGrades(myGrades);
+        setMyAbsenteeism(myAbsenteeism);
     }
 
     @Override
@@ -19,11 +22,11 @@ public class Student extends Academic implements Functional {
         while (true) {
 
             this.staticMenu("MAIN MENU");
-            System.out.println("  |" + StringUtils.center("|   1. GRADES   |", 59, '-') + "|");
-            System.out.println("  |" + StringUtils.center("|   2. ABSENTEEISM   |", 59, '-') + "|");
-            System.out.println("  |" + StringUtils.center("|   3. CALENDAR   |", 59, '-') + "|");
-            System.out.println("  |-----------------------------------------------------------|");
-            System.out.println("  |-----Select one: ");
+            System.out.println("|" + StringUtils.center("|   1. MY GRADES   |", 59, '-') + "|");
+            System.out.println("|" + StringUtils.center("|   2. MY ABSENTEEISM   |", 59, '-') + "|");
+            System.out.println("|" + StringUtils.center("|   3. MY CALENDAR   |", 59, '-') + "|");
+            System.out.println("|-----------------------------------------------------------|");
+            System.out.println("|-----Select one: ");
 
             try {
 
@@ -34,7 +37,7 @@ public class Student extends Academic implements Functional {
                     return selection;
                 }
                 else {
-                    System.out.println("Yazık kafana !");
+                    System.out.println(" > Yazık kafana !");
                 }
             }
             catch (InputMismatchException e) {
@@ -51,17 +54,15 @@ public class Student extends Academic implements Functional {
         Functional.cls();
 
         this.staticMenu("GRADES");
-        System.out.println("  |----- " + getName() + "    ");
-        System.out.println("  |----- Lectures  -------------     Grades     ----------|");
+        System.out.println("|----- Lectures  -------------     Grades     ----------|");
 
         for (int i = 0 ; i < getMyGrades().size() ; i++){
 
-            System.out.printf("  |-----     %-12.7s -------------------------------------|\n" , getMyGrades().get(i).getCourseCode());
+            System.out.printf("|-----     %-12.7s -------------------------------------|\n", getMyGrades().get(i).getCourseCode());
 
+            for (int j=0;j<getMyGrades().get(i).getCourseData().size();j++){
 
-            for (int j=0;j<getMyGrades().get(i).getCourseGrades().size();j++){
-
-                System.out.printf("  |------------------------------  %-16.15s--------|\n" ,getMyGrades().get(i).getCourseGrades().get(j));
+                System.out.printf("|------------------------------  %-16.15s--------|\n", getMyGrades().get(i).getCourseData().get(j));
 
             }
         }
@@ -69,7 +70,12 @@ public class Student extends Academic implements Functional {
 
     @Override
     public void absenteeism() {
-        System.out.println();
+
+        for (CoursePack cp : getMyAbsenteeism()){
+
+            System.out.println(cp.getCourseCode());
+            System.out.println(cp.getCourseData());
+        }
     }
 
     @Override
@@ -77,19 +83,26 @@ public class Student extends Academic implements Functional {
 
     }
 
+    public void setMyAbsenteeism(ArrayList<CoursePack> myAbsenteeism) {
+        this.myAbsenteeism = myAbsenteeism;
+    }
     public void setMyGrades(ArrayList<CoursePack> myGrades) {
         this.myGrades = myGrades;
     }
+
     public ArrayList<CoursePack> getMyGrades() {
         return myGrades;
+    }
+    public ArrayList<CoursePack> getMyAbsenteeism() {
+        return myAbsenteeism;
     }
 
     public void staticMenu(String menuName){
 
-        System.out.println("<<|-----------------------------------------------------------|>>");
-        System.out.println("  |" + StringUtils.left("Student Login: " + this.getName(), 59) + "|");
-        System.out.println("  |***********************************************************|");
-        System.out.println("  |" + StringUtils.center(menuName, 59) + "|" );
-        System.out.println("<<|-----------------------------------------------------------|>>");
+        System.out.println("|-----------------------------------------------------------|");
+        System.out.println("|" + StringUtils.rightPad((" Student Login: " + this.getName()), 59) + "|");
+        System.out.println("|***********************************************************|");
+        System.out.println("|" + StringUtils.center(menuName, 59) + "|" );
+        System.out.println("|***********************************************************|");
     }
 }

@@ -21,14 +21,16 @@ public class Lecturer extends Academic implements Functional {
     @Override
     public int menu() {
 
+        System.out.println(getIsAdvisor()?"☑":"☒");
+
         while (true) {
 
             this.staticMenu("MAIN MENU");
-            System.out.println("  |" + StringUtils.center("|   1. GRADES   |", 59, '-') + "|");
-            System.out.println("  |" + StringUtils.center("|   2. ABSENTEEISM   |", 59, '-') + "|");
-            System.out.println("  |" + StringUtils.center("|   3. CALENDAR   |", 59, '-') + "|");
-            System.out.println("  |-----------------------------------------------------------|");
-            System.out.println("  |-----Select one: ");
+            System.out.println("|" + StringUtils.center("|   1. GRADES   |", 59, '-') + "|");
+            System.out.println("|" + StringUtils.center("|   2. ABSENTEEISM   |", 59, '-') + "|");
+            System.out.println("|" + StringUtils.center("|   3. CALENDAR   |", 59, '-') + "|");
+            System.out.println("|-----------------------------------------------------------|");
+            System.out.println("|-----Select one: ");
 
             try {
 
@@ -36,7 +38,7 @@ public class Lecturer extends Academic implements Functional {
 
                 Functional.cls();
 
-                if (selection == 1 || selection == 2 || selection == 3){
+                if(selection == 1 || selection == 2 || selection == 3){
 
                     return selection;
                 }
@@ -64,7 +66,11 @@ public class Lecturer extends Academic implements Functional {
 
         ArrayList<String[]> data = new ArrayList<>();
 
-        File file = new File(System.getProperty("user.dir") + "\\SampleFolder\\Lecturer\\" + this.getID() + "\\absenteeism.txt");
+        // 20190601001 - Yiğit İNAN - 1
+
+        String section = sc.nextLine();
+
+        File file = new File(System.getProperty("user.dir") + "\\SampleFolder\\Lecturer\\" + this.getID() + "\\Section" + section + "\\absenteeism.txt");
 
         try {
 

@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         int loginAs = menu();
 
@@ -22,7 +22,7 @@ public class Test {
 
                     loggedStudent.grades();
                 }
-                else if (selection == 2){
+                else if(selection == 2){
 
                     loggedStudent.absenteeism();
                 }
@@ -31,7 +31,7 @@ public class Test {
                     loggedStudent.calendar();
                 }
             }
-            else {
+            else{
 
                 System.out.println(" > Stop abusing the fucking program you dumbass...");
             }
@@ -57,7 +57,7 @@ public class Test {
                     loggedLecturer.calendar();
                 }
             }
-            else {
+            else{
 
                 System.out.println(" > Stop abusing the fucking program you dumbass...");
             }
@@ -65,9 +65,9 @@ public class Test {
         }
     }
 
-    public static int menu() {
+    public static int menu(){
 
-        while (true) {
+        while (true){
 
             System.out.println("<<|-----------------------------------------------------------|>>");
             System.out.println("  |" + StringUtils.center("OASIS 2", 59) + "|");
@@ -75,9 +75,9 @@ public class Test {
             System.out.println("  |-----------------------------------------------------------|");
             System.out.println("  |---------|  1) Student  |--------|  2) Lecturer  |---------|");
             System.out.println("<<|___________________________________________________________|>>");
-            System.out.print("  |------Select one :");
+            System.out.print  ("  |------Select one : ");
 
-            try {
+            try{
 
                 int selection = Functional.sc.nextInt();
 
@@ -95,14 +95,11 @@ public class Test {
                 }
             }
             catch (InputMismatchException e) {
+
                 Functional.sc.nextLine();
                 System.out.println(" > Invalid input. Please enter a valid integer.");
                 System.out.println();
             }
         }
     }
-
-
-
-
 }

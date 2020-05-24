@@ -3,35 +3,33 @@ import java.util.ArrayList;
 public class CoursePack {
 
     private String courseCode;
-    private ArrayList<String> courseGrades;
+    private ArrayList<String> courseData;
 
-    public CoursePack(String courseCode, ArrayList<String> courseGrades){
+
+    public CoursePack(String courseCode, String data){
 
         setCourseCode(courseCode);
-        setCourseGrades(courseGrades);
+
+        courseData = new ArrayList<>();
+        courseData.add(data);
     }
+    public CoursePack(String courseCode, ArrayList<String> courseData){
 
-    public void printGrades(){
-
-        System.out.println("Grades: ");
-
-        for (String s : courseGrades){
-
-            System.out.println(s);
-        }
+        setCourseCode(courseCode);
+        setCourseData(courseData);
     }
 
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
-    public void setCourseGrades(ArrayList<String> courseGrades) {
-        this.courseGrades = courseGrades;
+    public void setCourseData(ArrayList<String> courseData) {
+        this.courseData = courseData;
     }
     public String getCourseCode() {
         return courseCode;
     }
-    public ArrayList<String> getCourseGrades() {
-        return courseGrades;
+    public ArrayList<String> getCourseData() {
+        return courseData;
     }
 }
 
