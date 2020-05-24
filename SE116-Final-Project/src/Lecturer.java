@@ -17,7 +17,6 @@ public class Lecturer extends Academic implements Functional {
         lectures = new ArrayList<>();
     }
 
-
     @Override
     public int menu() {
 
@@ -65,8 +64,6 @@ public class Lecturer extends Academic implements Functional {
     public void absenteeism(){
 
         ArrayList<String[]> data = new ArrayList<>();
-
-
 
         String section = sc.nextLine();
 
