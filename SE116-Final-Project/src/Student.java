@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-
 public class Student extends Academic implements Functional {
 
     private ArrayList<CoursePack> myGrades;
@@ -38,8 +37,7 @@ public class Student extends Academic implements Functional {
                 else {
                     System.out.println("Yazık kafana !");
                 }
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 sc.nextLine();
                 System.out.println(" > Invalid input. Please enter a valid integer. ");
                 System.out.println();
@@ -58,37 +56,20 @@ public class Student extends Academic implements Functional {
 
         for (int i = 0 ; i < getMyGrades().size() ; i++){
 
-            System.out.println("|----- " + getMyGrades().get(i).getCourseCode());
+            System.out.printf("  |-----     %-12.7s -------------------------------------|\n" , getMyGrades().get(i).getCourseCode());
 
-            int length = getMyGrades().get(i).getCourseCode().length();
-
-            while(length < 7){
-
-                System.out.print(" ");
-                length++;
-            }
-
-            System.out.println("  ------------------------------------|");
 
             for (int j=0;j<getMyGrades().get(i).getCourseGrades().size();j++){
 
-                System.out.println("|------------------------------" + getMyGrades().get(i).getCourseGrades().get(j));
+                System.out.printf("  |------------------------------  %-16.15s--------|\n" ,getMyGrades().get(i).getCourseGrades().get(j));
 
-                int length2 = getMyGrades().get(i).getCourseGrades().get(j).length();
-
-                while(length2 < 15){
-
-                    System.out.print(" ");
-                    length2++;
-                }
-                System.out.println(" ---------|");
             }
         }
     }
 
     @Override
     public void absenteeism() {
-
+        System.out.println();
     }
 
     @Override
@@ -118,7 +99,7 @@ public class Student extends Academic implements Functional {
     public void staticMenu(String menuName){
 
         System.out.println("<<|-----------------------------------------------------------|>>");
-        System.out.println("  | Student Login: " + StringUtils.left(this.getName(), 43) + "|");
+        System.out.println("  |" + StringUtils.left(" Student Login: " + this.getName(), 59) + "|");
         System.out.println("  |***********************************************************|");
         System.out.println("  |" + StringUtils.center(menuName, 59) + "|" );
         System.out.println("<<|-----------------------------------------------------------|>>");
