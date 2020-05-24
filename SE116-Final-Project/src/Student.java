@@ -43,36 +43,19 @@ public class Student extends Academic implements Functional {
 
         Functional.cls();
 
-        System.out.println("|-------------------------------------------------------|");
-        System.out.println("|----- " + getName() + "    ");
-        System.out.println("|----- Lectures  -------------     Grades     ----------|");
+        System.out.println("  |-----------------------------------------------------------|");
+        System.out.println("  |----- " + getName() + "    ");
+        System.out.println("  |-----     Lectures    ----------      Grades      ---------|");
 
         for (int i = 0 ; i < getMyGrades().size() ; i++){
 
-            System.out.println("|----- " + getMyGrades().get(i).getCourseCode());
+            System.out.printf("  |-----     %-12.7s -------------------------------------|" , getMyGrades().get(i).getCourseCode());
 
-            int length = getMyGrades().get(i).getCourseCode().length();
-
-            while(length < 7){
-
-                System.out.print(" ");
-                length++;
-            }
-
-            System.out.println("  ------------------------------------|");
 
             for (int j=0;j<getMyGrades().get(i).getCourseGrades().size();j++){
 
-                System.out.println("|------------------------------" + getMyGrades().get(i).getCourseGrades().get(j));
+                System.out.printf("  |------------------------------  %-16.15s--------|" ,getMyGrades().get(i).getCourseGrades().get(j));
 
-                int length2 = getMyGrades().get(i).getCourseGrades().get(j).length();
-
-                while(length2 < 15){
-
-                    System.out.print(" ");
-                    length2++;
-                }
-                System.out.println(" ---------|");
             }
         }
     }
