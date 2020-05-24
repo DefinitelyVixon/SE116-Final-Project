@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -13,19 +12,17 @@ public class Student extends Academic implements Functional {
     }
 
     @Override
-    public int menu() {
-
-        while (true) {
-
+    public int menu(){
+        while(true) {
             System.out.println("<<------------------------------------------------------------->>");
-            System.out.println("| Student Login: " + this.getName());
-            System.out.println("|***************************************************************|");
+            System.out.println("| Student Login: Student name  ");
+            System.out.println("|****************************************************************");
             System.out.println("|_______________________________________________________________|");
-            System.out.println("|----------    1. Grades        --------------------------------|");
-            System.out.println("|----------    2. Absenteeism   --------------------------------|");
-            System.out.println("|----------    3. Calendar      --------------------------------|");
+            System.out.println("|----------    1.Grades        ---------------------------------|");
+            System.out.println("|----------    2.Absenteeism   ---------------------------------|");
+            System.out.println("|----------    3.Calendar      ---------------------------------|");
             System.out.println("|---------------------------------------------------------------|");
-            System.out.println("|-----Select one: ");
+            System.out.println("|-----Select one : ");
             try {
                 int selection = sc.nextInt();
                 Functional.cls();
@@ -33,8 +30,7 @@ public class Student extends Academic implements Functional {
                     return selection;
                 else
                     System.out.println("Yazık kafana !");
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 sc.nextLine();
                 System.out.println(" > Invalid input. Please enter a valid integer. ");
                 System.out.println();
@@ -83,7 +79,7 @@ public class Student extends Academic implements Functional {
 
     @Override
     public void absenteeism() {
-
+        System.out.println();
     }
 
     @Override
