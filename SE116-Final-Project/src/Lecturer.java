@@ -24,16 +24,16 @@ public class Lecturer extends Academic implements Functional {
 
         while (true) {
 
-            System.out.println("<<------------------------------------------------------------->>");
-            System.out.println("| Lecturer Login: " + this.getName());
-            System.out.println("| Advisor access : " + this.getIsAdvisor());
-            System.out.println("|***************************************************************|");
-            System.out.println("|_______________________________________________________________|");
-            System.out.println("|----------    1. Grades        --------------------------------|");
-            System.out.println("|----------    2. Absenteeism   --------------------------------|");
-            System.out.println("|----------    3. Calendar      --------------------------------|");
-            System.out.println("|---------------------------------------------------------------|");
-            System.out.println("|-----Select one: ");
+            System.out.println("<<|-----------------------------------------------------------|>>");
+            System.out.println("  | Lecturer Login: " + this.getName());
+            System.out.println("  | Advisor access : " + this.getIsAdvisor());
+            System.out.println("  |***********************************************************|");
+            System.out.println("  |___________________________________________________________|");
+            System.out.println("  |----------    1. Grades        ----------------------------|");
+            System.out.println("  |----------    2. Absenteeism   ----------------------------|");
+            System.out.println("  |----------    3. Calendar      ----------------------------|");
+            System.out.println("  |-----------------------------------------------------------|");
+            System.out.println("  |-----Select one: ");
 
             try {
 
@@ -69,7 +69,7 @@ public class Lecturer extends Academic implements Functional {
 
         ArrayList<String[]> data = new ArrayList<>();
 
-        File file = new File("C:\\Users\\ilgi\\Desktop\\New folder (3)\\Lecturer\\" + this.getID() + "\\absenteeism.txt");
+        File file = new File(System.getProperty("user.dir") + "\\SampleFolder\\Lecturer\\" + this.getID() + "\\absenteeism.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 

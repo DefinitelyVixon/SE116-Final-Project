@@ -30,7 +30,7 @@ public interface Functional {
 
                 System.out.println();
 
-                File pathFile = new File("C:\\Users\\ilgi\\Desktop\\SampleFolder\\Login\\" + loginType + "\\" + ID + ".txt");
+                File pathFile = new File( System.getProperty("user.dir") + "\\SampleFolder\\Login\\" + loginType + "\\" + ID + ".txt");
 
                 if(remainingAttempts == 0){
 
@@ -77,7 +77,7 @@ public interface Functional {
         int i = 0;
         int iUpdate;
 
-        String path = "C:\\Users\\ilgi\\Desktop\\SampleFolder\\Student\\" + ID + ".txt";
+        String path = System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + ID + ".txt";
 
         String lines = null;
 

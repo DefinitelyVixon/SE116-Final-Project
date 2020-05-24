@@ -36,7 +36,7 @@ public class Student extends Academic implements Functional {
             }
             catch (InputMismatchException e) {
                 sc.nextLine();
-                System.out.println("Invalid input please try integer ");
+                System.out.println(" > Invalid input. Please enter a valid integer. ");
                 System.out.println();
             }
         }
