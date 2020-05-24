@@ -11,11 +11,6 @@ public abstract class Academic {
         setID(ID);
     }
 
-    public Academic() {
-
-    }
-
-
     public String getName() {
         return name;
     }

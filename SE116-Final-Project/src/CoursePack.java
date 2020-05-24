@@ -3,11 +3,17 @@ import java.util.ArrayList;
 public class CoursePack {
 
     private String courseCode;
-    private ArrayList<String> courseData;
-    private ArrayList<String> events;
-    private String date;
+    private ArrayList<Object> courseData;
 
+    // For Grades
+    public CoursePack(String courseCode, ArrayList<Grade> grades){
 
+        setCourseCode(courseCode);
+
+        courseData = new ArrayList<>();
+        courseData.addAll(grades);
+    }
+    // For Absenteeism
     public CoursePack(String courseCode, String data){
 
         setCourseCode(courseCode);
@@ -15,34 +21,17 @@ public class CoursePack {
         courseData = new ArrayList<>();
         courseData.add(data);
     }
-    public CoursePack(String courseCode, ArrayList<String> courseData){
 
-        setCourseCode(courseCode);
-        setCourseData(courseData);
-    }
-
-    public ArrayList<String> getEvents() {
-        return events;
-    }
-    public void setEvents(ArrayList<String> events) {
-        this.events = events;
-    }
-    public String getDate() {
-        return date;
-    }
-    public void setDate(String date) {
-        this.date = date;
-    }
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
-    public void setCourseData(ArrayList<String> courseData) {
+    public void setCourseData(ArrayList<Object> courseData) {
         this.courseData = courseData;
     }
     public String getCourseCode() {
         return courseCode;
     }
-    public ArrayList<String> getCourseData() {
+    public ArrayList<Object> getCourseData() {
         return courseData;
     }
 }

@@ -11,17 +11,19 @@ public class Student extends Academic implements Functional {
 
     private ArrayList<CoursePack> myCalendar;
 
+    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism) {
+
+        super(name, ID);
+        setMyGrades(myGrades);
+        setMyAbsenteeism(myAbsenteeism);
+
+    }
     public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism,ArrayList<CoursePack> myCalendar) {
 
         super(name, ID);
         setMyGrades(myGrades);
         setMyAbsenteeism(myAbsenteeism);
         setMyCalendar(myCalendar);
-    }
-
-    public Student(String studentName, String studentID, ArrayList<CoursePack> studentGrades, ArrayList<CoursePack> studentAbsenteeism) {
-        super();
-
     }
 
     @Override
@@ -65,7 +67,7 @@ public class Student extends Academic implements Functional {
 
         for (int i = 0 ; i < getMyGrades().size() ; i++){
 
-            System.out.printf("  ║        │ %-8.7s├────────────────────────────────────────╢\n", getMyGrades().get(i).getCourseCode());
+            System.out.printf ("  ║        │ %-8.7s├────────────────────────────────────────╢\n", getMyGrades().get(i).getCourseCode());
             System.out.println("  ╟────────┼─────────┴────────────────────────────────────────╢");
 
 
@@ -97,7 +99,7 @@ public class Student extends Academic implements Functional {
     @Override
     public void calendar() {
 
-        this.staticMenu("CALENDER");
+        this.staticMenu("CALENDAR");
 
         for (int i=0;i<myCalendar.size();i++){
 

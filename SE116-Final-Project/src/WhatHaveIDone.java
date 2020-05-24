@@ -1,70 +1,19 @@
-import java.io.*;
-import java.util.*;
-import java.util.stream.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import org.apache.commons.lang3.*;
 
-public interface Functional {
+public class WhatHaveIDone {
 
-    Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
 
-    int menu();
+        Student s = createStudent("egeAltiok");
 
-    void grades();
-    void absenteeism() throws IOException;
-    void calendar();
-
-    static String loginCheck(String loginType){
-
-        int remainingAttempts = 3;
-
-        while(true) {
-
-            try {
-
-                System.out.println(" ➾ Please Enter Your ID: ");
-                String ID = sc.nextLine();
-
-                System.out.println();
-
-                File pathFile = new File(System.getProperty("user.dir") + "\\SampleFolder\\Login\\" + loginType + "\\" + ID + ".txt");
-
-                if(remainingAttempts == 0){
-
-                    return null;
-                }
-                else if (pathFile.exists()) {
-
-                    BufferedReader br = new BufferedReader(new FileReader(pathFile));
-
-                    System.out.println(" ➾ Please Enter Your Password: ");
-                    String inputPassword = sc.nextLine();
-
-                    System.out.println();
-
-                    String password = br.readLine();
-                    br.close();
-
-                    if (inputPassword.equals(password)) {
-
-                        System.out.println(" ➾ Login successful!");
-                        return ID;
-                    }
-                    else {
-
-                        System.out.println(" ➾ Incorrect Password! " + remainingAttempts + " attempts remaining.");
-                        remainingAttempts--;
-                    }
-                }
-                else {
-
-                    System.out.println(" ➾ ID Not Found! " + remainingAttempts + " attempts remaining.");
-                    remainingAttempts--;
-                }
-            }
-            catch (IOException e) {
-
-                e.printStackTrace();
-            }
-        }
+        s.grades();
+        s.absenteeism();
     }
 
     static Student createStudent(String ID) {
@@ -145,12 +94,23 @@ public interface Functional {
         }
     }
 
-    static Lecturer createLecturer(String ID){
 
-        return null;
+    static String readLines(String filePath) throws IOException {
+
+        BufferedReader br = new BufferedReader(new FileReader(new File(filePath)));
+
+        return br.lines().collect(Collectors.joining());
     }
 
-    static void cls() {
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    static int findSubstring(String searchIn, int i) {
+
+        i += 2;
+        int subStringEnd = i;
+
+        while (searchIn.charAt(subStringEnd) != '!') {
+
+            subStringEnd++;
+        }
+        return subStringEnd;
     }
 }

@@ -16,19 +16,28 @@ public class Test {
 
                 Student loggedStudent = Functional.createStudent(ID);
 
-                int selection = loggedStudent.menu();
+                while(true) {
 
-                if(selection == 1){
+                    int selection = loggedStudent.menu();
 
-                    loggedStudent.grades();
-                }
-                else if(selection == 2){
+                    if(selection == 1){
 
-                    loggedStudent.absenteeism();
-                }
-                else{
+                        loggedStudent.grades();
+                    }
+                    else if(selection == 2){
 
-                    loggedStudent.calendar();
+                        loggedStudent.absenteeism();
+                    }
+                    else if(selection == 3){
+
+                        loggedStudent.calendar();
+                    }
+                    else{
+
+                        System.out.println();
+                        System.out.println(" ➲ Logging out...");
+                        break;
+                    }
                 }
             }
             else{
@@ -74,8 +83,8 @@ public class Test {
             System.out.println("  ║" + StringUtils.center("IZMIR UNIVERSITY OF ECONOMICS", 59) +"║");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
             System.out.println("  ╟─────────┤  1) Student  ├────────┤  2) Lecturer  ├─────────╢");
-            System.out.println("  ╚═══════════════════════════════════════════════════════════╝");
-            System.out.print("  ╙──── ➲ Select one :");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
+            System.out.print  ("  ╙──── ➲ Select one :");
 
             try{
 
