@@ -22,11 +22,11 @@ public class Student extends Academic implements Functional {
         while (true) {
 
             this.staticMenu("MAIN MENU");
-            System.out.println("|" + StringUtils.center("|   1. MY GRADES   |", 59, '-') + "|");
-            System.out.println("|" + StringUtils.center("|   2. MY ABSENTEEISM   |", 59, '-') + "|");
-            System.out.println("|" + StringUtils.center("|   3. MY CALENDAR   |", 59, '-') + "|");
-            System.out.println("|-----------------------------------------------------------|");
-            System.out.println("|-----Select one: ");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢    ➀ GRADES      ✎  ╟", 58, '─') + "╢");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢    ➁ ABSENTEEISM \uD83D\uDD5A  ╟", 59, '─') + "╢");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
+            System.out.println("  ╚═══════════════════════════════════════════════════════════╝");
+            System.out.print("  ╙────➲ Select one: ");
 
             try {
 
@@ -37,12 +37,12 @@ public class Student extends Academic implements Functional {
                     return selection;
                 }
                 else {
-                    System.out.println(" > Yazık kafana !");
+                    System.out.println("Yazık kafana !");
                 }
             }
             catch (InputMismatchException e) {
                 sc.nextLine();
-                System.out.println(" > Invalid input. Please enter a valid integer. ");
+                System.out.println(" ➾ Invalid input. Please enter a valid integer. ");
                 System.out.println();
             }
         }
@@ -54,17 +54,19 @@ public class Student extends Academic implements Functional {
         Functional.cls();
 
         this.staticMenu("GRADES");
-        System.out.println("|----- Lectures  -------------     Grades     ----------|");
 
         for (int i = 0 ; i < getMyGrades().size() ; i++){
 
-            System.out.printf("|-----     %-12.7s -------------------------------------|\n", getMyGrades().get(i).getCourseCode());
+            System.out.printf("  ║        │ %-8.7s├────────────────────────────────────────╢\n", getMyGrades().get(i).getCourseCode());
+            System.out.println("  ╟────────┼─────────┴────────────────────────────────────────╢");
+
 
             for (int j=0;j<getMyGrades().get(i).getCourseData().size();j++){
 
-                System.out.printf("|------------------------------  %-16.15s--------|\n", getMyGrades().get(i).getCourseData().get(j));
+                System.out.printf("  ║        │ %-16.15s                                 ║\n", getMyGrades().get(i).getCourseData().get(j));
 
             }
+            System.out.println("  ║▁▁▁▁▁▁▁▁│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
         }
     }
 
@@ -99,10 +101,10 @@ public class Student extends Academic implements Functional {
 
     public void staticMenu(String menuName){
 
-        System.out.println("|-----------------------------------------------------------|");
-        System.out.println("|" + StringUtils.rightPad((" Student Login: " + this.getName()), 59) + "|");
-        System.out.println("|***********************************************************|");
-        System.out.println("|" + StringUtils.center(menuName, 59) + "|" );
-        System.out.println("|***********************************************************|");
+        System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
+        System.out.println("  ║" + StringUtils.rightPad("  Student Login: " + this.getName(), 59) + "║");
+        System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+        System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
+        System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
     }
 }

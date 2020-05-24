@@ -20,7 +20,7 @@ public interface Functional {
 
             try {
 
-                System.out.println(" > Please Enter Your ID: ");
+                System.out.println(" ➾ Please Enter Your ID: ");
                 String ID = sc.nextLine();
 
                 System.out.println();
@@ -35,7 +35,7 @@ public interface Functional {
 
                     BufferedReader br = new BufferedReader(new FileReader(pathFile));
 
-                    System.out.println(" > Please Enter Your Password: ");
+                    System.out.println(" ➾ Please Enter Your Password: ");
                     String inputPassword = sc.nextLine();
 
                     System.out.println();
@@ -45,18 +45,18 @@ public interface Functional {
 
                     if (inputPassword.equals(password)) {
 
-                        System.out.println(" > Login successful!");
+                        System.out.println(" ➾ Login successful!");
                         return ID;
                     }
                     else {
 
-                        System.out.println(" > Incorrect Password! " + remainingAttempts + " attempts remaining.");
+                        System.out.println(" ➾ Incorrect Password! " + remainingAttempts + " attempts remaining.");
                         remainingAttempts--;
                     }
                 }
                 else {
 
-                    System.out.println(" > ID Not Found! " + remainingAttempts + " attempts remaining.");
+                    System.out.println(" ➾ ID Not Found! " + remainingAttempts + " attempts remaining.");
                     remainingAttempts--;
                 }
             }
@@ -80,7 +80,7 @@ public interface Functional {
 
             lines = readLines(path);
         }
-        catch (IOException e) {
+        catch(IOException e) {
 
             e.printStackTrace();
         }
@@ -105,7 +105,7 @@ public interface Functional {
                 studentID = lines.substring(i + 2, iUpdate);
                 i = iUpdate;
             }
-            else if (lines.charAt(i) == 'L' && lines.charAt(i + 1) == '!') {
+            else if(lines.charAt(i) == 'L' && lines.charAt(i + 1) == '!') {
 
                 ArrayList<String> courseGrades = new ArrayList<>();
 
@@ -113,7 +113,7 @@ public interface Functional {
                 String courseCode = lines.substring(i + 2, iUpdate);
                 i = iUpdate;
 
-                while (true) {
+                while(true) {
 
                     if(lines.charAt(i) == 'G'){
 
@@ -162,8 +162,7 @@ public interface Functional {
 
     static int findSubstring(String searchIn, int i) {
 
-        //N!Ege ALTIOK!I!20190602002!L!MATH154!G!Midterm: 79!G!Final: 99!L!SE116!G!Midterm: 75!G!Final: 100!G!Labs: 100!G!Project: 100!    A    !MATH154    !     2!A!SE116!3!E!
-        //                                                                                                                              i = 125          i = 134
+
         i += 2;
         int subStringEnd = i;
 

@@ -33,7 +33,7 @@ public class Test {
             }
             else{
 
-                System.out.println(" > Stop abusing the fucking program you dumbass...");
+                System.out.println(" ➲ Stop abusing the fucking program you dumbass...");
             }
         }
         else{
@@ -59,7 +59,7 @@ public class Test {
             }
             else{
 
-                System.out.println(" > Stop abusing the fucking program you dumbass...");
+                System.out.println(" ➲ Stop abusing the fucking program you dumbass...");
             }
 
         }
@@ -69,13 +69,13 @@ public class Test {
 
         while (true){
 
-            System.out.println("<<|-----------------------------------------------------------|>>");
-            System.out.println("  |" + StringUtils.center("OASIS 2", 59) + "|");
-            System.out.println("  |" + StringUtils.center("IZMIR UNIVERSITY OF ECONOMICS", 59) +"|");
-            System.out.println("  |-----------------------------------------------------------|");
-            System.out.println("  |---------|  1) Student  |--------|  2) Lecturer  |---------|");
-            System.out.println("<<|___________________________________________________________|>>");
-            System.out.print  ("  |------Select one : ");
+            System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
+            System.out.println("  ║" + StringUtils.center("OASIS 2", 59) + "║");
+            System.out.println("  ║" + StringUtils.center("IZMIR UNIVERSITY OF ECONOMICS", 59) +"║");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+            System.out.println("  ╟─────────┤  1) Student  ├────────┤  2) Lecturer  ├─────────╢");
+            System.out.println("  ╚═══════════════════════════════════════════════════════════╝");
+            System.out.print("  ╙──── ➲ Select one :");
 
             try{
 
@@ -91,13 +91,13 @@ public class Test {
                 }
                 else {
 
-                    System.out.println(" > Yazık kafana!");
+                    System.out.println(" ➲ Yazık kafana!");
                 }
             }
             catch (InputMismatchException e) {
 
                 Functional.sc.nextLine();
-                System.out.println(" > Invalid input. Please enter a valid integer.");
+                System.out.println(" ➲ Invalid input. Please enter a valid integer.");
                 System.out.println();
             }
         }
