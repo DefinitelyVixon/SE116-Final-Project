@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -25,14 +24,14 @@ public class Student extends Academic implements Functional {
             System.out.println("|---------------------------------------------------------------|");
             System.out.println("|-----Select one : ");
             try {
-                int selection = scan.nextInt();
-                space();
+                int selection = sc.nextInt();
+                Test.cls();
                 if (selection == 1 || selection == 2 || selection == 3)
                     return selection;
                 else
                     System.out.println("Yazık kafana !");
             } catch (InputMismatchException e) {
-                scan.nextLine();
+                sc.nextLine();
                 System.out.println("Invalid input please try integer ");
                 System.out.println();
             }
@@ -40,7 +39,34 @@ public class Student extends Academic implements Functional {
     }
 
     @Override
+    public boolean loginCheck() {
+        return false;
+    }
+
+    @Override
     public void grades() {
+        System.out.println("|-------------------------------------------------------|");
+        System.out.println("|----- "+getName()+"    ");
+        System.out.println("|----- Lecturers  -------------     Grades     ---------|");
+        for (int i =0;i<getMyGrades().size();i++){
+            System.out.println("|----- "+getMyGrades().get(i).getCourseCode());
+            int length= getMyGrades().get(i).getCourseCode().length();
+            while(length<7){
+                System.out.print(" ");
+                length++;
+            }
+            System.out.println("  ------------------------------------|");
+            for (int j=0;j<getMyGrades().get(i).getCourseGrades().size();j++){
+                System.out.println("|------------------------------"+getMyGrades().get(i).getCourseGrades().get(j));
+                int length2 = getMyGrades().get(i).getCourseGrades().get(j).length();
+                while(length2<15){
+                    System.out.print(" ");
+                    length2++;
+                }
+                System.out.println(" ---------|");
+            }
+
+        }
 
     }
 
@@ -54,10 +80,6 @@ public class Student extends Academic implements Functional {
 
     }
 
-    @Override
-    public void messages() {
-
-    }
 
     public void printCourseGrades(){
 
