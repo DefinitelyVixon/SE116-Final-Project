@@ -9,7 +9,7 @@ public class Student extends Academic implements Functional {
 
     private ArrayList<CoursePack> myAbsenteeism;
 
-    private ArrayList<CoursePack> myCalendar;
+    private ArrayList<Calendar> myCalendar;
 
     public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism) {
 
@@ -18,7 +18,7 @@ public class Student extends Academic implements Functional {
         setMyAbsenteeism(myAbsenteeism);
 
     }
-    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism,ArrayList<CoursePack> myCalendar) {
+    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism, ArrayList<Calendar> myCalendar) {
 
         super(name, ID);
         setMyGrades(myGrades);
@@ -35,6 +35,7 @@ public class Student extends Academic implements Functional {
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➀ GRADES      ✎  ╟", 58, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➁ ABSENTEEISM \uD83D\uDD5A  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢    ④ EXIT    \uD83D\uDEAA      ╟", 60, '─') + "╢");
             System.out.println("  ╚═══════════════════════════════════════════════════════════╝");
             System.out.print("  ╙────➲ Select one: ");
 
@@ -43,7 +44,7 @@ public class Student extends Academic implements Functional {
                 int selection = sc.nextInt();
                 Functional.cls();
 
-                if (selection == 1 || selection == 2 || selection == 3) {
+                if (selection == 1 || selection == 2 || selection == 3 || selection == 4) {
                     return selection;
                 }
                 else {
@@ -59,7 +60,7 @@ public class Student extends Academic implements Functional {
     }
 
     @Override
-    public void grades() {
+    public int grades() {
 
         Functional.cls();
 
@@ -78,6 +79,7 @@ public class Student extends Academic implements Functional {
             }
             System.out.println("  ║▁▁▁▁▁▁▁▁│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
         }
+        return 0;
     }
 
     @Override
@@ -110,10 +112,10 @@ public class Student extends Academic implements Functional {
         System.out.println("  ║▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
     }
 
-    public ArrayList<CoursePack> getMyCalendar() {
+    public ArrayList<Calendar> getMyCalendar() {
         return myCalendar;
     }
-    public void setMyCalendar(ArrayList<CoursePack> myCalendar) {
+    public void setMyCalendar(ArrayList<Calendar> myCalendar) {
         this.myCalendar = myCalendar;
     }
     public void setMyAbsenteeism(ArrayList<CoursePack> myAbsenteeism) {

@@ -28,6 +28,7 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➀ GRADES      ✎  ╟", 58, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➁ ABSENTEEISM \uD83D\uDD5A  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢    ④ EXIT    \uD83D\uDEAA      ╟", 60, '─') + "╢");
             System.out.println("  ╚═══════════════════════════════════════════════════════════╝");
             System.out.print("  ╙────➲ Select one: ");
 
@@ -37,7 +38,7 @@ public class Lecturer extends Academic implements Functional {
 
                 Functional.cls();
 
-                if(selection == 1 || selection == 2 || selection == 3){
+                if(selection == 1 || selection == 2 || selection == 3|| selection == 4){
 
                     return selection;
                 }
@@ -97,7 +98,7 @@ public class Lecturer extends Academic implements Functional {
         System.out.println("  ║" + StringUtils.rightPad("Lecturer Login: " + this.getName(), 59) + "║");
         System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + this.getIsAdvisor(),59)+"║");
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-        System.out.println("  ║" + StringUtils.center(menuName, 59) + "|" );
+        System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
     }
 

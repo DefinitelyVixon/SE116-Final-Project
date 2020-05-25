@@ -32,11 +32,11 @@ public class Test {
 
                         loggedStudent.calendar();
                     }
-                    else{
+                    else {
 
-                        System.out.println();
-                        System.out.println(" ➲ Logging out...");
-                        break;
+                        Functional.cls();
+                        System.out.println("       Goodbye...     ");
+                        System.exit(2);
                     }
                 }
             }
@@ -61,9 +61,15 @@ public class Test {
 
                     loggedLecturer.absenteeism();
                 }
-                else{
+                else if(selection == 3){
 
                     loggedLecturer.calendar();
+                }
+                else{
+
+                    Functional.cls();
+                    System.out.println("       Goodbye...     ");
+                    System.exit(2);
                 }
             }
             else{
