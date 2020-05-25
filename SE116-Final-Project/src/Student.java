@@ -80,14 +80,16 @@ public class Student extends Academic implements Functional {
 
         for (int i = 0 ; i < getMyGrades().size() ; i++){
 
-            System.out.printf ("  ║        │ %-8.7s├────────────────────────────────────────╢\n", getMyGrades().get(i).getCourseCode());
+            System.out.printf ("  ║        │ %-8.7s├────────────────────────────────────────╢\n",
+                                                           getMyGrades().get(i).getCourseCode());
             System.out.println("  ╟────────┼─────────┴────────────────────────────────────────╢");
 
 
             for (int j=0;j<getMyGrades().get(i).getCourseGrades().size();j++){
 
-                System.out.printf("  ║        │ %-16.15s= %-3d                            ║\n", getMyGrades().get(i).getCourseGrades().get(j).getGradeType(),
-                        getMyGrades().get(i).getCourseGrades().get(j).getGradeValue());
+                System.out.printf("  ║        │ %-16.15s= %-3d                            ║\n",
+                                  getMyGrades().get(i).getCourseGrades().get(j).getGradeType(),
+                                getMyGrades().get(i).getCourseGrades().get(j).getGradeValue());
 
             }
             System.out.println("  ║▁▁▁▁▁▁▁▁│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");

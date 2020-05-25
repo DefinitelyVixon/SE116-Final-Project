@@ -55,35 +55,69 @@ public class Lecturer extends Academic implements Functional {
     }
 
     @Override
-    public void grades(){
+    public void grades() {
 
-        while(true) {
+        while (true) {
 
             int i = 1;
-
             // Print Lecturer's Lectures
-            for(Lecture l : getLectures()){
+            for (Lecture l : getLectures()) {
 
-                System.out.println(i + "- " + l.getLectureCode());
+                staticMenu("GRADES");
+                System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+                System.out.printf("  ╟────────┤ %d) %8.7s├────────────────────────────────────────╢\n", i, l.getLectureCode());
                 i++;
             }
-
+            System.out.println("  ║▁▁▁▁▁▁▁▁│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
             // Select Lecture
-            int lectureIndex = sc.nextInt();
+            int lectureIndex = sc.nextInt() - 1;
 
             i = 1;
+                staticMenu("GRADES");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
             // Print That Lecture's Sections
-            for(Section s : getLectures().get(lectureIndex).getSections()){
+            for (Section s: getLectures().get(lectureIndex).getSections()) {
 
-                System.out.println(i + "- " + s.getSectionNumber());
+                System.out.printf("  ╟────────┤ %d) %9.8s├────────────────────────────────────────╢\n", i , s.getSectionNumber());
                 i++;
             }
 
-            // Select Section
-            int sectionIndex = sc.nextInt();
+            System.out.println("  ║▁▁▁▁▁▁▁│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
 
+            // Select Section
+            int sectionIndex = sc.nextInt() - 1;
+
+                staticMenu("GRADES");
+
+                int length = 31 + 11 * getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades().size();
+
+                if (length < 61){
+
+                    System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+                }
+                else{
+
+                    System.out.println("  ╠═══════════════════════════════════════════════════════════╩");
+                }
+
+            System.out.print("  ╟──┤" + StringUtils.center("ID",11) + "├──┤" + StringUtils.center("NAME",11) +"├" );
+                for (Grade g :  getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()){
+
+                    System.out.print("──┤"+StringUtils.center(g.getGradeType(),7)+"├");
+                }
+
+            System.out.println();
             // Print the Grades of that Section Students
-            // YİĞİT BURASI SENDE KOÇUM
+            for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
+
+                System.out.print(student.getName() + student.getID());
+                for (Grade g : student.getMyGrades().get(0).getCourseGrades()){
+
+
+                    System.out.print("──┤   "+g.getGradeValue()+"   ├");
+                }
+                System.out.println();
+            }
 
             /*
             //If Lecturer enters specific value to go back
@@ -95,10 +129,11 @@ public class Lecturer extends Academic implements Functional {
             else if(){
 
                 changeGrades();
-            }
+            }*/
 
-             */
+
         }
+
     }
 
     public void changeGrades(Section section){
@@ -214,7 +249,7 @@ public class Lecturer extends Academic implements Functional {
         System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + (getIsAdvisor()?"☑":"☒"), 59) + "║");
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
-        System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+
     }
 
     public ArrayList<Lecture> getLectures() {
