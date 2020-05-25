@@ -9,7 +9,9 @@ public interface Functional {
     int menu();
 
     void grades();
+
     void absenteeism() throws IOException;
+
     void calendar();
 
     static String loginCheck(String loginType){
@@ -82,27 +84,27 @@ public interface Functional {
 
         try {
 
-            File[] subFolders = baseFile.listFiles();
+            File[] infoFolders = baseFile.listFiles();
 
-            for(File f : subFolders) {
+            for(File f : infoFolders) {
 
                 if(f.isDirectory()){
 
-                    File[] subSubFolders = f.listFiles();
+                    File[] lectureFiles = f.listFiles();
 
-                    for(File t : subSubFolders){
+                    for(File l : lectureFiles){
 
-                        br = new BufferedReader(new FileReader(t.getPath()));
+                        br = new BufferedReader(new FileReader(l.getPath()));
 
-                        if(t.getParentFile().getName().equals("Absenteeism")){
+                        if(l.getParentFile().getName().equals("Absenteeism")){
 
                             studentAbsenteeism.add(
                                     new CoursePack(
-                                            t.getName(),    // Course Code
+                                            l.getName(),    // Course Code
                                             br.readLine())  // Value of Absenteeism
                             );
                         }
-                        else if(t.getParentFile().getName().equals("Grades")){
+                        else if(l.getParentFile().getName().equals("Grades")){
 
                             ArrayList<Grade> grades = new ArrayList<>();
 
@@ -120,7 +122,7 @@ public interface Functional {
 
                             studentGrades.add(
                                     new CoursePack(
-                                            t.getName(),  // Course Code
+                                            l.getName(),  // Course Code
                                             grades        // The Course's Grading Criteria's and Their Values
                                     )
                             );
@@ -147,7 +149,120 @@ public interface Functional {
 
     static Lecturer createLecturer(String ID){
 
-        return null;
+        String lecturerID = null, lecturerName = null;
+        boolean isAdvisor = false;
+
+        ArrayList<Lecture> lecturerLectures = new ArrayList<>();
+
+        File baseFile = new File(System.getProperty("user.dir") + "\\SampleFolder\\Lecturer\\" + ID);
+
+        BufferedReader br;
+
+        String line;
+
+        try{
+
+            File[] lectureFolders = baseFile.listFiles();
+
+            for(File f : lectureFolders) {
+
+                if (f.isDirectory()) {
+
+                    String lectureCode = f.getName();
+
+                    ArrayList<Section> sections = new ArrayList<>();
+
+                    File[] sectionFiles = f.listFiles();
+
+                    for (File s : sectionFiles) {
+
+                        br = new BufferedReader(new FileReader(s.getPath()));
+
+                        String sectionNumber = s.getName();
+                        ArrayList<Student> sectionStudents = new ArrayList<>();
+
+                        // Read and process all Student ID's in a Section file
+                        while ((line = br.readLine()) != null) {
+
+                            ArrayList<Grade> grades = new ArrayList<>();
+
+                            String studentID = line;
+                            String studentPath = System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + studentID;
+
+                            // Fetching the Student's Name
+                            BufferedReader bri = new BufferedReader(new FileReader(studentPath + "\\info.txt"));
+                            String studentName = bri.readLine();
+
+                            // Fetching the Student's Grades for this Lecture
+                            bri = new BufferedReader(new FileReader(studentPath + "\\Grades\\" + lectureCode));
+                            while((line = bri.readLine()) != null){
+
+                                String[] gradeTypeAndValue = line.split(" - ");
+
+                                grades.add(
+                                        new Grade(
+                                                gradeTypeAndValue[0],
+                                                Integer.parseInt(gradeTypeAndValue[1])
+                                        )
+                                );
+                            }
+                            CoursePack studentGrades = new CoursePack(lectureCode, grades);
+
+                            // Fetching the Student's Absenteeism for this Lecture
+                            bri = new BufferedReader(new FileReader(studentPath + "\\Absenteeism\\" + lectureCode));
+                            CoursePack studentAbsenteeism = new CoursePack(lectureCode, bri.readLine());
+
+                            // Creating the Student object by using all the information
+                            sectionStudents.add(
+                                    new Student(
+                                            studentName,
+                                            studentID,
+                                            studentGrades,
+                                            studentAbsenteeism
+                                    )
+                            );
+                            bri.close();
+                        }
+                        sections.add(
+                                new Section(
+                                        sectionNumber,
+                                        sectionStudents
+                                )
+                        );
+                    }
+
+                    lecturerLectures.add(
+                            new Lecture(
+                                    lectureCode,
+                                    sections
+                            )
+                    );
+
+                }
+                else{
+
+                    br = new BufferedReader(new FileReader(f.getPath()));
+                    lecturerName = br.readLine();
+                    lecturerID = br.readLine();
+                    String advisorCheck = br.readLine();
+
+                    if(advisorCheck.equals("true")){
+
+                        isAdvisor = true;
+                    }
+
+                    br.close();
+                }
+            }
+        }
+        catch (IOException e){
+
+            System.out.println("Exception mu yedik");
+            e.printStackTrace();
+            return null;
+        }
+        System.out.println("Lecturer döndü");
+        return new Lecturer(lecturerName, lecturerID, lecturerLectures, isAdvisor);
     }
 
     static void cls() {

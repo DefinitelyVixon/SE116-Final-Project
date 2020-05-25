@@ -1,26 +1,27 @@
+import java.util.ArrayList;
 
-
-public abstract class Lecture {
+public class Lecture {
 
     private String lectureCode;
-    private String lectureName;
+    private ArrayList<Section> sections;
 
-    public Lecture(String lectureCode, String lectureName){
+    public Lecture(String lectureCode, ArrayList<Section> sections){
 
         setLectureCode(lectureCode);
-        setLectureName(lectureName);
+        setSections(sections);
     }
 
     public void setLectureCode(String lectureCode) {
         this.lectureCode = lectureCode;
     }
-    public void setLectureName(String lectureName) {
-        this.lectureName = lectureName;
+    public void setSections(ArrayList<Section> sections) {
+        this.sections = sections;
     }
+
     public String getLectureCode() {
         return lectureCode;
     }
-    public String getLectureName() {
-        return lectureName;
+    public ArrayList<Section> getSections() {
+        return sections;
     }
 }

@@ -11,6 +11,17 @@ public class Student extends Academic implements Functional {
 
     private ArrayList<Calendar> myCalendar;
 
+    // Basic initialization for Lecturers
+    public Student(String name, String ID, CoursePack grades, CoursePack absenteeism) {
+
+        super(name, ID);
+
+        myGrades = new ArrayList<>();
+        myGrades.add(grades);
+
+        myAbsenteeism = new ArrayList<>();
+        myAbsenteeism.add(absenteeism);
+    }
     public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism) {
 
         super(name, ID);
@@ -60,7 +71,7 @@ public class Student extends Academic implements Functional {
     }
 
     @Override
-    public int grades() {
+    public void grades() {
 
         Functional.cls();
 
@@ -79,7 +90,6 @@ public class Student extends Academic implements Functional {
             }
             System.out.println("  ║▁▁▁▁▁▁▁▁│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
         }
-        return 0;
     }
 
     @Override

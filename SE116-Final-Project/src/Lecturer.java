@@ -9,12 +9,12 @@ public class Lecturer extends Academic implements Functional {
     private boolean isAdvisor;
     private ArrayList<Lecture> lectures;
 
-    public Lecturer(String name, String ID, boolean isAdvisor) {
+    public Lecturer(String name, String ID, ArrayList<Lecture> lectures, boolean isAdvisor) {
 
         super(name, ID);
         setIsAdvisor(isAdvisor);
 
-        lectures = new ArrayList<>();
+        setLectures(lectures);
     }
 
     @Override
@@ -59,32 +59,29 @@ public class Lecturer extends Academic implements Functional {
     @Override
     public void grades() {
 
+        for (Lecture lecture : getLectures()){
+
+            for(Section section : lecture.getSections()){
+
+                System.out.println(section.getSectionNumber());
+
+                for (Student student : section.getSectionStudents()){
+
+                    System.out.println(student.getName());
+
+                    for(Grade g : student.getMyGrades().get(0).getCourseGrades()){
+
+                        System.out.println(g.getGradeType() + ": " + g.getGradeValue());
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void absenteeism(){
 
-        ArrayList<String[]> data = new ArrayList<>();
 
-        String section = sc.nextLine();
-
-        File file = new File(System.getProperty("user.dir") + "\\SampleFolder\\Lecturer\\" + this.getID() + "\\Section" + section + "\\absenteeism.txt");
-
-        try {
-
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-
-                String[] dataParts = line.split(" - ");
-
-                data.add(dataParts);
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -102,12 +99,19 @@ public class Lecturer extends Academic implements Functional {
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
     }
 
+    public ArrayList<Lecture> getLectures() {
+        return lectures;
+    }
     public boolean getIsAdvisor(){
 
         return isAdvisor;
     }
+
     public void setIsAdvisor(boolean isAdvisor){
 
         this.isAdvisor = isAdvisor;
+    }
+    public void setLectures(ArrayList<Lecture> lectures) {
+        this.lectures = lectures;
     }
 }
