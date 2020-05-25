@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.util.stream.*;
 
 public interface Functional {
 
@@ -75,6 +74,7 @@ public interface Functional {
 
         ArrayList<CoursePack> studentGrades = new ArrayList<>();
         ArrayList<CoursePack> studentAbsenteeism = new ArrayList<>();
+        ArrayList<Calendar>   studentCalendar = new ArrayList<>();
 
         File baseFile = new File(System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + ID);
 
@@ -87,6 +87,29 @@ public interface Functional {
             File[] infoFolders = baseFile.listFiles();
 
             for(File f : infoFolders) {
+
+                if (f.getName().equals("calendar.txt")) {
+
+                    br = new BufferedReader(new FileReader(f.getPath()));
+
+                    while ((line = br.readLine()) != null) {
+
+                        List<String> studentEvent = new ArrayList<>();
+
+                        String[] dateAndEvents = line.split(" - ");
+
+
+
+                            String[] tempEvent =dateAndEvents[1].split(" ! ");
+
+                            studentEvent.addAll(Arrays.asList(tempEvent));
+
+
+                        studentCalendar.add(new Calendar(dateAndEvents[0] // Specific Date
+                                                   , studentEvent));     // studentEvent
+                    }
+                    br.close();
+                }
 
                 if(f.isDirectory()){
 
@@ -138,7 +161,7 @@ public interface Functional {
                     br.close();
                 }
             }
-            return new Student(studentName, studentID, studentGrades, studentAbsenteeism);
+            return new Student(studentName, studentID, studentGrades, studentAbsenteeism,studentCalendar);
         }
         catch(IOException e) {
 

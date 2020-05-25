@@ -57,26 +57,30 @@ public class Lecturer extends Academic implements Functional {
     }
 
     @Override
-    public void grades() {
+    public void grades(){
+        while (true) {
+            this.staticMenu("GRADES");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢  1) MATH153    ╟", 59, '─') + "╢");
+            System.out.println("  ╟" + StringUtils.rightPad("───╢  2) MATH154    ╟", 59, '─') + "╢");
+        break;
+        }
+            try {
 
-        for (Lecture lecture : getLectures()){
+                int selection = sc.nextInt();
 
-            for(Section section : lecture.getSections()){
+                Functional.cls();
 
-                System.out.println(section.getSectionNumber());
+                if (selection == 1 || selection == 2 ) {
 
-                for (Student student : section.getSectionStudents()){
-
-                    System.out.println(student.getName());
-
-                    for(Grade g : student.getMyGrades().get(0).getCourseGrades()){
-
-                        System.out.println(g.getGradeType() + ": " + g.getGradeValue());
-                    }
                 }
+
+
+            }catch (Exception e){
+                System.out.println("lsdfls");
             }
         }
-    }
+
+
 
     @Override
     public void absenteeism(){
@@ -97,6 +101,8 @@ public class Lecturer extends Academic implements Functional {
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+    }
+    public void gradesA(){
     }
 
     public ArrayList<Lecture> getLectures() {

@@ -1,20 +1,21 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Calendar {
 
-    private ArrayList<String> events;
+    private List<String> events;
     private String date;
 
-    public Calendar(String date, ArrayList<String> events){
+    public Calendar(String date, List<String> events){
 
         setDate(date);
         setEvents(events);
     }
 
-    public ArrayList<String> getEvents() {
+    public List<String> getEvents() {
         return events;
     }
-    public void setEvents(ArrayList<String> events) {
+    public void setEvents(List<String> events) {
         this.events = events;
     }
     public String getDate() {
