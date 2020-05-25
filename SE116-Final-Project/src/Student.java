@@ -9,7 +9,7 @@ public class Student extends Academic implements Functional {
 
     private ArrayList<CoursePack> myAbsenteeism;
 
-    private ArrayList<Calendar> myCalendar;
+    private ArrayList<ToDo> myCalendar;
 
     // Basic initialization for Lecturers
     public Student(String name, String ID, CoursePack grades, CoursePack absenteeism) {
@@ -29,7 +29,7 @@ public class Student extends Academic implements Functional {
         setMyAbsenteeism(myAbsenteeism);
 
     }
-    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism, ArrayList<Calendar> myCalendar) {
+    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism, ArrayList<ToDo> myCalendar) {
 
         super(name, ID);
         setMyGrades(myGrades);
@@ -117,22 +117,23 @@ public class Student extends Academic implements Functional {
 
         for (int i = 0;i<getMyCalendar().size();i++){
 
-            System.out.printf("  ╟───┤%-17.17s├─────────────────────────╢\n",getMyCalendar().get(i).getDate());
+            System.out.printf("  ╟───┤ %-11.10s├──────────────────────────────────────────╢\n",getMyCalendar().get(i).getDate());
+
             for (int j = 0;j<getMyCalendar().get(i).getEvents().size();j++){
 
-            System.out.printf("  ╟─┤%-51.51s├─╢\n",getMyCalendar().get(i).getEvents().get(j));
+            System.out.printf("  ╟──┤ %-51.51s ├──╢\n",getMyCalendar().get(i).getEvents().get(j));
 
             }
 
-            System.out.println("  ╠══════════════════════════════════════════════════════════╣");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         }
         System.out.println("  ║▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
     }
 
-    public ArrayList<Calendar> getMyCalendar() {
+    public ArrayList<ToDo> getMyCalendar() {
         return myCalendar;
     }
-    public void setMyCalendar(ArrayList<Calendar> myCalendar) {
+    public void setMyCalendar(ArrayList<ToDo> myCalendar) {
         this.myCalendar = myCalendar;
     }
     public void setMyAbsenteeism(ArrayList<CoursePack> myAbsenteeism) {

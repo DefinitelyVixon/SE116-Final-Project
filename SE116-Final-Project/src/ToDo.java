@@ -1,12 +1,14 @@
-import java.util.ArrayList;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
-public class Calendar {
+public class ToDo {
 
     private List<String> events;
-    private String date;
+    private LocalDate date;
 
-    public Calendar(String date, List<String> events){
+    public ToDo(LocalDate date, List<String> events){
 
         setDate(date);
         setEvents(events);
@@ -18,10 +20,11 @@ public class Calendar {
     public void setEvents(List<String> events) {
         this.events = events;
     }
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
+
 }
