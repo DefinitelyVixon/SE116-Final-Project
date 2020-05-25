@@ -139,7 +139,7 @@ public class Lecturer extends Academic implements Functional {
         while(true) {
 
             int i = 1;
-            System.out.println();//bl
+            System.out.println();
             for(String s : localChanges){
 
                 System.out.println(i + "- " + s);
@@ -222,12 +222,141 @@ public class Lecturer extends Academic implements Functional {
     @Override
     public void absenteeism(){
 
+        while(true) {
 
+            int i = 1;
+            // Print Lecturer's Lectures
+            for (Lecture l : getLectures()) {
+
+                staticMenu("ABSENTEEISM");
+                System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+                System.out.printf("  ╟────────┤ %d) %8.7s├────────────────────────────────────────╢\n", i, l.getLectureCode());
+                i++;
+            }
+            System.out.println("  ║▁▁▁▁▁▁▁▁│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
+            // Select Lecture
+            int lectureIndex = sc.nextInt() - 1;
+
+            i = 1;
+            staticMenu("ABSENTEEISM");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+            // Print That Lecture's Sections
+            for (Section s : getLectures().get(lectureIndex).getSections()) {
+
+                System.out.printf("  ╟────────┤ %d) %9.8s├────────────────────────────────────────╢\n", i, s.getSectionNumber());
+                i++;
+            }
+
+            System.out.println("  ║▁▁▁▁▁▁▁│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
+
+            // Select Section
+            int sectionIndex = sc.nextInt() - 1;
+
+            staticMenu("ABSENTEEISM");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
+
+            System.out.println("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 11) + "├──┤" + StringUtils.center("ABSENTEEISM", 11));
+
+            // Print the Grades of that Section Students
+            for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
+
+                System.out.println("  ╟──┤" + StringUtils.center(student.getID(), 11) + "├──┤" + StringUtils.center(student.getName(), 11) + "├──┤" + StringUtils.center(student.getMyAbsenteeism().get(0).getAbsenteeism(), 11));
+            }
+
+
+            System.out.println("Enter -1 to go back");
+            System.out.println("Enter 0 to enable Edit Mode");
+
+            String selection = sc.next();
+            //If Lecturer enters specific value to go back
+            if (selection.equals("-1")) {
+
+                break;
+            }
+            // If Lecturer enters specific value to change grades
+            else if (selection.equals("0")) {
+
+                changeAbsenteeism(
+                        getLectures().get(lectureIndex).getSections().get(sectionIndex),
+                        getLectures().get(lectureIndex).getLectureCode()
+                );
+            }
+        }
     }
 
-    public void changeAbsenteeism(){
+    public void changeAbsenteeism(Section section, String courseCode){
 
+        ArrayList<String> localChanges = new ArrayList<>();
 
+        ArrayList<Student> overwriteID = new ArrayList<>();
+
+        while(true) {
+
+            int i = 1;
+            System.out.println();
+            for(String s : localChanges){
+
+                System.out.println(i + "- " + s);
+                i++;
+            }
+            System.out.println();
+
+            System.out.println("Please Enter the Student ID. Enter -1 to Exit Edit Mode");
+            String selection = sc.next();
+
+            if(selection.equals("-1")){
+
+                System.out.println("Do you want to save your changes? (Y / N) Enter anything else to cancel.");
+                selection = sc.next();
+
+                if(selection.equals("Y")){
+
+                    System.out.println("Processing the changes...");
+
+                    for(Student s : overwriteID){
+
+                        try {
+
+                            BufferedWriter bw = new BufferedWriter(
+                                    new FileWriter(
+                                            System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + s.getID() + "\\Absenteeism\\" + courseCode
+                                    )
+                            );
+                            bw.write(s.getMyAbsenteeism().get(0).getAbsenteeism());
+                            bw.close();
+                        }
+                        catch (IOException e) {
+
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                }
+                else if(selection.equals("N")){
+
+                    System.out.println("Discarding the changes...");
+                    break;
+                }
+                else{
+
+                    System.out.println();
+                }
+            }
+
+            System.out.println("Please Enter the Absenteeism Value");
+            String absenteeism = sc.next();
+
+            for (Student s : section.getSectionStudents()) {
+
+                if(s.getID().equals(selection)){
+
+                    s.getMyAbsenteeism().get(0).setCourseData(absenteeism);
+
+                    overwriteID.add(s);
+                    localChanges.add("Absenteeism for " + selection + " is now " + absenteeism + ".");
+                }
+            }
+        }
     }
 
     @Override
@@ -248,7 +377,6 @@ public class Lecturer extends Academic implements Functional {
         System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + (getIsAdvisor()?"☑":"☒"), 59) + "║");
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
-
     }
 
     public ArrayList<Lecture> getLectures() {

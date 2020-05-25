@@ -9,8 +9,7 @@ public class CoursePack {
 
         setCourseCode(courseCode);
 
-        courseData = new ArrayList<>();
-        courseData.add(data);
+        setCourseData(data);
     }
     public CoursePack(String courseCode, ArrayList<Grade> grades){
 
@@ -19,13 +18,18 @@ public class CoursePack {
         this.courseData.addAll(grades);
     }
 
-
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
     public void setCourseData(ArrayList<Object> courseData) {
         this.courseData = courseData;
     }
+    public void setCourseData(String data){
+
+        courseData = new ArrayList<>();
+        courseData.add(data);
+    }
+
     public String getCourseCode() {
         return courseCode;
     }
@@ -47,6 +51,17 @@ public class CoursePack {
             }
         }
         return courseGrades;
+    }
+    public String getAbsenteeism(){
+
+        for(Object o : getCourseData()){
+
+            if(o instanceof String){
+
+                return (String) o;
+            }
+        }
+        return null;
     }
 }
 

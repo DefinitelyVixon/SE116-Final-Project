@@ -32,11 +32,11 @@ public class Test {
 
                         loggedStudent.calendar();
                     }
-                    else {
+                    else{
 
                         Functional.cls();
                         System.out.println("       Goodbye...     ");
-                        System.exit(2);
+                        break;
                     }
                 }
             }
@@ -51,25 +51,28 @@ public class Test {
 
                 Lecturer loggedLecturer = Functional.createLecturer(ID);
 
-                int selection = loggedLecturer.menu();
+                while(true) {
 
-                if(selection == 1){
+                    int selection = loggedLecturer.menu();
 
-                    loggedLecturer.grades();
-                }
-                else if(selection == 2){
+                    if (selection == 1) {
 
-                    loggedLecturer.absenteeism();
-                }
-                else if(selection == 3){
+                        loggedLecturer.grades();
+                    }
+                    else if (selection == 2) {
 
-                    loggedLecturer.calendar();
-                }
-                else{
+                        loggedLecturer.absenteeism();
+                    }
+                    else if (selection == 3) {
 
-                    Functional.cls();
-                    System.out.println("       Goodbye...     ");
-                    System.exit(2);
+                        loggedLecturer.calendar();
+                    }
+                    else {
+
+                        Functional.cls();
+                        System.out.println("       Goodbye...     ");
+                        break;
+                    }
                 }
             }
             else{
