@@ -37,6 +37,12 @@ public class Student extends Academic implements Functional {
         setMyCalendar(myCalendar);
     }
 
+    public Student(String name ,String ID, ArrayList<Calendar> myCalendar){
+
+        super(name, ID);
+        setMyCalendar(myCalendar);
+    }
+
     @Override
     public int menu() {
 
@@ -83,9 +89,10 @@ public class Student extends Academic implements Functional {
             System.out.println("  ╟────────┼─────────┴────────────────────────────────────────╢");
 
 
-            for (int j=0;j<getMyGrades().get(i).getCourseData().size();j++){
+            for (int j=0;j<getMyGrades().get(i).getCourseGrades().size();j++){
 
-                System.out.printf("  ║        │ %-16.15s                                 ║\n", getMyGrades().get(i).getCourseData().get(j));
+                System.out.printf("  ║        │ %-16.15s= %-3d                            ║\n", getMyGrades().get(i).getCourseGrades().get(j).getGradeType(),
+                        getMyGrades().get(i).getCourseGrades().get(j).getGradeValue());
 
             }
             System.out.println("  ║▁▁▁▁▁▁▁▁│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
