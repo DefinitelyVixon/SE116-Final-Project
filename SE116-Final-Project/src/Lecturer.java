@@ -104,7 +104,7 @@ public class Lecturer extends Academic implements Functional {
                 for (Grade g : student.getMyGrades().get(0).getCourseGrades()){
 
 
-                    System.out.print("  │"+StringUtils.center(g.getGradeValue(),7)+"│");
+                    System.out.print("  │"+StringUtils.center(String.valueOf(g.getGradeValue()),7)+"│");
                 }
                 System.out.println();
             }
