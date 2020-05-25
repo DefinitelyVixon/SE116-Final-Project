@@ -92,28 +92,6 @@ public interface Functional {
 
             for(File f : infoFolders) {
 
-                if (f.getName().equals("calendar.txt")) {
-
-                    br = new BufferedReader(new FileReader(f.getPath()));
-
-                    while ((line = br.readLine()) != null) {
-
-                        String[] dayMonthYearEvents = line.split(" - ");
-
-                        String[] tempEvent = dayMonthYearEvents[3].split(" ! ");
-
-                        List<String> studentEvent = new ArrayList<>(Arrays.asList(tempEvent));
-
-                        localDate =  LocalDate.of(Integer.parseInt(dayMonthYearEvents[2])
-                                ,Integer.parseInt(dayMonthYearEvents[1])
-                                ,Integer.parseInt(dayMonthYearEvents[0]));
-
-                        studentCalendar.add(new ToDo(localDate           // Specific Date
-                                                   , studentEvent));     // studentEvent
-                    }
-                    br.close();
-                }
-
                 if(f.isDirectory()){
 
                     File[] lectureFiles = f.listFiles();
@@ -158,10 +136,41 @@ public interface Functional {
                 }
                 else{
 
-                    br = new BufferedReader(new FileReader(f.getPath()));
-                    studentName = br.readLine();
-                    studentID = br.readLine();
-                    br.close();
+                    if (f.getName().equals("calendar.txt")) {
+
+                        br = new BufferedReader(new FileReader(f.getPath()));
+
+                        while ((line = br.readLine()) != null) {
+
+                            String[] dayMonthYearEvents = line.split(" - ");
+
+                            String[] tempEvent = dayMonthYearEvents[3].split(" ! ");
+
+                            List<String> studentEvent = new ArrayList<>(Arrays.asList(tempEvent));
+
+                            localDate = LocalDate.of(
+                                    Integer.parseInt(dayMonthYearEvents[2]),
+                                    Integer.parseInt(dayMonthYearEvents[1]),
+                                    Integer.parseInt(dayMonthYearEvents[0])
+                            );
+
+                            studentCalendar.add(
+                                    new ToDo(
+                                            localDate,      // Specific Date
+                                            studentEvent    // studentEvent
+                                    )
+                            );
+                        }
+                        br.close();
+                    }
+                    else if (f.getName().equals("info.txt")){
+
+                        br = new BufferedReader(new FileReader(f.getPath()));
+                        studentName = br.readLine();
+                        studentID = br.readLine();
+                        br.close();
+                    }
+
                 }
             }
             return new Student(studentName, studentID, studentGrades, studentAbsenteeism,studentCalendar);

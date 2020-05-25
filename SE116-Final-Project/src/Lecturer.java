@@ -105,6 +105,8 @@ public class Lecturer extends Academic implements Functional {
 
         ArrayList<String> localChanges = new ArrayList<>();
 
+        ArrayList<Student> overwriteID = new ArrayList<>();
+
         while(true) {
 
             int i = 1;
@@ -114,12 +116,43 @@ public class Lecturer extends Academic implements Functional {
                 i++;
             }
 
+            // Enter -1 to Exit Edit Mode
             String selection = sc.next();
 
-            // Enter -1 to Exit Edit Mode
             if(selection.equals("-1")){
 
-                break;
+                System.out.println("Do you want to save your changes? (Y / N) Enter anything else to cancel.");
+                selection = sc.next();
+
+                if(selection.equals("Y")){
+
+                    System.out.println("Processing the changes...");
+
+                    for(Student s : overwriteID){
+
+                        try {
+                            BufferedWriter bw = new BufferedWriter(
+                                    new FileWriter(
+                                            System.getProperty(
+                                                    "user.dir") + "\\SampleFolder\\Student\\" + s.getID() + "\\Grades\\"
+                                            )
+                            );
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    break;
+                }
+                else if(selection.equals("N")){
+
+                    System.out.println("Discarding the changes...");
+                    break;
+                }
+                else{
+
+                    System.out.println();
+                }
             }
 
             // Please Enter the Student ID
@@ -141,10 +174,10 @@ public class Lecturer extends Academic implements Functional {
 
                             g.setGradeValue(grade);
 
+                            overwriteID.add(s);
                             localChanges.add(criteria + " grade for " + idToChange + " is now " + grade + ".");
                         }
                     }
-
                 }
             }
 
@@ -178,12 +211,10 @@ public class Lecturer extends Academic implements Functional {
 
         System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
         System.out.println("  ║" + StringUtils.rightPad("Lecturer Login: " + this.getName(), 59) + "║");
-        System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + (getIsAdvisor()?"☑":"☒"),59)+"║");
+        System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + (getIsAdvisor()?"☑":"☒"), 59) + "║");
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-    }
-    public void gradesA(){
     }
 
     public ArrayList<Lecture> getLectures() {

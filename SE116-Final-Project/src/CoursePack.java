@@ -32,7 +32,8 @@ public class CoursePack {
     public ArrayList<Object> getCourseData() {
         return courseData;
 
-    }public ArrayList<Grade> getCourseGrades(){
+    }
+    public ArrayList<Grade> getCourseGrades(){
 
         ArrayList<Grade> courseGrades = new ArrayList<>();
 
