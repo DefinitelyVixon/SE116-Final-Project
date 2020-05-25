@@ -27,7 +27,7 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➁ ABSENTEEISM \uD83D\uDD5A  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ④ EXIT    \uD83D\uDEAA      ╟", 60, '─') + "╢");
-            System.out.println("  ╚═══════════════════════════════════════════════════════════╝");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
             System.out.print  ("  ╙────➲ Select one: ");
 
             try {
@@ -172,13 +172,13 @@ public class Lecturer extends Academic implements Functional {
                         try {
                             BufferedWriter bw = new BufferedWriter(
                                     new FileWriter(
-                                            System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + s.getID() + "\\Grades\\" + courseCode + ".txt"
+                                            System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + s.getID() + "\\Grades\\" + courseCode
                                             )
                             );
 
                             for(Grade g : s.getMyGrades().get(0).getCourseGrades()){
 
-                                String writeLine = g.getGradeType() + " - " + g.getGradeValue();
+                                String writeLine = g.getGradeType() + " - " + g.getGradeValue() + "\n";
                                 bw.write(writeLine);
                             }
                             bw.close();

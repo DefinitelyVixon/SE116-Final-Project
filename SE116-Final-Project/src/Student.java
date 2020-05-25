@@ -48,8 +48,8 @@ public class Student extends Academic implements Functional {
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➁ ABSENTEEISM \uD83D\uDD5A  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ④ EXIT    \uD83D\uDEAA      ╟", 60, '─') + "╢");
-            System.out.println("  ╚═══════════════════════════════════════════════════════════╝");
-            System.out.print("  ╙────➲ Select one: ");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
+            System.out.print  ("  ╙────➲ Select one: ");
 
             try {
 
