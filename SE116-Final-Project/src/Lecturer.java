@@ -55,9 +55,9 @@ public class Lecturer extends Academic implements Functional {
     }
 
     @Override
-    public void grades() {
+    public void grades(){
 
-        while (true) {
+        while(true) {
 
             int i = 1;
             // Print Lecturer's Lectures
@@ -73,12 +73,12 @@ public class Lecturer extends Academic implements Functional {
             int lectureIndex = sc.nextInt() - 1;
 
             i = 1;
-                staticMenu("GRADES");
+            staticMenu("GRADES");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
             // Print That Lecture's Sections
-            for (Section s: getLectures().get(lectureIndex).getSections()) {
+            for (Section s : getLectures().get(lectureIndex).getSections()) {
 
-                System.out.printf("  ╟────────┤ %d) %9.8s├────────────────────────────────────────╢\n", i , s.getSectionNumber());
+                System.out.printf("  ╟────────┤ %d) %9.8s├────────────────────────────────────────╢\n", i, s.getSectionNumber());
                 i++;
             }
 
@@ -87,56 +87,60 @@ public class Lecturer extends Academic implements Functional {
             // Select Section
             int sectionIndex = sc.nextInt() - 1;
 
-                staticMenu("GRADES");
+            staticMenu("GRADES");
 
-                int length = 31 + 11 * getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades().size();
+            int length = 31 + 11 * getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades().size();
 
-                if (length < 61){
+            if (length < 61) {
 
-                    System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-                }
-                else{
+                System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+            }
+            else {
 
-                    System.out.println("  ╠═══════════════════════════════════════════════════════════╩");
-                }
+                System.out.println("  ╠═══════════════════════════════════════════════════════════╩");
+            }
 
-            System.out.print("  ╟──┤" + StringUtils.center("ID",11) + "├──┤" + StringUtils.center("NAME",11) +"├" );
-                for (Grade g :  getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()){
+            System.out.print("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 11) + "├");
+            for (Grade g : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()) {
 
-                    System.out.print("──┤"+StringUtils.center(g.getGradeType(),7)+"├");
-                }
+                System.out.print("──┤" + StringUtils.center(g.getGradeType(), 7) + "├");
+            }
 
             System.out.println();
             // Print the Grades of that Section Students
             for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
 
                 System.out.print(student.getName() + student.getID());
-                for (Grade g : student.getMyGrades().get(0).getCourseGrades()){
+                for (Grade g : student.getMyGrades().get(0).getCourseGrades()) {
 
 
-                    System.out.print("──┤   "+g.getGradeValue()+"   ├");
+                    System.out.print("──┤   " + g.getGradeValue() + "   ├");
                 }
                 System.out.println();
             }
 
-            /*
+
+            System.out.println("Enter -1 to go back");
+            System.out.println("Enter 0 to enable Edit Mode");
+
+            String selection = sc.next();
             //If Lecturer enters specific value to go back
-            if(){
+            if (selection.equals("-1")) {
 
                 break;
             }
             // If Lecturer enters specific value to change grades
-            else if(){
+            else if (selection.equals("0")) {
 
-                changeGrades();
-            }*/
-
-
+                changeGrades(
+                        getLectures().get(lectureIndex).getSections().get(sectionIndex),
+                        getLectures().get(lectureIndex).getLectureCode()
+                );
+            }
         }
-
     }
 
-    public void changeGrades(Section section){
+    public void changeGrades(Section section, String courseCode){
 
         ArrayList<String> localChanges = new ArrayList<>();
 
@@ -151,7 +155,7 @@ public class Lecturer extends Academic implements Functional {
                 i++;
             }
 
-            // Enter -1 to Exit Edit Mode
+            System.out.println("Please Enter the Student ID. Enter -1 to Exit Edit Mode");
             String selection = sc.next();
 
             if(selection.equals("-1")){
@@ -168,15 +172,21 @@ public class Lecturer extends Academic implements Functional {
                         try {
                             BufferedWriter bw = new BufferedWriter(
                                     new FileWriter(
-                                            System.getProperty(
-                                                    "user.dir") + "\\SampleFolder\\Student\\" + s.getID() + "\\Grades\\"
+                                            System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + s.getID() + "\\Grades\\" + courseCode + ".txt"
                                             )
                             );
-                        } catch (IOException e) {
+
+                            for(Grade g : s.getMyGrades().get(0).getCourseGrades()){
+
+                                String writeLine = g.getGradeType() + " - " + g.getGradeValue();
+                                bw.write(writeLine);
+                            }
+                            bw.close();
+                        }
+                        catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-
                     break;
                 }
                 else if(selection.equals("N")){
@@ -190,18 +200,15 @@ public class Lecturer extends Academic implements Functional {
                 }
             }
 
-            // Please Enter the Student ID
-            String idToChange = sc.next();
-
-            // Please Enter the grading criteria
+            System.out.println("Please Enter the grading criteria");
             String criteria = sc.next();
 
-            // Please Enter the grade
+            System.out.println("Please Enter the grade");
             int grade = sc.nextInt();
 
             for (Student s : section.getSectionStudents()) {
 
-                if(s.getID().equals(idToChange)){
+                if(s.getID().equals(selection)){
 
                     for(Grade g : s.getMyGrades().get(0).getCourseGrades()){
 
@@ -210,7 +217,7 @@ public class Lecturer extends Academic implements Functional {
                             g.setGradeValue(grade);
 
                             overwriteID.add(s);
-                            localChanges.add(criteria + " grade for " + idToChange + " is now " + grade + ".");
+                            localChanges.add(criteria + " grade for " + selection + " is now " + grade + ".");
                         }
                     }
                 }
