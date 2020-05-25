@@ -13,6 +13,8 @@ public interface Functional {
 
     void calendar();
 
+    void staticMenu(String menuName);
+
     static String loginCheck(String loginType){
 
         int remainingAttempts = 3;

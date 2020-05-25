@@ -20,8 +20,6 @@ public class Lecturer extends Academic implements Functional {
     @Override
     public int menu() {
 
-        System.out.println(getIsAdvisor()?"☑":"☒");
-
         while (true) {
 
             this.staticMenu("MAIN MENU");
@@ -82,8 +80,18 @@ public class Lecturer extends Academic implements Functional {
 
 
 
+    public void changeGrades(){
+
+
+    }
+
     @Override
     public void absenteeism(){
+
+
+    }
+
+    public void changeAbsenteeism(){
 
 
     }
@@ -93,11 +101,17 @@ public class Lecturer extends Academic implements Functional {
 
     }
 
+    public void changeCalendar(){
+
+
+    }
+
+    @Override
     public void staticMenu(String menuName){
 
         System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
         System.out.println("  ║" + StringUtils.rightPad("Lecturer Login: " + this.getName(), 59) + "║");
-        System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + this.getIsAdvisor(),59)+"║");
+        System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + (getIsAdvisor()?"☑":"☒"),59)+"║");
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
