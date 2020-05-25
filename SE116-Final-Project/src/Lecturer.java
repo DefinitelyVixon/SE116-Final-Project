@@ -28,7 +28,7 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ④ EXIT    \uD83D\uDEAA      ╟", 60, '─') + "╢");
             System.out.println("  ╚═══════════════════════════════════════════════════════════╝");
-            System.out.print("  ╙────➲ Select one: ");
+            System.out.print  ("  ╙────➲ Select one: ");
 
             try {
 
@@ -56,33 +56,100 @@ public class Lecturer extends Academic implements Functional {
 
     @Override
     public void grades(){
-        while (true) {
-            this.staticMenu("GRADES");
-            System.out.println("  ╟" + StringUtils.rightPad("───╢  1) MATH153    ╟", 59, '─') + "╢");
-            System.out.println("  ╟" + StringUtils.rightPad("───╢  2) MATH154    ╟", 59, '─') + "╢");
-        break;
+
+        while(true) {
+
+            int i = 1;
+
+            // Print Lecturer's Lectures
+            for(Lecture l : getLectures()){
+
+                System.out.println(i + "- " + l.getLectureCode());
+                i++;
+            }
+
+            // Select Lecture
+            int lectureIndex = sc.nextInt();
+
+            i = 1;
+            // Print That Lecture's Sections
+            for(Section s : getLectures().get(lectureIndex).getSections()){
+
+                System.out.println(i + "- " + s.getSectionNumber());
+                i++;
+            }
+
+            // Select Section
+            int sectionIndex = sc.nextInt();
+
+            // Print the Grades of that Section Students
+            // YİĞİT BURASI SENDE KOÇUM
+
+            /*
+            //If Lecturer enters specific value to go back
+            if(){
+
+                break;
+            }
+            // If Lecturer enters specific value to change grades
+            else if(){
+
+                changeGrades();
+            }
+
+             */
         }
-            try {
+    }
 
-                int selection = sc.nextInt();
+    public void changeGrades(Section section){
 
-                Functional.cls();
+        ArrayList<String> localChanges = new ArrayList<>();
 
-                if (selection == 1 || selection == 2 ) {
+        while(true) {
+
+            int i = 1;
+            for(String s : localChanges){
+
+                System.out.println(i + "- " + s);
+                i++;
+            }
+
+            String selection = sc.next();
+
+            // Enter -1 to Exit Edit Mode
+            if(selection.equals("-1")){
+
+                break;
+            }
+
+            // Please Enter the Student ID
+            String idToChange = sc.next();
+
+            // Please Enter the grading criteria
+            String criteria = sc.next();
+
+            // Please Enter the grade
+            int grade = sc.nextInt();
+
+            for (Student s : section.getSectionStudents()) {
+
+                if(s.getID().equals(idToChange)){
+
+                    for(Grade g : s.getMyGrades().get(0).getCourseGrades()){
+
+                        if(g.getGradeType().equals(criteria)){
+
+                            g.setGradeValue(grade);
+
+                            localChanges.add(criteria + " grade for " + idToChange + " is now " + grade + ".");
+                        }
+                    }
 
                 }
-
-
-            }catch (Exception e){
-                System.out.println("lsdfls");
             }
+
+            // Save and Exit
         }
-
-
-
-    public void changeGrades(){
-
-
     }
 
     @Override

@@ -83,7 +83,7 @@ public interface Functional {
 
         BufferedReader br;
 
-        String line ;
+        String line;
         LocalDate localDate;
 
         try {

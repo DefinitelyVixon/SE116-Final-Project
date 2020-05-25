@@ -5,8 +5,6 @@ public class CoursePack {
     private String courseCode;
     private ArrayList<Object> courseData;
 
-
-
     public CoursePack(String courseCode, String data){
 
         setCourseCode(courseCode);

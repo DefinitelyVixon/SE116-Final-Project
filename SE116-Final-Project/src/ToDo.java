@@ -1,4 +1,3 @@
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,5 +24,4 @@ public class ToDo {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-
 }
