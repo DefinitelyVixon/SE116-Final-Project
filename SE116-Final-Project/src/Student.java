@@ -72,7 +72,7 @@ public class Student extends Academic implements Functional {
     }
 
     @Override
-    public void grades() {
+    public void grades(){
 
         Functional.cls();
 

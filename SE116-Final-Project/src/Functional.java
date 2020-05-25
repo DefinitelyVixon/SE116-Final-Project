@@ -83,7 +83,7 @@ public interface Functional {
 
         BufferedReader br;
 
-        String line = null;
+        String line ;
         LocalDate localDate;
 
         try {
@@ -98,13 +98,11 @@ public interface Functional {
 
                     while ((line = br.readLine()) != null) {
 
-                        List<String> studentEvent = new ArrayList<>();
-
                         String[] dayMonthYearEvents = line.split(" - ");
 
                         String[] tempEvent = dayMonthYearEvents[3].split(" ! ");
 
-                        studentEvent.addAll(Arrays.asList(tempEvent));
+                        List<String> studentEvent = new ArrayList<>(Arrays.asList(tempEvent));
 
                         localDate =  LocalDate.of(Integer.parseInt(dayMonthYearEvents[2])
                                 ,Integer.parseInt(dayMonthYearEvents[1])
