@@ -14,11 +14,13 @@ public interface Functional {
 
     void calendar();
 
-    static String loginCheck(String loginType) {
+    void staticMenu(String menuName);
+
+    static String loginCheck(String loginType){
 
         int remainingAttempts = 3;
 
-        while (true) {
+        while(true) {
 
             try {
 
@@ -29,10 +31,11 @@ public interface Functional {
 
                 File pathFile = new File(System.getProperty("user.dir") + "\\SampleFolder\\Login\\" + loginType + "\\" + ID + ".txt");
 
-                if (remainingAttempts == 0) {
+                if(remainingAttempts == 0){
 
                     return null;
-                } else if (pathFile.exists()) {
+                }
+                else if (pathFile.exists()) {
 
                     BufferedReader br = new BufferedReader(new FileReader(pathFile));
 
@@ -48,17 +51,20 @@ public interface Functional {
 
                         System.out.println(" ➾ Login successful!");
                         return ID;
-                    } else {
+                    }
+                    else {
 
                         System.out.println(" ➾ Incorrect Password! " + remainingAttempts + " attempts remaining.");
                         remainingAttempts--;
                     }
-                } else {
+                }
+                else {
 
                     System.out.println(" ➾ ID Not Found! " + remainingAttempts + " attempts remaining.");
                     remainingAttempts--;
                 }
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
 
                 e.printStackTrace();
             }
@@ -84,7 +90,7 @@ public interface Functional {
 
             File[] infoFolders = baseFile.listFiles();
 
-            for (File f : infoFolders) {
+            for(File f : infoFolders) {
 
                 if (f.getName().equals("calendar.txt")) {
 
@@ -110,26 +116,27 @@ public interface Functional {
                     br.close();
                 }
 
-                if (f.isDirectory()) {
+                if(f.isDirectory()){
 
                     File[] lectureFiles = f.listFiles();
 
-                    for (File l : lectureFiles) {
+                    for(File l : lectureFiles){
 
                         br = new BufferedReader(new FileReader(l.getPath()));
 
-                        if (l.getParentFile().getName().equals("Absenteeism")) {
+                        if(l.getParentFile().getName().equals("Absenteeism")){
 
                             studentAbsenteeism.add(
                                     new CoursePack(
                                             l.getName(),    // Course Code
                                             br.readLine())  // Value of Absenteeism
                             );
-                        } else if (l.getParentFile().getName().equals("Grades")) {
+                        }
+                        else if(l.getParentFile().getName().equals("Grades")){
 
                             ArrayList<Grade> grades = new ArrayList<>();
 
-                            while ((line = br.readLine()) != null) {
+                            while((line = br.readLine()) != null){
 
                                 String[] gradeTypeAndValue = line.split(" - ");
 
@@ -150,7 +157,8 @@ public interface Functional {
                         }
                         br.close();
                     }
-                } else {
+                }
+                else{
 
                     br = new BufferedReader(new FileReader(f.getPath()));
                     studentName = br.readLine();
@@ -158,15 +166,16 @@ public interface Functional {
                     br.close();
                 }
             }
-            return new Student(studentName, studentID, studentGrades, studentAbsenteeism, studentCalendar);
-        } catch (IOException e) {
+            return new Student(studentName, studentID, studentGrades, studentAbsenteeism,studentCalendar);
+        }
+        catch(IOException e) {
 
             e.printStackTrace();
             return null;
         }
     }
 
-    static Lecturer createLecturer(String ID) {
+    static Lecturer createLecturer(String ID){
 
         String lecturerID = null, lecturerName = null;
         boolean isAdvisor = false;
@@ -179,11 +188,11 @@ public interface Functional {
 
         String line;
 
-        try {
+        try{
 
             File[] lectureFolders = baseFile.listFiles();
 
-            for (File f : lectureFolders) {
+            for(File f : lectureFolders) {
 
                 if (f.isDirectory()) {
 
@@ -214,7 +223,7 @@ public interface Functional {
 
                             // Fetching the Student's Grades for this Lecture
                             bri = new BufferedReader(new FileReader(studentPath + "\\Grades\\" + lectureCode));
-                            while ((line = bri.readLine()) != null) {
+                            while((line = bri.readLine()) != null){
 
                                 String[] gradeTypeAndValue = line.split(" - ");
 
@@ -257,14 +266,15 @@ public interface Functional {
                             )
                     );
 
-                } else {
+                }
+                else{
 
                     br = new BufferedReader(new FileReader(f.getPath()));
                     lecturerName = br.readLine();
                     lecturerID = br.readLine();
                     String advisorCheck = br.readLine();
 
-                    if (advisorCheck.equals("true")) {
+                    if(advisorCheck.equals("true")){
 
                         isAdvisor = true;
                     }
@@ -272,7 +282,8 @@ public interface Functional {
                     br.close();
                 }
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e){
 
             System.out.println("Exception mu yedik");
             e.printStackTrace();

@@ -130,6 +130,17 @@ public class Student extends Academic implements Functional {
         System.out.println("  ║▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁║");
     }
 
+
+    @Override
+    public void staticMenu(String menuName){
+
+        System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
+        System.out.println("  ║" + StringUtils.rightPad("  Student Login: " + this.getName(), 59) + "║");
+        System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+        System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
+        System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+    }
+
     public ArrayList<ToDo> getMyCalendar() {
         return myCalendar;
     }
@@ -150,12 +161,5 @@ public class Student extends Academic implements Functional {
         return myAbsenteeism;
     }
 
-    public void staticMenu(String menuName){
 
-        System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("  ║" + StringUtils.rightPad("  Student Login: " + this.getName(), 59) + "║");
-        System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-        System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
-        System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-    }
 }
