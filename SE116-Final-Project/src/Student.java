@@ -103,7 +103,7 @@ public class Student extends Academic implements Functional {
 
         }
         System.out.println("  ╟───────────────────────────────────────────────────────────╜");
-        System.out.println("  ╙──── ➲ Enter 0 to go back");
+        System.out.println("  ╙──── ➲ Enter any value to go back");
 
         sc.nextLine();
         sc.nextLine();

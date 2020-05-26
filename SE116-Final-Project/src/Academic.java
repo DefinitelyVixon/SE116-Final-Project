@@ -119,11 +119,11 @@ public abstract class Academic {
             // Add A New Event
             else if (selection.equals("1")) {
 
-                System.out.println("Enter the Date in Year(int)-Month(int)-Day(int) format: ");
+                System.out.println(" ➾ Date in Year(int)-Month(int)-Day(int) format");
                 String date = Functional.sc.nextLine();
                 LocalDate localDate = LocalDate.parse(date);
 
-                System.out.println("Enter the Event name: ");
+                System.out.println(" ➾ Enter Event name");
                 String event = Functional.sc.nextLine();
 
                 int addIndex = 0;
