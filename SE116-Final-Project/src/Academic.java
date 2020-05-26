@@ -33,7 +33,7 @@ public abstract class Academic {
 
             System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         }
-        System.out.println("  ╟───────────────────────────────────────────────────────────╢");
+        System.out.println("  ╟───────────────────────────────────────────────────────────╜");
 
         Functional.sc.nextLine();
     }
@@ -45,16 +45,16 @@ public abstract class Academic {
         while (true) {
 
             int i = 1;
-            System.out.println("Local Changes");
+            System.out.println("  ╠➾Local Changes");
             for (String s : localChanges) {
 
                 System.out.println(i + "- " + s);
                 i++;
             }
 
-            System.out.println(" Enter 0 to Exit Edit Mode");
-            System.out.println(" Enter 1 to Add A New Event");
-            System.out.println(" Enter 2 to Delete An Event");
+            System.out.println("  ╠══➾Enter 0 to Exit Edit Mode");
+            System.out.println("  ╠══➾Enter 1 to Add A New Event");
+            System.out.println("  ╚══➾Enter 2 to Delete An Event");
             String selection = Functional.sc.nextLine();
 
             // Save or Discard Changes, Then Exit

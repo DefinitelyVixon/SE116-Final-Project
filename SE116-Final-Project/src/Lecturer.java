@@ -65,7 +65,7 @@ public class Lecturer extends Academic implements Functional {
             for (Lecture l : getLectures()) {
 
                 System.out.printf("  ╟────────┤ %d) %8.7s ├────────────────────────────────────╢\n", i, l.getLectureCode());
-                System.out.println("  ╟────────┴──────────────────────────────────────────────────╢");
+                System.out.println("  ╟────────┴──────────────────────────────────────────────────╜");
                 i++;
             }
             System.out.println("  ╟──── ➲ Enter 0 to go back");
@@ -259,7 +259,7 @@ public class Lecturer extends Academic implements Functional {
                 System.out.printf("  ╟────────┤ %d) %8.7s├─────────────────────────────────────╢\n", i, l.getLectureCode());
                 i++;
             }
-            System.out.println("  ╟───────────────────────────────────────────────────────────╢");
+            System.out.println("  ╟───────────────────────────────────────────────────────────╜");
             System.out.println("  ╟──── ➲ Enter 0 to go back");
             System.out.print("  ╙──── ➲ Please select a lecture : ");
 
