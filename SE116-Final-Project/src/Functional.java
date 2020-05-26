@@ -331,7 +331,7 @@ public interface Functional {
 
                 int temp = sc.nextInt();
 
-                if (min <= temp && max >= temp ) {
+                if (min <= temp && max >= temp) {
                     return temp;
                 } else {
                     System.out.printf("Invalid input integer between %d and %d %n", min, max);
