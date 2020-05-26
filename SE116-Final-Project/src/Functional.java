@@ -136,16 +136,16 @@ public interface Functional {
 
                         while ((line = br.readLine()) != null) {
 
-                            String[] dayMonthYearEvents = line.split(" - ");
+                            String[] dayMonthYearEvents = line.split("-");
 
                             String[] tempEvent = dayMonthYearEvents[3].split(" ! ");
 
                             List<String> studentEvent = new ArrayList<>(Arrays.asList(tempEvent));
 
                             localDate = LocalDate.of(
-                                    Integer.parseInt(dayMonthYearEvents[2]),
+                                    Integer.parseInt(dayMonthYearEvents[0]),
                                     Integer.parseInt(dayMonthYearEvents[1]),
-                                    Integer.parseInt(dayMonthYearEvents[0])
+                                    Integer.parseInt(dayMonthYearEvents[2])
                             );
 
                             studentCalendar.add(
@@ -274,16 +274,16 @@ public interface Functional {
 
                         while ((line = br.readLine()) != null) {
 
-                            String[] dayMonthYearEvents = line.split(" - ");
+                            String[] dayMonthYearEvents = line.split("-");
 
                             String[] tempEvent = dayMonthYearEvents[3].split(" ! ");
 
                             List<String> studentEvent = new ArrayList<>(Arrays.asList(tempEvent));
 
                             localDate = LocalDate.of(
-                                    Integer.parseInt(dayMonthYearEvents[2]),
+                                    Integer.parseInt(dayMonthYearEvents[0]),
                                     Integer.parseInt(dayMonthYearEvents[1]),
-                                    Integer.parseInt(dayMonthYearEvents[0])
+                                    Integer.parseInt(dayMonthYearEvents[2])
                             );
 
                             lecturerCalendar.add(

@@ -126,7 +126,7 @@ public class Lecturer extends Academic implements Functional {
             // Print the Grades of that Section Students
             for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
 
-                System.out.print("  ║  │ " + student.getID() + " │  │" + student.getName() + "  │     ");
+                System.out.print("  ║  │" + student.getID() + "│  │" + student.getName() + "  │     ");
                 for (Grade g : student.getMyGrades().get(0).getCourseGrades()) {
 
 
@@ -170,7 +170,7 @@ public class Lecturer extends Academic implements Functional {
         while (true) {
 
             int i = 1;
-            System.out.println();
+            System.out.println("Local Changes");
             for (String s : localChanges) {
 
                 System.out.println(i + "- " + s);
@@ -185,7 +185,6 @@ public class Lecturer extends Academic implements Functional {
 
                 System.out.println("  ╚➾ Do you want to save your changes? (Y / N) Enter anything else to cancel.");
                 selection = sc.next();
-
 
                 if (selection.toUpperCase().equals("Y")) {
 

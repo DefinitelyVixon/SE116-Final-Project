@@ -23,7 +23,6 @@ public class CoursePack {
         this.courseCode = courseCode;
     }
 
-
     public void setCourseData(String data) {
 
         courseData = new ArrayList<>();

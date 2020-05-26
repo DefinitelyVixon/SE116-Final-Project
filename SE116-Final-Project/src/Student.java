@@ -116,12 +116,13 @@ public class Student extends Academic implements Functional {
         this.staticMenu("CALENDAR");
         super.viewCalendar();
 
+        changeCalendar("Student");
     }
 
     @Override
-    public void changeCalendar() {
+    public void changeCalendar(String loginType) {
 
-        super.changeCalendar();
+        super.changeCalendar(loginType);
     }
 
     @Override
