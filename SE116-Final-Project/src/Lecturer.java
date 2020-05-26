@@ -23,12 +23,13 @@ public class Lecturer extends Academic implements Functional {
         while (true) {
 
             this.staticMenu("MAIN MENU");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➀ GRADES      ✎  ╟", 58, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➁ ABSENTEEISM \uD83D\uDD5A  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ④ EXIT    \uD83D\uDEAA      ╟", 60, '─') + "╢");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
-            System.out.print  ("  ╙────➲ Select one: ");
+            System.out.print("  ╙────➲ Select one: ");
 
             try {
 
@@ -59,99 +60,114 @@ public class Lecturer extends Academic implements Functional {
 
             int i = 1;
             staticMenu("GRADES");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
             // Print Lecturer's Lectures
             for (Lecture l : getLectures()) {
 
-                System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-                System.out.printf("  ╟────────┤ %d) %8.7s├─────────────────────────────────────╢\n", i, l.getLectureCode());
+                System.out.printf("  ╟────────┤ %d) %8.7s ├────────────────────────────────────╢\n", i, l.getLectureCode());
+                System.out.println("  ╟────────┴──────────────────────────────────────────────────╢");
                 i++;
             }
-            System.out.println("  ║────────┴──────────────────────────────────────────────────║");
+            System.out.println("  ╟──── ➲ Enter -1 to go back");
+            System.out.print("  ╙──── ➲ Please enter a valid input : ");
+
             // Select Lecture
-                int lectureIndex = sc.nextInt() - 1;
-                if (lectureIndex < getLectures().size()){
+
+            int lectureIndex = sc.nextInt() - 1;
+            if (lectureIndex < getLectures().size()) {
+
+                if (lectureIndex==-1)
+                    break;
 
                 i = 1;
+                Functional.cls();
+
                 staticMenu("GRADES");
                 System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-                }else {
-                    System.out.println("  Invalid Number !");
-                    continue;
-                }
+            } else {
+                System.out.println("  Invalid Number !");
+                continue;
+            }
 
-                // Print That Lecture's Sections
-                for (Section s : getLectures().get(lectureIndex).getSections()) {
+            // Print That Lecture's Sections
+            for (Section s : getLectures().get(lectureIndex).getSections()) {
 
-                    System.out.printf("  ╟────────┤ %d) %9.8s├────────────────────────────────────╢\n", i, s.getSectionNumber());
-                    i++;
-                }
+                System.out.printf("  ╟────────┤ %d) %9.8s ├───────────────────────────────────╢\n", i, s.getSectionNumber());
+                System.out.println("  ╟────────┴──────────────────────────────────────────────────╜");
+                i++;
+            }
 
-            System.out.println("  ║────────┴──────────────────────────────────────────────────║");
+            System.out.println("  ╟──── ➲ Enter -1 to go back");
+            System.out.print  ("  ╙──── ➲ Please enter a valid input : ");
 
-                // Select Section
-                int sectionIndex = sc.nextInt() - 1;
-            if (lectureIndex < getLectures().size()){
+            // Select Section
+            int sectionIndex = sc.nextInt() - 1;
+            if (lectureIndex < getLectures().get(lectureIndex).getSections().size()) {
+
+                if (sectionIndex==-1)
+                    break;
+
+                Functional.cls();
 
                 staticMenu("GRADES");
                 System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
 
                 System.out.print("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 12) + "│     ");
-            }else {
+            } else {
                 System.out.println("  Invalid Number ");
                 continue;
             }
 
-                for (Grade g : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()) {
+            for (Grade g : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()) {
 
-                    System.out.print("  │" + StringUtils.center(g.getGradeType(), 7) + "│");
+                System.out.print("  │" + StringUtils.center(g.getGradeType(), 7) + "│");
+            }
+
+            System.out.println();
+            // Print the Grades of that Section Students
+            for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
+
+                System.out.print("  ║  │ " + student.getID() + " │  │" + student.getName() + "  │     ");
+                for (Grade g : student.getMyGrades().get(0).getCourseGrades()) {
+
+
+                    System.out.print("  │" + StringUtils.center(String.valueOf(g.getGradeValue()), 7) + "│");
                 }
-
                 System.out.println();
-                // Print the Grades of that Section Students
-                for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
+            }
 
-                    System.out.print("  ║  │ " + student.getID() + " │  │" + student.getName() + "  │     ");
-                    for (Grade g : student.getMyGrades().get(0).getCourseGrades()) {
+            System.out.println("  ╠═══════════════════════════════════════════════════════════════════════════════");
+            System.out.println("  ╠➾ Enter -1 to go back");
+            System.out.println("  ╚➾ Enter 0 to enable Edit Mode");
 
+            String selection = sc.next();
+            //If Lecturer enters specific value to go back
+            if (selection.equals("-1")) {
 
-                        System.out.print("  │" + StringUtils.center(String.valueOf(g.getGradeValue()), 7) + "│");
-                    }
-                    System.out.println();
-                }
+                break;
+            }
+            // If Lecturer enters specific value to change grades
+            else if (selection.equals("0")) {
 
-                System.out.println("  ╠═══════════════════════════════════════════════════════════════════════════════");
-                System.out.println("  ╠➾ Enter -1 to go back");
-                System.out.println("  ╚➾ Enter 0 to enable Edit Mode");
-
-                String selection = sc.next();
-                //If Lecturer enters specific value to go back
-                if (selection.equals("-1")) {
-
-                    break;
-                }
-                // If Lecturer enters specific value to change grades
-                else if (selection.equals("0")) {
-
-                    changeGrades(
-                            getLectures().get(lectureIndex).getSections().get(sectionIndex),
-                            getLectures().get(lectureIndex).getLectureCode()
-                    );
-                }
-                else {
-                    System.out.println("  Invalid Input !");
-                }
+                changeGrades(
+                        getLectures().get(lectureIndex).getSections().get(sectionIndex),
+                        getLectures().get(lectureIndex).getLectureCode()
+                );
+            } else {
+                System.out.println("  Invalid Input !");
+            }
 
 
         }
     }
 
-    public void changeGrades(Section section, String courseCode){
+    public void changeGrades(Section section, String courseCode) {
 
         ArrayList<String> localChanges = new ArrayList<>();
 
         ArrayList<Student> overwriteID = new ArrayList<>();
 
-        while (true){
+        while (true) {
 
             int i = 1;
             System.out.println();//bl
@@ -165,7 +181,7 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╚➾ Please Enter the Student ID. Enter -1 to Exit Edit Mode");
             String selection = sc.next();
 
-            if(selection.equals("-1")){
+            if (selection.equals("-1")) {
 
                 System.out.println("  ╚➾ Do you want to save your changes? (Y / N) Enter anything else to cancel.");
                 selection = sc.next();
@@ -175,7 +191,7 @@ public class Lecturer extends Academic implements Functional {
 
                     System.out.println("  ╚➾ Processing the changes...");
 
-                    for (Student s : overwriteID){
+                    for (Student s : overwriteID) {
 
                         try {
                             BufferedWriter bw = new BufferedWriter(
@@ -190,8 +206,7 @@ public class Lecturer extends Academic implements Functional {
                                 bw.write(writeLine);
                             }
                             bw.close();
-                        }
-                        catch (IOException e) {
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
@@ -200,8 +215,7 @@ public class Lecturer extends Academic implements Functional {
 
                     System.out.println("  ╚➾ Discarding the changes...");
                     break;
-                }
-                else{
+                } else {
 
                     System.out.println();
                 }
@@ -209,9 +223,22 @@ public class Lecturer extends Academic implements Functional {
 
             System.out.println("  ╚➾ Please Enter the grading criteria");
             String criteria = sc.next();
+            int grade;
 
-            System.out.println("  ╚➾ Please Enter the grade");
-            int grade = sc.nextInt();
+            while (true) {
+                try {
+
+                    System.out.println("  ╚➾ Please Enter the grade");
+                    grade = sc.nextInt();
+                    if (grade>=0 && grade<=100){
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+
+                    sc.nextLine();
+                    System.out.println("  Invalid Input ! Please enter an integer value between 0 and 100");
+                }
+            }
 
             for (Student s : section.getSectionStudents()) {
 
@@ -235,9 +262,9 @@ public class Lecturer extends Academic implements Functional {
     }
 
     @Override
-    public void absenteeism(){
+    public void absenteeism() {
 
-        while(true) {
+        while (true) {
 
             int i = 1;
             // Print Lecturer's Lectures
@@ -248,13 +275,20 @@ public class Lecturer extends Academic implements Functional {
                 System.out.printf("  ╟────────┤ %d) %8.7s├────────────────────────────────────────╢\n", i, l.getLectureCode());
                 i++;
             }
-            System.out.println("  ║────────┴──────────────────────────────────────────────────║");
+            System.out.println("  ╟───────────────────────────────────────────────────────────╢");
             // Select Lecture
             int lectureIndex = sc.nextInt() - 1;
 
-            i = 1;
-            staticMenu("ABSENTEEISM");
-            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+            if (lectureIndex < getLectures().size()) {
+
+                i = 1;
+                staticMenu("ABSENTEEISM");
+                System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+                System.out.print("  ╙──── ➲ Please enter a valid input : ");
+            } else {
+                System.out.println("  Invalid Number !");
+                continue;
+            }
             // Print That Lecture's Sections
             for (Section s : getLectures().get(lectureIndex).getSections()) {
 
@@ -267,19 +301,25 @@ public class Lecturer extends Academic implements Functional {
             // Select Section
             int sectionIndex = sc.nextInt() - 1;
 
-            staticMenu("ABSENTEEISM");
-            System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
+            if (sectionIndex < getLectures().get(lectureIndex).getSections().size()) {
 
-            System.out.println("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 11) + "├──┤" + StringUtils.center("ABSENTEEISM", 11));
+                staticMenu("ABSENTEEISM");
+                System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
+
+                System.out.println("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 11) + "├──┤" + StringUtils.center("ABSENTEEISM", 11));
+            } else {
+                System.out.println("  Invalid Number ");
+                continue;
+            }
 
             // Print the Grades of that Section Students
             for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
 
-                System.out.println("  ╟──┤" + StringUtils.center(student.getID(), 11) + "├──┤" + StringUtils.center(student.getName(), 11) + "├──┤" + StringUtils.center(student.getMyAbsenteeism().get(0).getAbsenteeism(), 11)+StringUtils.leftPad("║",10));
+                System.out.println("  ╟──┤" + StringUtils.center(student.getID(), 11) + "├──┤" + StringUtils.center(student.getName(), 11) + "├──┤" + StringUtils.center(student.getMyAbsenteeism().get(0).getAbsenteeism(), 11) + StringUtils.leftPad("║", 10));
             }
 
 
-            System.out.println("  ╚➾ Enter -1 to go back");
+            System.out.println("  ╠➾ Enter -1 to go back");
             System.out.println("  ╚➾ Enter 0 to enable Edit Mode");
 
             String selection = sc.next();
@@ -299,17 +339,17 @@ public class Lecturer extends Academic implements Functional {
         }
     }
 
-    public void changeAbsenteeism(Section section, String courseCode){
+    public void changeAbsenteeism(Section section, String courseCode) {
 
         ArrayList<String> localChanges = new ArrayList<>();
 
         ArrayList<Student> overwriteID = new ArrayList<>();
 
-        while(true) {
+        while (true) {
 
             int i = 1;
             System.out.println();
-            for(String s : localChanges){
+            for (String s : localChanges) {
 
                 System.out.println(i + "- " + s);
                 i++;
@@ -319,16 +359,16 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╚➾ Please Enter the Student ID. Enter -1 to Exit Edit Mode");
             String selection = sc.next();
 
-            if(selection.equals("-1")){
+            if (selection.equals("-1")) {
 
                 System.out.println("  ╚➾ Do you want to save your changes? (Y / N) Enter anything else to cancel.");
                 selection = sc.next();
 
-                if(selection.equals("Y")){
+                if (selection.equals("Y")) {
 
                     System.out.println("  ╚➾ Processing the changes...");
 
-                    for(Student s : overwriteID){
+                    for (Student s : overwriteID) {
 
                         try {
 
@@ -339,31 +379,44 @@ public class Lecturer extends Academic implements Functional {
                             );
                             bw.write(s.getMyAbsenteeism().get(0).getAbsenteeism());
                             bw.close();
-                        }
-                        catch (IOException e) {
+                        } catch (IOException e) {
 
                             e.printStackTrace();
                         }
                     }
                     break;
-                }
-                else if(selection.equals("N")){
+                } else if (selection.equals("N")) {
 
                     System.out.println("  ╚➾ Discarding the changes...");
                     break;
-                }
-                else{
+                } else {
 
                     System.out.println();
                 }
             }
 
+            String absenteeism;
+            while (true) {
+
             System.out.println("  ╚➾ Please Enter the Absenteeism Value");
-            String absenteeism = sc.next();
+
+            absenteeism = sc.next();
+                try {
+
+                    int tempAbsenteeism = Integer.parseInt(absenteeism);
+
+                    if (tempAbsenteeism>=0){
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+
+                    System.out.println("  Invalid Input ! Please enter a positive integer value ");
+                }
+            }
 
             for (Student s : section.getSectionStudents()) {
 
-                if(s.getID().equals(selection)){
+                if (s.getID().equals(selection)) {
 
                     s.getMyAbsenteeism().get(0).setCourseData(absenteeism);
 
@@ -379,17 +432,17 @@ public class Lecturer extends Academic implements Functional {
 
     }
 
-    public void changeCalendar(){
+    public void changeCalendar() {
 
 
     }
 
     @Override
-    public void staticMenu(String menuName){
+    public void staticMenu(String menuName) {
 
         System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
         System.out.println("  ║" + StringUtils.rightPad("Lecturer Login: " + this.getName(), 59) + "║");
-        System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + (getIsAdvisor()?"☑":"☒"), 59) + "║");
+        System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + (getIsAdvisor() ? "☑" : "☒"), 59) + "║");
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         System.out.println("  ║" + StringUtils.center(menuName, 59) + "║");
 
@@ -398,15 +451,17 @@ public class Lecturer extends Academic implements Functional {
     public ArrayList<Lecture> getLectures() {
         return lectures;
     }
-    public boolean getIsAdvisor(){
+
+    public boolean getIsAdvisor() {
 
         return isAdvisor;
     }
 
-    public void setIsAdvisor(boolean isAdvisor){
+    public void setIsAdvisor(boolean isAdvisor) {
 
         this.isAdvisor = isAdvisor;
     }
+
     public void setLectures(ArrayList<Lecture> lectures) {
         this.lectures = lectures;
     }
