@@ -111,6 +111,14 @@ public interface Functional {
 
                                 String[] gradeTypeAndValue = line.split(" - ");
 
+                                if (gradeTypeAndValue.length == 1) {
+
+                                    String[] fixedArray = new String[2];
+                                    fixedArray[0] = gradeTypeAndValue[0];
+                                    fixedArray[1] = String.valueOf(0);
+
+                                    gradeTypeAndValue = fixedArray;
+                                }
                                 grades.add(
                                         new Grade(
                                                 gradeTypeAndValue[0],
