@@ -68,26 +68,25 @@ public class Lecturer extends Academic implements Functional {
                 System.out.println("  ╟────────┴──────────────────────────────────────────────────╢");
                 i++;
             }
-            System.out.println("  ╟──── ➲ Enter -1 to go back");
+            System.out.println("  ╟──── ➲ Enter 0 to go back");
             System.out.print("  ╙──── ➲ Please enter a valid input : ");
 
             // Select Lecture
 
-            int lectureIndex = sc.nextInt() - 1;
-            if (lectureIndex < getLectures().size()) {
+            int lectureIndex = Functional.catcher(0, getLectures().size() - 1) - 1;
 
-                if (lectureIndex==-1)
-                    break;
 
-                i = 1;
-                Functional.cls();
+            if (lectureIndex == -1) {
 
-                staticMenu("GRADES");
-                System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-            } else {
-                System.out.println("  Invalid Number !");
-                continue;
+                break;
             }
+
+            i = 1;
+            Functional.cls();
+
+            staticMenu("GRADES");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+
 
             // Print That Lecture's Sections
             for (Section s : getLectures().get(lectureIndex).getSections()) {
@@ -97,26 +96,23 @@ public class Lecturer extends Academic implements Functional {
                 i++;
             }
 
-            System.out.println("  ╟──── ➲ Enter -1 to go back");
-            System.out.print  ("  ╙──── ➲ Please enter a valid input : ");
+            System.out.println("  ╟──── ➲ Enter 0 to go back");
+            System.out.print("  ╙──── ➲ Please enter a valid input : ");
 
             // Select Section
-            int sectionIndex = sc.nextInt() - 1;
-            if (lectureIndex < getLectures().get(lectureIndex).getSections().size()) {
+            int sectionIndex = Functional.catcher(0, getLectures().get(lectureIndex).getSections().size() - 1) - 1;
 
-                if (sectionIndex==-1)
-                    break;
 
-                Functional.cls();
-
-                staticMenu("GRADES");
-                System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
-
-                System.out.print("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 12) + "│     ");
-            } else {
-                System.out.println("  Invalid Number ");
-                continue;
+            if (sectionIndex == -1) {
+                break;
             }
+            Functional.cls();
+
+            staticMenu("GRADES");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
+
+            System.out.print("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 12) + "│     ");
+
 
             for (Grade g : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()) {
 
@@ -137,17 +133,17 @@ public class Lecturer extends Academic implements Functional {
             }
 
             System.out.println("  ╠═══════════════════════════════════════════════════════════════════════════════");
-            System.out.println("  ╠➾ Enter -1 to go back");
-            System.out.println("  ╚➾ Enter 0 to enable Edit Mode");
+            System.out.println("  ╠➾ Enter 0 to go back");
+            System.out.println("  ╚➾ Enter -1 to enable Edit Mode");
 
             String selection = sc.next();
             //If Lecturer enters specific value to go back
-            if (selection.equals("-1")) {
+            if (selection.equals("0")) {
 
                 break;
             }
             // If Lecturer enters specific value to change grades
-            else if (selection.equals("0")) {
+            else if (selection.equals("-1")) {
 
                 changeGrades(
                         getLectures().get(lectureIndex).getSections().get(sectionIndex),
@@ -181,7 +177,7 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╚➾ Please Enter the Student ID. Enter -1 to Exit Edit Mode");
             String selection = sc.next();
 
-            if (selection.equals("-1")) {
+            if (selection.equals("0")) {
 
                 System.out.println("  ╚➾ Do you want to save your changes? (Y / N) Enter anything else to cancel.");
                 selection = sc.next();
@@ -223,22 +219,9 @@ public class Lecturer extends Academic implements Functional {
 
             System.out.println("  ╚➾ Please Enter the grading criteria");
             String criteria = sc.next();
-            int grade;
+            System.out.println("  ╚➾ Please Enter the grade");
+            int grade = Functional.catcher(0, 100);
 
-            while (true) {
-                try {
-
-                    System.out.println("  ╚➾ Please Enter the grade");
-                    grade = sc.nextInt();
-                    if (grade>=0 && grade<=100){
-                        break;
-                    }
-                } catch (InputMismatchException e) {
-
-                    sc.nextLine();
-                    System.out.println("  Invalid Input ! Please enter an integer value between 0 and 100");
-                }
-            }
 
             for (Student s : section.getSectionStudents()) {
 
@@ -277,18 +260,14 @@ public class Lecturer extends Academic implements Functional {
             }
             System.out.println("  ╟───────────────────────────────────────────────────────────╢");
             // Select Lecture
-            int lectureIndex = sc.nextInt() - 1;
+            int lectureIndex = Functional.catcher(0, getLectures().size() - 1) - 1;
 
-            if (lectureIndex < getLectures().size()) {
 
-                i = 1;
-                staticMenu("ABSENTEEISM");
-                System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-                System.out.print("  ╙──── ➲ Please enter a valid input : ");
-            } else {
-                System.out.println("  Invalid Number !");
-                continue;
-            }
+            i = 1;
+            staticMenu("ABSENTEEISM");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+            System.out.print("  ╙──── ➲ Please enter a valid input : ");
+
             // Print That Lecture's Sections
             for (Section s : getLectures().get(lectureIndex).getSections()) {
 
@@ -299,18 +278,15 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ║────────┴──────────────────────────────────────────────────║");
 
             // Select Section
-            int sectionIndex = sc.nextInt() - 1;
+            int sectionIndex = Functional.catcher(0,getLectures().get(lectureIndex).getSections().size()-1) - 1;
 
-            if (sectionIndex < getLectures().get(lectureIndex).getSections().size()) {
+
 
                 staticMenu("ABSENTEEISM");
                 System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
 
                 System.out.println("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 11) + "├──┤" + StringUtils.center("ABSENTEEISM", 11));
-            } else {
-                System.out.println("  Invalid Number ");
-                continue;
-            }
+
 
             // Print the Grades of that Section Students
             for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
@@ -324,12 +300,12 @@ public class Lecturer extends Academic implements Functional {
 
             String selection = sc.next();
             //If Lecturer enters specific value to go back
-            if (selection.equals("-1")) {
+            if (selection.equals("0")) {
 
                 break;
             }
             // If Lecturer enters specific value to change grades
-            else if (selection.equals("0")) {
+            else if (selection.equals("-1")) {
 
                 changeAbsenteeism(
                         getLectures().get(lectureIndex).getSections().get(sectionIndex),
@@ -359,7 +335,7 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╚➾ Please Enter the Student ID. Enter -1 to Exit Edit Mode");
             String selection = sc.next();
 
-            if (selection.equals("-1")) {
+            if (selection.equals("0")) {
 
                 System.out.println("  ╚➾ Do you want to save your changes? (Y / N) Enter anything else to cancel.");
                 selection = sc.next();
@@ -398,14 +374,14 @@ public class Lecturer extends Academic implements Functional {
             String absenteeism;
             while (true) {
 
-            System.out.println("  ╚➾ Please Enter the Absenteeism Value");
+                System.out.println("  ╚➾ Please Enter the Absenteeism Value");
 
-            absenteeism = sc.next();
+                absenteeism = sc.next();
                 try {
 
                     int tempAbsenteeism = Integer.parseInt(absenteeism);
 
-                    if (tempAbsenteeism>=0){
+                    if (tempAbsenteeism >= 0) {
                         break;
                     }
                 } catch (InputMismatchException e) {
