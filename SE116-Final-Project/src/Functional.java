@@ -344,4 +344,8 @@ public interface Functional {
             }
         }
     }
+    static void goBack(){
+
+
+    }
 }

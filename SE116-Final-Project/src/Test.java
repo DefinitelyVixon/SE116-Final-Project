@@ -23,6 +23,7 @@ public class Test {
                     if (selection == 1) {
 
                         loggedStudent.grades();
+
                     } else if (selection == 2) {
 
                         loggedStudent.absenteeism();

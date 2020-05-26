@@ -78,6 +78,7 @@ public class Lecturer extends Academic implements Functional {
 
             if (lectureIndex == -1) {
 
+                Functional.cls();
                 break;
             }
 
@@ -104,6 +105,8 @@ public class Lecturer extends Academic implements Functional {
 
 
             if (sectionIndex == -1) {
+
+                Functional.cls();
                 break;
             }
             Functional.cls();
@@ -140,6 +143,8 @@ public class Lecturer extends Academic implements Functional {
             //If Lecturer enters specific value to go back
             if (selection.equals("0")) {
 
+
+                Functional.cls();
                 break;
             }
             // If Lecturer enters specific value to change grades
@@ -268,6 +273,8 @@ public class Lecturer extends Academic implements Functional {
             Functional.cls();
 
             if (lectureIndex == -1) {
+
+                Functional.cls();
                 break;
             }
 
@@ -292,6 +299,8 @@ public class Lecturer extends Academic implements Functional {
             Functional.cls();
 
             if (sectionIndex == -1) {
+
+                Functional.cls();
                 break;
             }
 
@@ -304,7 +313,7 @@ public class Lecturer extends Academic implements Functional {
             // Print the Grades of that Section Students
             for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
 
-                System.out.println("  ╟──┤" + StringUtils.center(student.getID(), 11) + "├──┤" + StringUtils.center(student.getName(), 11) + "├──┤" + StringUtils.center(student.getMyAbsenteeism().get(0).getAbsenteeism(), 23)+ "├──╢");
+                System.out.println("  ╟──┤" + StringUtils.center(student.getID(), 11) + "├──┤" + StringUtils.center(student.getName(), 11) + "├──┤" + StringUtils.center(student.getMyAbsenteeism().get(0).getAbsenteeism(), 23) + "├──╢");
             }
 
 
@@ -315,6 +324,7 @@ public class Lecturer extends Academic implements Functional {
             //If Lecturer enters specific value to go back
             if (selection.equals("0")) {
 
+                Functional.cls();
                 break;
             }
             // If Lecturer enters specific value to change grades
@@ -326,6 +336,7 @@ public class Lecturer extends Academic implements Functional {
                 );
             }
         }
+        Functional.cls();
     }
 
     public void changeAbsenteeism(Section section, String courseCode) {
@@ -434,6 +445,8 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         }
         System.out.println("  ╟───────────────────────────────────────────────────────────╢");
+        System.out.println("  ╠➾ Enter 0 to go back");
+        System.out.println("  ╚➾ Enter -1 to enable Edit Mode");
     }
 
     public void changeCalendar() {

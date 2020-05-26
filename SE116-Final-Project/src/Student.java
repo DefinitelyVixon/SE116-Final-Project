@@ -81,8 +81,12 @@ public class Student extends Academic implements Functional {
                         getMyGrades().get(i).getCourseGrades().get(j).getGradeValue());
 
             }
-            System.out.println("  ║────────┴──────────────────────────────────────────────────║");
+            System.out.println("  ╟────────┴──────────────────────────────────────────────────╜");
         }
+        System.out.println("  ╙──── ➲ Enter any value to go back");
+        sc.nextLine();
+        sc.nextLine();
+        Functional.cls();
     }
 
     @Override
@@ -98,7 +102,12 @@ public class Student extends Academic implements Functional {
                     getMyAbsenteeism().get(i).getCourseData().get(0));
 
         }
-        System.out.println("  ║───────────────────────────────────────────────────────────║");
+        System.out.println("  ╟───────────────────────────────────────────────────────────╜");
+        System.out.println("  ╙──── ➲ Enter 0 to go back");
+
+        sc.nextLine();
+        sc.nextLine();
+        Functional.cls();
     }
 
     @Override
@@ -118,7 +127,10 @@ public class Student extends Academic implements Functional {
 
             System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         }
-        System.out.println("  ╟───────────────────────────────────────────────────────────╢");
+        System.out.println("  ╟───────────────────────────────────────────────────────────╜");
+        System.out.println("  ╠➾ Enter 0 to go back");
+        System.out.println("  ╚➾ Enter -1 to enable Edit Mode");
+
     }
 
 
