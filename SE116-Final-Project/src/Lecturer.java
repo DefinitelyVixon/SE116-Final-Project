@@ -9,11 +9,11 @@ public class Lecturer extends Academic implements Functional {
     private boolean isAdvisor;
     private ArrayList<Lecture> lectures;
 
-    public Lecturer(String name, String ID, ArrayList<Lecture> lectures, boolean isAdvisor) {
+    public Lecturer(String name, String ID, ArrayList<Lecture> lectures, boolean isAdvisor, ArrayList<ToDo> calendar) {
 
-        super(name, ID);
+        super(name, ID, calendar);
+
         setIsAdvisor(isAdvisor);
-
         setLectures(lectures);
     }
 
@@ -29,7 +29,7 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ④ EXIT    \uD83D\uDEAA      ╟", 60, '─') + "╢");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
-            System.out.print("  ╙────➲ Select one: ");
+            System.out.print  ("  ╙────➲ Select one: ");
 
             try {
 
@@ -72,9 +72,8 @@ public class Lecturer extends Academic implements Functional {
             System.out.print("  ╙──── ➲ Please enter a valid input : ");
 
             // Select Lecture
-
-            int lectureIndex = sc.nextInt() - 1;
-            if (lectureIndex < getLectures().size()) {
+                int lectureIndex = sc.nextInt() - 1;
+                if (lectureIndex < getLectures().size()){
 
                 if (lectureIndex==-1)
                     break;
@@ -84,13 +83,13 @@ public class Lecturer extends Academic implements Functional {
 
                 staticMenu("GRADES");
                 System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-            } else {
-                System.out.println("  Invalid Number !");
-                continue;
-            }
+                }else {
+                    System.out.println("  Invalid Number !");
+                    continue;
+                }
 
-            // Print That Lecture's Sections
-            for (Section s : getLectures().get(lectureIndex).getSections()) {
+                // Print That Lecture's Sections
+                for (Section s : getLectures().get(lectureIndex).getSections()) {
 
                 System.out.printf("  ╟────────┤ %d) %9.8s ├───────────────────────────────────╢\n", i, s.getSectionNumber());
                 System.out.println("  ╟────────┴──────────────────────────────────────────────────╜");
@@ -118,50 +117,51 @@ public class Lecturer extends Academic implements Functional {
                 continue;
             }
 
-            for (Grade g : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()) {
+                for (Grade g : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()) {
 
-                System.out.print("  │" + StringUtils.center(g.getGradeType(), 7) + "│");
-            }
-
-            System.out.println();
-            // Print the Grades of that Section Students
-            for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
-
-                System.out.print("  ║  │ " + student.getID() + " │  │" + student.getName() + "  │     ");
-                for (Grade g : student.getMyGrades().get(0).getCourseGrades()) {
-
-
-                    System.out.print("  │" + StringUtils.center(String.valueOf(g.getGradeValue()), 7) + "│");
+                    System.out.print("  │" + StringUtils.center(g.getGradeType(), 7) + "│");
                 }
+
                 System.out.println();
-            }
+                // Print the Grades of that Section Students
+                for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
 
-            System.out.println("  ╠═══════════════════════════════════════════════════════════════════════════════");
-            System.out.println("  ╠➾ Enter -1 to go back");
-            System.out.println("  ╚➾ Enter 0 to enable Edit Mode");
+                    System.out.print("  ║  │ " + student.getID() + " │  │" + student.getName() + "  │     ");
+                    for (Grade g : student.getMyGrades().get(0).getCourseGrades()) {
 
-            String selection = sc.next();
-            //If Lecturer enters specific value to go back
-            if (selection.equals("-1")) {
 
-                break;
-            }
-            // If Lecturer enters specific value to change grades
-            else if (selection.equals("0")) {
+                        System.out.print("  │" + StringUtils.center(String.valueOf(g.getGradeValue()), 7) + "│");
+                    }
+                    System.out.println();
+                }
 
-                changeGrades(
-                        getLectures().get(lectureIndex).getSections().get(sectionIndex),
-                        getLectures().get(lectureIndex).getLectureCode()
-                );
-            } else {
-                System.out.println("  Invalid Input !");
-            }
+                System.out.println("  ╠═══════════════════════════════════════════════════════════════════════════════");
+                System.out.println("  ╠➾ Enter -1 to go back");
+                System.out.println("  ╚➾ Enter 0 to enable Edit Mode");
+
+                String selection = sc.next();
+                //If Lecturer enters specific value to go back
+                if (selection.equals("-1")) {
+
+                    break;
+                }
+                // If Lecturer enters specific value to change grades
+                else if (selection.equals("0")) {
+
+                    changeGrades(
+                            getLectures().get(lectureIndex).getSections().get(sectionIndex),
+                            getLectures().get(lectureIndex).getLectureCode()
+                    );
+                }
+                else {
+                    System.out.println("  Invalid Input !");
+                }
 
 
         }
     }
 
-    public void changeGrades(Section section, String courseCode) {
+    public void changeGrades(Section section, String courseCode){
 
         ArrayList<String> localChanges = new ArrayList<>();
 
@@ -170,7 +170,7 @@ public class Lecturer extends Academic implements Functional {
         while (true) {
 
             int i = 1;
-            System.out.println();//bl
+            System.out.println();
             for (String s : localChanges) {
 
                 System.out.println(i + "- " + s);
@@ -181,7 +181,7 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╚➾ Please Enter the Student ID. Enter -1 to Exit Edit Mode");
             String selection = sc.next();
 
-            if (selection.equals("-1")) {
+            if(selection.equals("-1")){
 
                 System.out.println("  ╚➾ Do you want to save your changes? (Y / N) Enter anything else to cancel.");
                 selection = sc.next();
@@ -284,7 +284,7 @@ public class Lecturer extends Academic implements Functional {
                 i = 1;
                 staticMenu("ABSENTEEISM");
                 System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-                System.out.print("  ╙──── ➲ Please enter a valid input : ");
+                System.out.print  ("  ╙──── ➲ Please enter a valid input : ");
             } else {
                 System.out.println("  Invalid Number !");
                 continue;
@@ -430,6 +430,21 @@ public class Lecturer extends Academic implements Functional {
     @Override
     public void calendar() {
 
+        this.staticMenu("CALENDAR");
+
+        for (int i = 0 ; i < getCalendar().size();i++){
+
+            System.out.printf("  ╟───┤ %-11.10s├──────────────────────────────────────────╢\n", getCalendar().get(i).getDate());
+
+            for (int j = 0;j < getCalendar().get(i).getEvents().size();j++){
+
+                System.out.printf("  ╟──┤ %-51.51s ├──╢\n", getCalendar().get(i).getEvents().get(j));
+
+            }
+
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
+        }
+        System.out.println("  ╟───────────────────────────────────────────────────────────╢");
     }
 
     public void changeCalendar() {

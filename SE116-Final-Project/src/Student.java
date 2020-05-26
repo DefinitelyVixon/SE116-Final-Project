@@ -6,15 +6,12 @@ import java.util.InputMismatchException;
 public class Student extends Academic implements Functional {
 
     private ArrayList<CoursePack> myGrades;
-
     private ArrayList<CoursePack> myAbsenteeism;
-
-    private ArrayList<ToDo> myCalendar;
 
     // Basic initialization for Lecturers
     public Student(String name, String ID, CoursePack grades, CoursePack absenteeism) {
 
-        super(name, ID);
+        super(name, ID, null);
 
         myGrades = new ArrayList<>();
         myGrades.add(grades);
@@ -22,19 +19,12 @@ public class Student extends Academic implements Functional {
         myAbsenteeism = new ArrayList<>();
         myAbsenteeism.add(absenteeism);
     }
-    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism) {
+    // Personal initialization for Students
+    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism, ArrayList<ToDo> calendar) {
 
-        super(name, ID);
+        super(name, ID, calendar);
         setMyGrades(myGrades);
         setMyAbsenteeism(myAbsenteeism);
-
-    }
-    public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism, ArrayList<ToDo> myCalendar) {
-
-        super(name, ID);
-        setMyGrades(myGrades);
-        setMyAbsenteeism(myAbsenteeism);
-        setMyCalendar(myCalendar);
     }
 
 
@@ -117,13 +107,13 @@ public class Student extends Academic implements Functional {
 
         this.staticMenu("CALENDAR");
 
-        for (int i = 0;i<getMyCalendar().size();i++){
+        for (int i = 0;i < getCalendar().size();i++){
 
-            System.out.printf("  ╟───┤ %-11.10s├──────────────────────────────────────────╢\n",getMyCalendar().get(i).getDate());
+            System.out.printf("  ╟───┤ %-11.10s├──────────────────────────────────────────╢\n", getCalendar().get(i).getDate());
 
-            for (int j = 0;j<getMyCalendar().get(i).getEvents().size();j++){
+            for (int j = 0;j < getCalendar().get(i).getEvents().size();j++){
 
-            System.out.printf("  ╟──┤ %-51.51s ├──╢\n",getMyCalendar().get(i).getEvents().get(j));
+            System.out.printf("  ╟──┤ %-51.51s ├──╢\n", getCalendar().get(i).getEvents().get(j));
 
             }
 
@@ -143,12 +133,6 @@ public class Student extends Academic implements Functional {
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
     }
 
-    public ArrayList<ToDo> getMyCalendar() {
-        return myCalendar;
-    }
-    public void setMyCalendar(ArrayList<ToDo> myCalendar) {
-        this.myCalendar = myCalendar;
-    }
     public void setMyAbsenteeism(ArrayList<CoursePack> myAbsenteeism) {
         this.myAbsenteeism = myAbsenteeism;
     }
@@ -162,6 +146,4 @@ public class Student extends Academic implements Functional {
     public ArrayList<CoursePack> getMyAbsenteeism() {
         return myAbsenteeism;
     }
-
-
 }
