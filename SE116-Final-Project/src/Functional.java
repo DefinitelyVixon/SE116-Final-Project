@@ -29,7 +29,7 @@ public interface Functional {
 
                 System.out.println();
 
-                File pathFile = new File(System.getProperty("user.dir") + "\\SampleFolder\\Login\\" + loginType + "\\" + ID + ".txt");
+                File pathFile = new File(System.getProperty("user.dir") + "/SampleFolder/Login/" + loginType + "/" + ID + ".txt");
 
                 if (remainingAttempts == 0) {
 
@@ -75,7 +75,7 @@ public interface Functional {
         ArrayList<CoursePack> studentAbsenteeism = new ArrayList<>();
         ArrayList<ToDo> studentCalendar = new ArrayList<>();
 
-        File baseFile = new File(System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + ID);
+        File baseFile = new File(System.getProperty("user.dir") + "/SampleFolder/Student/" + ID);
 
         BufferedReader br;
 
@@ -189,7 +189,7 @@ public interface Functional {
         ArrayList<Lecture> lecturerLectures = new ArrayList<>();
         ArrayList<ToDo> lecturerCalendar = new ArrayList<>();
 
-        File baseFile = new File(System.getProperty("user.dir") + "\\SampleFolder\\Lecturer\\" + ID);
+        File baseFile = new File(System.getProperty("user.dir") + "/SampleFolder/Lecturer/" + ID);
 
         BufferedReader br;
 
@@ -223,14 +223,14 @@ public interface Functional {
                             ArrayList<Grade> grades = new ArrayList<>();
 
                             String studentID = line;
-                            String studentPath = System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + studentID;
+                            String studentPath = System.getProperty("user.dir") + "/SampleFolder/Student/" + studentID;
 
                             // Fetching the Student's Name
-                            BufferedReader bri = new BufferedReader(new FileReader(studentPath + "\\info.txt"));
+                            BufferedReader bri = new BufferedReader(new FileReader(studentPath + "/info.txt"));
                             String studentName = bri.readLine();
 
                             // Fetching the Student's Grades for this Lecture
-                            bri = new BufferedReader(new FileReader(studentPath + "\\Grades\\" + lectureCode));
+                            bri = new BufferedReader(new FileReader(studentPath + "/Grades/" + lectureCode));
                             while ((line = bri.readLine()) != null) {
 
                                 String[] gradeTypeAndValue = line.split(" - ");
@@ -245,7 +245,7 @@ public interface Functional {
                             CoursePack studentGrades = new CoursePack(lectureCode, grades);
 
                             // Fetching the Student's Absenteeism for this Lecture
-                            bri = new BufferedReader(new FileReader(studentPath + "\\Absenteeism\\" + lectureCode));
+                            bri = new BufferedReader(new FileReader(studentPath + "/Absenteeism/" + lectureCode));
                             CoursePack studentAbsenteeism = new CoursePack(lectureCode, bri.readLine());
 
                             // Creating the Student object by using all the information

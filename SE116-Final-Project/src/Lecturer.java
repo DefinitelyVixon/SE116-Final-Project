@@ -195,7 +195,7 @@ public class Lecturer extends Academic implements Functional {
                         try {
                             BufferedWriter bw = new BufferedWriter(
                                     new FileWriter(
-                                            System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + s.getID() + "\\Grades\\" + courseCode
+                                            System.getProperty("user.dir") + "/SampleFolder/Student/" + s.getID() + "/Grades/" + courseCode
                                     )
                             );
 
@@ -370,7 +370,7 @@ public class Lecturer extends Academic implements Functional {
 
                             BufferedWriter bw = new BufferedWriter(
                                     new FileWriter(
-                                            System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + s.getID() + "\\Absenteeism\\" + courseCode
+                                            System.getProperty("user.dir") + "/SampleFolder/Student/" + s.getID() + "/Absenteeism/" + courseCode
                                     )
                             );
                             bw.write(s.getMyAbsenteeism().get(0).getAbsenteeism());
