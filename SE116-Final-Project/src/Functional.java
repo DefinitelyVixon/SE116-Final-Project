@@ -167,7 +167,8 @@ public interface Functional {
                 }
             }
             return new Student(studentName, studentID, studentGrades, studentAbsenteeism, studentCalendar);
-        } catch (IOException e) {
+        }
+        catch(IOException e) {
 
             e.printStackTrace();
             return null;
@@ -180,14 +181,16 @@ public interface Functional {
         boolean isAdvisor = false;
 
         ArrayList<Lecture> lecturerLectures = new ArrayList<>();
+        ArrayList<ToDo> lecturerCalendar = new ArrayList<>();
 
         File baseFile = new File(System.getProperty("user.dir") + "\\SampleFolder\\Lecturer\\" + ID);
 
         BufferedReader br;
 
         String line;
+        LocalDate localDate;
 
-        try {
+        try{
 
             File[] lectureFolders = baseFile.listFiles();
 
@@ -267,17 +270,47 @@ public interface Functional {
 
                 } else {
 
-                    br = new BufferedReader(new FileReader(f.getPath()));
-                    lecturerName = br.readLine();
-                    lecturerID = br.readLine();
-                    String advisorCheck = br.readLine();
+                    if (f.getName().equals("calendar.txt")) {
 
-                    if (advisorCheck.equals("true")) {
+                        br = new BufferedReader(new FileReader(f.getPath()));
 
-                        isAdvisor = true;
+                        while ((line = br.readLine()) != null) {
+
+                            String[] dayMonthYearEvents = line.split(" - ");
+
+                            String[] tempEvent = dayMonthYearEvents[3].split(" ! ");
+
+                            List<String> studentEvent = new ArrayList<>(Arrays.asList(tempEvent));
+
+                            localDate = LocalDate.of(
+                                    Integer.parseInt(dayMonthYearEvents[2]),
+                                    Integer.parseInt(dayMonthYearEvents[1]),
+                                    Integer.parseInt(dayMonthYearEvents[0])
+                            );
+
+                            lecturerCalendar.add(
+                                    new ToDo(
+                                            localDate,      // Specific Date
+                                            studentEvent    // studentEvent
+                                    )
+                            );
+                        }
+                        br.close();
                     }
+                    else if(f.getName().equals("info.txt")) {
 
-                    br.close();
+                        br = new BufferedReader(new FileReader(f.getPath()));
+                        lecturerName = br.readLine();
+                        lecturerID = br.readLine();
+                        String advisorCheck = br.readLine();
+
+                        if (advisorCheck.equals("true")) {
+
+                            isAdvisor = true;
+                        }
+
+                        br.close();
+                    }
                 }
             }
         } catch (IOException e) {
@@ -287,7 +320,7 @@ public interface Functional {
             return null;
         }
 
-        return new Lecturer(lecturerName, lecturerID, lecturerLectures, isAdvisor);
+        return new Lecturer(lecturerName, lecturerID, lecturerLectures, isAdvisor, lecturerCalendar);
     }
 
     static void cls() {
