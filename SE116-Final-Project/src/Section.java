@@ -5,7 +5,7 @@ public class Section {
     private String sectionNumber;
     private ArrayList<Student> sectionStudents;
 
-    public Section(String sectionNumber, ArrayList<Student> sectionStudents){
+    public Section(String sectionNumber, ArrayList<Student> sectionStudents) {
 
         setSectionNumber(sectionNumber);
         setSectionStudents(sectionStudents);
@@ -14,6 +14,7 @@ public class Section {
     public void setSectionNumber(String sectionNumber) {
         this.sectionNumber = sectionNumber;
     }
+
     public void setSectionStudents(ArrayList<Student> sectionStudents) {
         this.sectionStudents = sectionStudents;
     }
@@ -21,6 +22,7 @@ public class Section {
     public String getSectionNumber() {
         return sectionNumber;
     }
+
     public ArrayList<Student> getSectionStudents() {
         return sectionStudents;
     }

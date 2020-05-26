@@ -4,78 +4,69 @@ import java.util.InputMismatchException;
 
 public class Test {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         int loginAs = menu();
 
         String ID;
 
-        if(loginAs == 1){
+        if (loginAs == 1) {
 
-            if((ID = Functional.loginCheck("Student")) != null){
+            if ((ID = Functional.loginCheck("Student")) != null) {
 
                 Student loggedStudent = Functional.createStudent(ID);
 
-                while(true) {
+                while (true) {
 
                     int selection = loggedStudent.menu();
 
-                    if(selection == 1){
+                    if (selection == 1) {
 
                         loggedStudent.grades();
-                    }
-                    else if(selection == 2){
+                    } else if (selection == 2) {
 
                         loggedStudent.absenteeism();
-                    }
-                    else if(selection == 3){
+                    } else if (selection == 3) {
 
                         loggedStudent.calendar();
-                    }
-                    else{
+                    } else {
 
                         Functional.cls();
                         System.out.println("       Goodbye...     ");
                         break;
                     }
                 }
-            }
-            else{
+            } else {
 
                 System.out.println(" ➲ Stop abusing the fucking program you dumbass...");
             }
-        }
-        else{
+        } else {
 
-            if((ID = Functional.loginCheck("Lecturer")) != null){
+            if ((ID = Functional.loginCheck("Lecturer")) != null) {
 
                 Lecturer loggedLecturer = Functional.createLecturer(ID);
 
-                while(true) {
+                while (true) {
 
                     int selection = loggedLecturer.menu();
 
                     if (selection == 1) {
 
                         loggedLecturer.grades();
-                    }
-                    else if (selection == 2) {
+                    } else if (selection == 2) {
 
                         loggedLecturer.absenteeism();
-                    }
-                    else if (selection == 3) {
+                    } else if (selection == 3) {
 
                         loggedLecturer.calendar();
-                    }
-                    else {
+                    } else {
 
                         Functional.cls();
                         System.out.println("       Goodbye...     ");
                         break;
                     }
                 }
-            }
-            else{
+            } else {
 
                 System.out.println(" ➲ Stop abusing the fucking program you dumbass...");
             }
@@ -83,19 +74,19 @@ public class Test {
         }
     }
 
-    public static int menu(){
+    public static int menu() {
 
-        while (true){
+        while (true) {
 
             System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
             System.out.println("  ║" + StringUtils.center("OASIS 2", 59) + "║");
-            System.out.println("  ║" + StringUtils.center("IZMIR UNIVERSITY OF ECONOMICS", 59) +"║");
+            System.out.println("  ║" + StringUtils.center("IZMIR UNIVERSITY OF ECONOMICS", 59) + "║");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
             System.out.println("  ╟─────────┤  1) Student  ├────────┤  2) Lecturer  ├─────────╢");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
-            System.out.print  ("  ╙──── ➲ Select one :");
+            System.out.print("  ╙──── ➲ Select one :");
 
-            try{
+            try {
 
                 int selection = Functional.sc.nextInt();
 
@@ -103,16 +94,14 @@ public class Test {
 
                 Functional.cls();
 
-                if(selection == 1 || selection == 2){
+                if (selection == 1 || selection == 2) {
 
                     return selection;
-                }
-                else {
+                } else {
 
                     System.out.println(" ➲ Yazık kafana!");
                 }
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
 
                 Functional.sc.nextLine();
                 System.out.println(" ➲ Invalid input. Please enter a valid integer.");

@@ -1,11 +1,11 @@
 
 
-public class Grade{
+public class Grade {
 
     private String gradeType;
     private int gradeValue;
 
-    public Grade(String gradeType, int gradeValue){
+    public Grade(String gradeType, int gradeValue) {
 
         setGradeType(gradeType);
         setGradeValue(gradeValue);

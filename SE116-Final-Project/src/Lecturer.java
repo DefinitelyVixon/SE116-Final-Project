@@ -278,14 +278,13 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ║────────┴──────────────────────────────────────────────────║");
 
             // Select Section
-            int sectionIndex = Functional.catcher(0,getLectures().get(lectureIndex).getSections().size()-1) - 1;
+            int sectionIndex = Functional.catcher(0, getLectures().get(lectureIndex).getSections().size() - 1) - 1;
 
 
+            staticMenu("ABSENTEEISM");
+            System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
 
-                staticMenu("ABSENTEEISM");
-                System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
-
-                System.out.println("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 11) + "├──┤" + StringUtils.center("ABSENTEEISM", 11));
+            System.out.println("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 11) + "├──┤" + StringUtils.center("ABSENTEEISM", 11));
 
 
             // Print the Grades of that Section Students

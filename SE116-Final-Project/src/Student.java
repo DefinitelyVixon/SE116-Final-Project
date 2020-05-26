@@ -48,12 +48,10 @@ public class Student extends Academic implements Functional {
 
                 if (selection == 1 || selection == 2 || selection == 3 || selection == 4) {
                     return selection;
-                }
-                else {
+                } else {
                     System.out.println(" ➾ Yazık kafana !");
                 }
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 sc.nextLine();
                 System.out.println(" ➾ Invalid input. Please enter a valid integer. ");
                 System.out.println();
@@ -62,24 +60,24 @@ public class Student extends Academic implements Functional {
     }
 
     @Override
-    public void grades(){
+    public void grades() {
 
         Functional.cls();
 
         this.staticMenu("GRADES");
 
-        for (int i = 0 ; i < getMyGrades().size() ; i++){
+        for (int i = 0; i < getMyGrades().size(); i++) {
 
-            System.out.printf ("  ║        │ %-8.7s├────────────────────────────────────────╢\n",
-                                                           getMyGrades().get(i).getCourseCode());
+            System.out.printf("  ║        │ %-8.7s├────────────────────────────────────────╢\n",
+                    getMyGrades().get(i).getCourseCode());
             System.out.println("  ╟────────┼─────────┴────────────────────────────────────────╢");
 
 
-            for (int j=0;j<getMyGrades().get(i).getCourseGrades().size();j++){
+            for (int j = 0; j < getMyGrades().get(i).getCourseGrades().size(); j++) {
 
                 System.out.printf("  ║        │ %-16.15s= %-3d                            ║\n",
-                                  getMyGrades().get(i).getCourseGrades().get(j).getGradeType(),
-                                getMyGrades().get(i).getCourseGrades().get(j).getGradeValue());
+                        getMyGrades().get(i).getCourseGrades().get(j).getGradeType(),
+                        getMyGrades().get(i).getCourseGrades().get(j).getGradeValue());
 
             }
             System.out.println("  ║────────┴──────────────────────────────────────────────────║");
@@ -93,9 +91,9 @@ public class Student extends Academic implements Functional {
 
         this.staticMenu("ABSENTEEISM");
 
-        for (int i = 0 ; i < getMyAbsenteeism().size() ; i++){
+        for (int i = 0; i < getMyAbsenteeism().size(); i++) {
 
-            System.out.printf("  ╟───┤  %-8.7s├───────┤   %-4.3s├────────────────────────────╢\n",getMyAbsenteeism().get(i).getCourseCode(),
+            System.out.printf("  ╟───┤  %-8.7s├───────┤   %-4.3s├────────────────────────────╢\n", getMyAbsenteeism().get(i).getCourseCode(),
                     getMyAbsenteeism().get(i).getCourseData().get(0));
 
         }
@@ -124,18 +122,19 @@ public class Student extends Academic implements Functional {
 
 
     @Override
-    public void staticMenu(String menuName){
+    public void staticMenu(String menuName) {
 
         System.out.println("  ╔═══════════════════════════════════════════════════════════╗");
         System.out.println("  ║" + StringUtils.rightPad("  Student Login: " + this.getName(), 59) + "║");
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-        System.out.println("  ║" + StringUtils.center(menuName, 59) + "║" );
+        System.out.println("  ║" + StringUtils.center(menuName, 59) + "║");
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
     }
 
     public void setMyAbsenteeism(ArrayList<CoursePack> myAbsenteeism) {
         this.myAbsenteeism = myAbsenteeism;
     }
+
     public void setMyGrades(ArrayList<CoursePack> myGrades) {
         this.myGrades = myGrades;
     }
@@ -143,7 +142,10 @@ public class Student extends Academic implements Functional {
     public ArrayList<CoursePack> getMyGrades() {
         return myGrades;
     }
+
     public ArrayList<CoursePack> getMyAbsenteeism() {
         return myAbsenteeism;
     }
+
+
 }

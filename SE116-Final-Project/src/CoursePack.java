@@ -5,13 +5,14 @@ public class CoursePack {
     private String courseCode;
     private ArrayList<Object> courseData;
 
-    public CoursePack(String courseCode, String data){
+    public CoursePack(String courseCode, String data) {
 
         setCourseCode(courseCode);
 
         setCourseData(data);
     }
-    public CoursePack(String courseCode, ArrayList<Grade> grades){
+
+    public CoursePack(String courseCode, ArrayList<Grade> grades) {
 
         setCourseCode(courseCode);
         this.courseData = new ArrayList<>();
@@ -21,10 +22,12 @@ public class CoursePack {
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
+
     public void setCourseData(ArrayList<Object> courseData) {
         this.courseData = courseData;
     }
-    public void setCourseData(String data){
+
+    public void setCourseData(String data) {
 
         courseData = new ArrayList<>();
         courseData.add(data);
@@ -33,17 +36,19 @@ public class CoursePack {
     public String getCourseCode() {
         return courseCode;
     }
+
     public ArrayList<Object> getCourseData() {
         return courseData;
 
     }
-    public ArrayList<Grade> getCourseGrades(){
+
+    public ArrayList<Grade> getCourseGrades() {
 
         ArrayList<Grade> courseGrades = new ArrayList<>();
 
-        for(Object o : getCourseData()){
+        for (Object o : getCourseData()) {
 
-            if(o instanceof Grade){
+            if (o instanceof Grade) {
 
                 Grade g = (Grade) o;
 
@@ -52,11 +57,12 @@ public class CoursePack {
         }
         return courseGrades;
     }
-    public String getAbsenteeism(){
 
-        for(Object o : getCourseData()){
+    public String getAbsenteeism() {
 
-            if(o instanceof String){
+        for (Object o : getCourseData()) {
+
+            if (o instanceof String) {
 
                 return (String) o;
             }
