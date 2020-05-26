@@ -1,10 +1,19 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ToDo {
 
     private List<String> events;
     private LocalDate date;
+
+    public ToDo(LocalDate date, String event) {
+
+        setDate(date);
+
+        events = new ArrayList<>();
+        events.add(event);
+    }
 
     public ToDo(LocalDate date, List<String> events) {
 

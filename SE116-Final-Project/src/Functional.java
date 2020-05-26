@@ -10,7 +10,7 @@ public interface Functional {
 
     void grades();
 
-    void absenteeism() throws IOException;
+    void absenteeism();
 
     void calendar();
 
@@ -163,7 +163,6 @@ public interface Functional {
                         studentID = br.readLine();
                         br.close();
                     }
-
                 }
             }
             return new Student(studentName, studentID, studentGrades, studentAbsenteeism, studentCalendar);
@@ -313,7 +312,6 @@ public interface Functional {
             }
         } catch (IOException e) {
 
-
             e.printStackTrace();
             return null;
         }
@@ -326,14 +324,18 @@ public interface Functional {
     }
 
     static int catcher(int min, int max) {
+
         while (true) {
+
             try {
 
                 int temp = sc.nextInt();
 
                 if (min <= temp && max >= temp) {
+
                     return temp;
                 } else {
+
                     System.out.printf("Invalid input integer between %d and %d %n", min, max);
                 }
 
@@ -343,9 +345,5 @@ public interface Functional {
                 System.out.println("Invalid input");
             }
         }
-    }
-    static void goBack(){
-
-
     }
 }

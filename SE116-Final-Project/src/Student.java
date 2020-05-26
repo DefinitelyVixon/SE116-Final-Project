@@ -114,25 +114,15 @@ public class Student extends Academic implements Functional {
     public void calendar() {
 
         this.staticMenu("CALENDAR");
-
-        for (int i = 0; i < getCalendar().size(); i++) {
-
-            System.out.printf("  ╟───┤ %-11.10s├──────────────────────────────────────────╢\n", getCalendar().get(i).getDate());
-
-            for (int j = 0; j < getCalendar().get(i).getEvents().size(); j++) {
-
-                System.out.printf("  ╟──┤ %-51.51s ├──╢\n", getCalendar().get(i).getEvents().get(j));
-
-            }
-
-            System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-        }
-        System.out.println("  ╟───────────────────────────────────────────────────────────╜");
-        System.out.println("  ╠➾ Enter 0 to go back");
-        System.out.println("  ╚➾ Enter -1 to enable Edit Mode");
+        super.viewCalendar();
 
     }
 
+    @Override
+    public void changeCalendar() {
+
+        super.changeCalendar();
+    }
 
     @Override
     public void staticMenu(String menuName) {
