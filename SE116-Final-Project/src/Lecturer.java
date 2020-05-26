@@ -29,7 +29,7 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ④ EXIT    \uD83D\uDEAA      ╟", 60, '─') + "╢");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
-            System.out.print  ("  ╙────➲ Select one: ");
+            System.out.print("  ╙────➲ Select one: ");
 
             try {
 
@@ -69,11 +69,11 @@ public class Lecturer extends Academic implements Functional {
                 i++;
             }
             System.out.println("  ╟──── ➲ Enter 0 to go back");
-            System.out.print("  ╙──── ➲ Please enter a valid input : ");
+            System.out.print("  ╙──── ➲ Please select a lecture : ");
 
             // Select Lecture
 
-            int lectureIndex = Functional.catcher(0, getLectures().size() - 1) - 1;
+            int lectureIndex = Functional.catcher(0, getLectures().size()) - 1;
 
 
             if (lectureIndex == -1) {
@@ -97,10 +97,10 @@ public class Lecturer extends Academic implements Functional {
             }
 
             System.out.println("  ╟──── ➲ Enter 0 to go back");
-            System.out.print("  ╙──── ➲ Please enter a valid input : ");
+            System.out.print("  ╙──── ➲ Please select a section : ");
 
             // Select Section
-            int sectionIndex = Functional.catcher(0, getLectures().get(lectureIndex).getSections().size() - 1) - 1;
+            int sectionIndex = Functional.catcher(0, getLectures().get(lectureIndex).getSections().size()) - 1;
 
 
             if (sectionIndex == -1) {
@@ -114,23 +114,23 @@ public class Lecturer extends Academic implements Functional {
             System.out.print("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 12) + "│     ");
 
 
-                for (Grade g : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()) {
+            for (Grade g : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents().get(0).getMyGrades().get(0).getCourseGrades()) {
 
-                    System.out.print("  │" + StringUtils.center(g.getGradeType(), 7) + "│");
+                System.out.print("  │" + StringUtils.center(g.getGradeType(), 7) + "│");
+            }
+
+            System.out.println();
+            // Print the Grades of that Section Students
+            for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
+
+                System.out.print("  ║  │ " + student.getID() + " │  │" + student.getName() + "  │     ");
+                for (Grade g : student.getMyGrades().get(0).getCourseGrades()) {
+
+
+                    System.out.print("  │" + StringUtils.center(String.valueOf(g.getGradeValue()), 7) + "│");
                 }
-
                 System.out.println();
-                // Print the Grades of that Section Students
-                for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
-
-                    System.out.print("  ║  │ " + student.getID() + " │  │" + student.getName() + "  │     ");
-                    for (Grade g : student.getMyGrades().get(0).getCourseGrades()) {
-
-
-                        System.out.print("  │" + StringUtils.center(String.valueOf(g.getGradeValue()), 7) + "│");
-                    }
-                    System.out.println();
-                }
+            }
 
             System.out.println("  ╠═══════════════════════════════════════════════════════════════════════════════");
             System.out.println("  ╠➾ Enter 0 to go back");
@@ -157,7 +157,7 @@ public class Lecturer extends Academic implements Functional {
         }
     }
 
-    public void changeGrades(Section section, String courseCode){
+    public void changeGrades(Section section, String courseCode) {
 
         ArrayList<String> localChanges = new ArrayList<>();
 
@@ -174,7 +174,7 @@ public class Lecturer extends Academic implements Functional {
             }
             System.out.println();
 
-            System.out.println("  ╚➾ Please Enter the Student ID. Enter -1 to Exit Edit Mode");
+            System.out.println("  ╚➾ Please Enter the Student ID. Enter 0 to Exit Edit Mode");
             String selection = sc.next();
 
             if (selection.equals("0")) {
@@ -255,47 +255,61 @@ public class Lecturer extends Academic implements Functional {
 
                 staticMenu("ABSENTEEISM");
                 System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-                System.out.printf("  ╟────────┤ %d) %8.7s├────────────────────────────────────────╢\n", i, l.getLectureCode());
+                System.out.printf("  ╟────────┤ %d) %8.7s├─────────────────────────────────────╢\n", i, l.getLectureCode());
                 i++;
             }
             System.out.println("  ╟───────────────────────────────────────────────────────────╢");
-            // Select Lecture
-            int lectureIndex = Functional.catcher(0, getLectures().size() - 1) - 1;
+            System.out.println("  ╟──── ➲ Enter 0 to go back");
+            System.out.print("  ╙──── ➲ Please select a lecture : ");
 
+            // Select Lecture
+            int lectureIndex = Functional.catcher(0, getLectures().size()) - 1;
+
+            Functional.cls();
+
+            if (lectureIndex == -1) {
+                break;
+            }
 
             i = 1;
             staticMenu("ABSENTEEISM");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
-            System.out.print("  ╙──── ➲ Please enter a valid input : ");
 
             // Print That Lecture's Sections
             for (Section s : getLectures().get(lectureIndex).getSections()) {
 
-                System.out.printf("  ╟────────┤ %d) %9.8s├────────────────────────────────────────╢\n", i, s.getSectionNumber());
+                System.out.printf("  ╟────────┤ %d) %9.8s├────────────────────────────────────╢\n", i, s.getSectionNumber());
                 i++;
             }
 
-            System.out.println("  ║────────┴──────────────────────────────────────────────────║");
+            System.out.println("  ╟────────┴──────────────────────────────────────────────────╜");
+            System.out.println("  ╟──── ➲ Enter 0 to go back");
+            System.out.print("  ╙──── ➲ Please select a section : ");
 
             // Select Section
-            int sectionIndex = Functional.catcher(0, getLectures().get(lectureIndex).getSections().size() - 1) - 1;
+            int sectionIndex = Functional.catcher(0, getLectures().get(lectureIndex).getSections().size()) - 1;
 
+            Functional.cls();
+
+            if (sectionIndex == -1) {
+                break;
+            }
 
             staticMenu("ABSENTEEISM");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
 
-            System.out.println("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 11) + "├──┤" + StringUtils.center("ABSENTEEISM", 11));
+            System.out.println("  ╟──┤" + StringUtils.center("ID", 11) + "├──┤" + StringUtils.center("NAME", 11) + "├──┤" + StringUtils.center("ABSENTEEISM", 11)+ "│" + StringUtils.leftPad("║", 15));
 
 
             // Print the Grades of that Section Students
             for (Student student : getLectures().get(lectureIndex).getSections().get(sectionIndex).getSectionStudents()) {
 
-                System.out.println("  ╟──┤" + StringUtils.center(student.getID(), 11) + "├──┤" + StringUtils.center(student.getName(), 11) + "├──┤" + StringUtils.center(student.getMyAbsenteeism().get(0).getAbsenteeism(), 11) + StringUtils.leftPad("║", 10));
+                System.out.println("  ╟──┤" + StringUtils.center(student.getID(), 11) + "├──┤" + StringUtils.center(student.getName(), 11) + "├──┤" + StringUtils.center(student.getMyAbsenteeism().get(0).getAbsenteeism(), 11) + "│" + StringUtils.leftPad("║", 15));
             }
 
 
-            System.out.println("  ╠➾ Enter -1 to go back");
-            System.out.println("  ╚➾ Enter 0 to enable Edit Mode");
+            System.out.println("  ╠➾ Enter 0 to go back");
+            System.out.println("  ╚➾ Enter -1 to enable Edit Mode");
 
             String selection = sc.next();
             //If Lecturer enters specific value to go back
@@ -331,7 +345,7 @@ public class Lecturer extends Academic implements Functional {
             }
             System.out.println();
 
-            System.out.println("  ╚➾ Please Enter the Student ID. Enter -1 to Exit Edit Mode");
+            System.out.println("  ╚➾ Please Enter the Student ID. Enter 0 to Exit Edit Mode");
             String selection = sc.next();
 
             if (selection.equals("0")) {
@@ -339,7 +353,7 @@ public class Lecturer extends Academic implements Functional {
                 System.out.println("  ╚➾ Do you want to save your changes? (Y / N) Enter anything else to cancel.");
                 selection = sc.next();
 
-                if (selection.equals("Y")) {
+                if (selection.toUpperCase().equals("Y")) {
 
                     System.out.println("  ╚➾ Processing the changes...");
 
@@ -360,7 +374,7 @@ public class Lecturer extends Academic implements Functional {
                         }
                     }
                     break;
-                } else if (selection.equals("N")) {
+                } else if (selection.toUpperCase().equals("N")) {
 
                     System.out.println("  ╚➾ Discarding the changes...");
                     break;
@@ -407,11 +421,11 @@ public class Lecturer extends Academic implements Functional {
 
         this.staticMenu("CALENDAR");
 
-        for (int i = 0 ; i < getCalendar().size();i++){
+        for (int i = 0; i < getCalendar().size(); i++) {
 
             System.out.printf("  ╟───┤ %-11.10s├──────────────────────────────────────────╢\n", getCalendar().get(i).getDate());
 
-            for (int j = 0;j < getCalendar().get(i).getEvents().size();j++){
+            for (int j = 0; j < getCalendar().get(i).getEvents().size(); j++) {
 
                 System.out.printf("  ╟──┤ %-51.51s ├──╢\n", getCalendar().get(i).getEvents().get(j));
 

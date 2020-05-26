@@ -167,8 +167,7 @@ public interface Functional {
                 }
             }
             return new Student(studentName, studentID, studentGrades, studentAbsenteeism, studentCalendar);
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
 
             e.printStackTrace();
             return null;
@@ -190,7 +189,7 @@ public interface Functional {
         String line;
         LocalDate localDate;
 
-        try{
+        try {
 
             File[] lectureFolders = baseFile.listFiles();
 
@@ -296,8 +295,7 @@ public interface Functional {
                             );
                         }
                         br.close();
-                    }
-                    else if(f.getName().equals("info.txt")) {
+                    } else if (f.getName().equals("info.txt")) {
 
                         br = new BufferedReader(new FileReader(f.getPath()));
                         lecturerName = br.readLine();
@@ -333,7 +331,7 @@ public interface Functional {
 
                 int temp = sc.nextInt();
 
-                if (min <= temp && max >= temp) {
+                if (min <= temp && max >= temp ) {
                     return temp;
                 } else {
                     System.out.printf("Invalid input integer between %d and %d %n", min, max);
@@ -341,6 +339,7 @@ public interface Functional {
 
             } catch (InputMismatchException e) {
 
+                sc.nextLine();
                 System.out.println("Invalid input");
             }
         }

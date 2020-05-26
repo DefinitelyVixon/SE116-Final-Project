@@ -19,6 +19,7 @@ public class Student extends Academic implements Functional {
         myAbsenteeism = new ArrayList<>();
         myAbsenteeism.add(absenteeism);
     }
+
     // Personal initialization for Students
     public Student(String name, String ID, ArrayList<CoursePack> myGrades, ArrayList<CoursePack> myAbsenteeism, ArrayList<ToDo> calendar) {
 
@@ -39,7 +40,7 @@ public class Student extends Academic implements Functional {
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ➂ CALENDAR    \uD83D\uDCC5  ╟", 59, '─') + "╢");
             System.out.println("  ╟" + StringUtils.rightPad("───╢    ④ EXIT    \uD83D\uDEAA      ╟", 60, '─') + "╢");
             System.out.println("  ╠═══════════════════════════════════════════════════════════╝");
-            System.out.print  ("  ╙────➲ Select one: ");
+            System.out.print("  ╙────➲ Select one: ");
 
             try {
 
@@ -105,13 +106,13 @@ public class Student extends Academic implements Functional {
 
         this.staticMenu("CALENDAR");
 
-        for (int i = 0;i < getCalendar().size();i++){
+        for (int i = 0; i < getCalendar().size(); i++) {
 
             System.out.printf("  ╟───┤ %-11.10s├──────────────────────────────────────────╢\n", getCalendar().get(i).getDate());
 
-            for (int j = 0;j < getCalendar().get(i).getEvents().size();j++){
+            for (int j = 0; j < getCalendar().get(i).getEvents().size(); j++) {
 
-            System.out.printf("  ╟──┤ %-51.51s ├──╢\n", getCalendar().get(i).getEvents().get(j));
+                System.out.printf("  ╟──┤ %-51.51s ├──╢\n", getCalendar().get(i).getEvents().get(j));
 
             }
 
