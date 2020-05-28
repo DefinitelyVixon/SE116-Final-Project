@@ -1,10 +1,8 @@
-import org.apache.commons.lang3.StringUtils;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class Academic {
 
@@ -45,16 +43,16 @@ public abstract class Academic {
         while (true) {
 
             int i = 1;
-            System.out.println("  ╠➾Local Changes");
+            System.out.println("  ╠➾ Local Changes");
             for (String s : localChanges) {
 
                 System.out.println(i + "- " + s);
                 i++;
             }
 
-            System.out.println("  ╠══➾Enter 0 to Exit Edit Mode");
-            System.out.println("  ╠══➾Enter 1 to Add A New Event");
-            System.out.println("  ╚══➾Enter 2 to Delete An Event");
+            System.out.println("  ╠══➾ Enter 0 to Exit Edit Mode");
+            System.out.println("  ╠══➾ Enter 1 to Add A New Event");
+            System.out.println("  ╚══➾ Enter 2 to Delete An Event");
             String selection = Functional.sc.nextLine();
 
             // Save or Discard Changes, Then Exit
@@ -66,12 +64,118 @@ public abstract class Academic {
                 // Save and Exit
                 if (selection.toUpperCase().equals("Y")) {
 
-                    System.out.println("  ╚➾ Processing the changes...");
+                    if (loginType.equals("Advisor")){
+
+                        System.out.println(" ╚➾ Do you also want to apply this change to all of your students? (Y / N)");
+
+                        selection = Functional.sc.next();
+
+                        if(selection.toUpperCase().equals("Y")){
+
+
+                            System.out.println("  ╚➾ Applying the changes to all students...");
+
+                            if(this instanceof Lecturer){
+
+                                for (Lecture lecture : ((Lecturer) this).getLectures()){
+
+                                    for(Section section : lecture.getSections()){
+
+                                        for (Student student : section.getSectionStudents()){
+
+                                            LocalDate localDate;
+
+                                            ArrayList<ToDo> tempCalendar = new ArrayList<>();
+
+                                            try {
+
+                                                BufferedReader br = new BufferedReader(
+                                                        new FileReader(
+                                                                System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + student.getID() + "\\calendar.txt"
+                                                        )
+                                                );
+
+                                                String line;
+
+                                                while ((line = br.readLine()) != null) {
+
+                                                    String[] dayMonthYearEvents = line.split("-");
+
+                                                    String[] tempEvent = dayMonthYearEvents[3].split(" ! ");
+
+                                                    List<String> studentEvent = new ArrayList<>(Arrays.asList(tempEvent));
+
+                                                    localDate = LocalDate.of(
+                                                            Integer.parseInt(dayMonthYearEvents[0]),
+                                                            Integer.parseInt(dayMonthYearEvents[1]),
+                                                            Integer.parseInt(dayMonthYearEvents[2])
+                                                    );
+
+                                                    tempCalendar.add(
+                                                            new ToDo(
+                                                                    localDate,      // Specific Date
+                                                                    studentEvent    // studentEvent
+                                                            )
+                                                    );
+                                                }
+
+                                                tempCalendar.addAll(this.getCalendar());
+                                                br.close();
+
+                                                BufferedWriter bw = new BufferedWriter(
+                                                        new FileWriter(
+                                                                System.getProperty("user.dir") + "\\SampleFolder\\Student\\" + student.getID() + "\\calendar.txt"
+                                                        )
+                                                );
+
+                                                for (ToDo toDo : tempCalendar) {
+
+                                                    StringBuilder writeLine = new StringBuilder(toDo.getDate() + "-");
+
+                                                    int k = 0;
+                                                    while (k < toDo.getEvents().size()) {
+
+                                                        writeLine.append(toDo.getEvents().get(k));
+
+                                                        if (k == toDo.getEvents().size() - 1) {
+
+                                                            writeLine.append("\n");
+                                                        } else {
+
+                                                            writeLine.append(" ! ");
+                                                        }
+
+                                                        k++;
+                                                    }
+
+                                                    bw.write(writeLine.toString());
+                                                }
+                                                bw.close();
+                                            }
+                                            catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (selection.toUpperCase().equals("N")){
+
+
+                            System.out.println("  ╚➾ Processing the changes...");
+                        }
+                        else{
+
+                            System.out.println(" ➾ Invalid input.");
+                        }
+
+                    }
 
                     try {
                         BufferedWriter bw = new BufferedWriter(
                                 new FileWriter(
-                                        System.getProperty("user.dir") + "\\SampleFolder\\" + loginType + "\\" + this.getID() + "\\calendar.txt"
+                                        System.getProperty("user.dir") + "\\SampleFolder\\" + (loginType.equals("Advisor")?"Lecturer":loginType) + "\\" + this.getID() + "\\calendar.txt"
                                 )
                         );
 
@@ -159,11 +263,11 @@ public abstract class Academic {
             // Delete An Event
             else if (selection.equals("2")) {
 
-                System.out.println("Enter the Date in Year(int)-Month(int)-Day(int) format: ");
+                System.out.println(" ➾ Enter the Date in Year(int)-Month(int)-Day(int) format: ");
                 String date = Functional.sc.nextLine();
                 LocalDate localDate = LocalDate.parse(date);
 
-                System.out.println("Enter the Event name: ");
+                System.out.println(" ➾ Enter the Event name: ");
                 String event = Functional.sc.nextLine();
 
                 int dateIndex = -1;

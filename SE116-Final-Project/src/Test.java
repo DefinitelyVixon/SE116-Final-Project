@@ -69,7 +69,7 @@ public class Test {
                 }
             } else {
 
-                System.out.println(" ➲ Stop abusing the fucking program you dumbass...");
+                System.out.println(" ➲ You've exceeded the trial limit. Please try again later...");
             }
 
         }

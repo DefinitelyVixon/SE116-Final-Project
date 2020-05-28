@@ -69,7 +69,7 @@ public class Lecturer extends Academic implements Functional {
                 i++;
             }
             System.out.println("  ╟──── ➲ Enter 0 to go back");
-            System.out.print("  ╙──── ➲ Please select a lecture : ");
+            System.out.print  ("  ╙──── ➲ Please select a lecture : ");
 
             // Select Lecture
 
@@ -98,7 +98,7 @@ public class Lecturer extends Academic implements Functional {
             }
 
             System.out.println("  ╟──── ➲ Enter 0 to go back");
-            System.out.print("  ╙──── ➲ Please select a section : ");
+            System.out.print  ("  ╙──── ➲ Please select a section : ");
 
             // Select Section
             int sectionIndex = Functional.catcher(0, getLectures().get(lectureIndex).getSections().size()) - 1;
@@ -154,7 +154,7 @@ public class Lecturer extends Academic implements Functional {
                         getLectures().get(lectureIndex).getLectureCode()
                 );
             } else {
-                System.out.println("  Invalid Input !");
+                System.out.println(" ➾ Invalid Input!");
             }
 
 
@@ -170,7 +170,7 @@ public class Lecturer extends Academic implements Functional {
         while (true) {
 
             int i = 1;
-            System.out.println("Local Changes");
+            System.out.println("  ╠➾ Local Changes");
             for (String s : localChanges) {
 
                 System.out.println(i + "- " + s);
@@ -426,19 +426,44 @@ public class Lecturer extends Academic implements Functional {
     @Override
     public void calendar() {
 
-        this.staticMenu("CALENDAR");
-        super.viewCalendar();
+        while (true){
 
+            this.staticMenu("CALENDAR");
+            super.viewCalendar();
 
+            System.out.println("  ╠═══════════════════════════════════════════════════════════════════════════════");
+            System.out.println("  ╠➾ Enter 0 to Go Back");
+            System.out.println("  ╚➾ Enter -1 to Enable Edit Mode");
+
+            int selection = Functional.catcher(-1,0);
+
+            if(selection == -1){
+
+                if(isAdvisor){
+
+                    changeCalendar("Advisor");
+                }
+                else{
+
+                    changeCalendar("Lecturer");
+                }
+            }
+            else if (selection == 0){
+
+                Functional.cls();
+                break;
+            }
+            else{
+
+                System.out.println(" ➾ Invalid Input.");
+            }
+        }
     }
 
-    public void changeCalendar() {
+    @Override
+    public void changeCalendar(String loginType) {
 
-        // local changes
-
-
-        // overwrite
-
+        super.changeCalendar(loginType);
 
     }
 
@@ -450,7 +475,6 @@ public class Lecturer extends Academic implements Functional {
         System.out.println("  ║" + StringUtils.rightPad("Advisor Access: " + (getIsAdvisor() ? "☑" : "☒"), 59) + "║");
         System.out.println("  ╠═══════════════════════════════════════════════════════════╣");
         System.out.println("  ║" + StringUtils.center(menuName, 59) + "║");
-
     }
 
     public ArrayList<Lecture> getLectures() {
