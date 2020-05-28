@@ -459,7 +459,6 @@ public class Lecturer extends Academic implements Functional {
     @Override
     public void changeCalendar(String loginType) {
 
-        Functional.sc.nextLine();
         super.changeCalendar(loginType);
 
     }
