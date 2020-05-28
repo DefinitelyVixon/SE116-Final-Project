@@ -64,24 +64,24 @@ public abstract class Academic {
                 // Save and Exit
                 if (selection.toUpperCase().equals("Y")) {
 
-                    if (loginType.equals("Advisor")){
+                    if (loginType.equals("Advisor")) {
 
                         System.out.println(" ╚➾ Do you also want to apply this change to all of your students? (Y / N)");
 
                         selection = Functional.sc.next();
 
-                        if(selection.toUpperCase().equals("Y")){
+                        if (selection.toUpperCase().equals("Y")) {
 
 
                             System.out.println("  ╚➾ Applying the changes to all students...");
 
-                            if(this instanceof Lecturer){
+                            if (this instanceof Lecturer) {
 
-                                for (Lecture lecture : ((Lecturer) this).getLectures()){
+                                for (Lecture lecture : ((Lecturer) this).getLectures()) {
 
-                                    for(Section section : lecture.getSections()){
+                                    for (Section section : lecture.getSections()) {
 
-                                        for (Student student : section.getSectionStudents()){
+                                        for (Student student : section.getSectionStudents()) {
 
                                             LocalDate localDate;
 
@@ -151,21 +151,18 @@ public abstract class Academic {
                                                     bw.write(writeLine.toString());
                                                 }
                                                 bw.close();
-                                            }
-                                            catch (IOException e) {
+                                            } catch (IOException e) {
                                                 e.printStackTrace();
                                             }
                                         }
                                     }
                                 }
                             }
-                        }
-                        else if (selection.toUpperCase().equals("N")){
+                        } else if (selection.toUpperCase().equals("N")) {
 
 
                             System.out.println("  ╚➾ Processing the changes...");
-                        }
-                        else{
+                        } else {
 
                             System.out.println(" ➾ Invalid input.");
                         }
@@ -175,7 +172,7 @@ public abstract class Academic {
                     try {
                         BufferedWriter bw = new BufferedWriter(
                                 new FileWriter(
-                                        System.getProperty("user.dir") + "\\SampleFolder\\" + (loginType.equals("Advisor")?"Lecturer":loginType) + "\\" + this.getID() + "\\calendar.txt"
+                                        System.getProperty("user.dir") + "\\SampleFolder\\" + (loginType.equals("Advisor") ? "Lecturer" : loginType) + "\\" + this.getID() + "\\calendar.txt"
                                 )
                         );
 
