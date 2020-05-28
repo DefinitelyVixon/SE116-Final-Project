@@ -69,7 +69,7 @@ public class Lecturer extends Academic implements Functional {
                 i++;
             }
             System.out.println("  ╟──── ➲ Enter 0 to go back");
-            System.out.print  ("  ╙──── ➲ Please select a lecture : ");
+            System.out.print("  ╙──── ➲ Please select a lecture : ");
 
             // Select Lecture
 
@@ -98,7 +98,7 @@ public class Lecturer extends Academic implements Functional {
             }
 
             System.out.println("  ╟──── ➲ Enter 0 to go back");
-            System.out.print  ("  ╙──── ➲ Please select a section : ");
+            System.out.print("  ╙──── ➲ Please select a section : ");
 
             // Select Section
             int sectionIndex = Functional.catcher(0, getLectures().get(lectureIndex).getSections().size()) - 1;
@@ -426,7 +426,7 @@ public class Lecturer extends Academic implements Functional {
     @Override
     public void calendar() {
 
-        while (true){
+        while (true) {
 
             this.staticMenu("CALENDAR");
             super.viewCalendar();
@@ -435,25 +435,22 @@ public class Lecturer extends Academic implements Functional {
             System.out.println("  ╠➾ Enter 0 to Go Back");
             System.out.println("  ╚➾ Enter -1 to Enable Edit Mode");
 
-            int selection = Functional.catcher(-1,0);
+            int selection = Functional.catcher(-1, 0);
 
-            if(selection == -1){
+            if (selection == -1) {
 
-                if(isAdvisor){
+                if (isAdvisor) {
 
                     changeCalendar("Advisor");
-                }
-                else{
+                } else {
 
                     changeCalendar("Lecturer");
                 }
-            }
-            else if (selection == 0){
+            } else if (selection == 0) {
 
                 Functional.cls();
                 break;
-            }
-            else{
+            } else {
 
                 System.out.println(" ➾ Invalid Input.");
             }
@@ -463,6 +460,7 @@ public class Lecturer extends Academic implements Functional {
     @Override
     public void changeCalendar(String loginType) {
 
+        Functional.sc.nextLine();
         super.changeCalendar(loginType);
 
     }
