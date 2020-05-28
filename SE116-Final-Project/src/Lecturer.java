@@ -440,7 +440,7 @@ public class Lecturer extends Academic implements Functional {
             if(selection == -1){
 
                 if(isAdvisor){
-
+                    Functional.sc.nextLine();
                     changeCalendar("Advisor");
                 }
                 else{
